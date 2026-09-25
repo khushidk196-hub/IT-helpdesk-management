@@ -5,54 +5,65 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] Audit history is maintained for ticket-related activities in accordance with REQ-002
-- [ ] Ticket activity changes produce observable audit records linked to the affected ticket
-- [ ] Create, update, and other source-supported ticket-related activities follow the audit-history path rather than bypassing logging
-- [ ] Failure paths preserve data integrity so ticket operations do not produce incomplete or misleading audit records
+- [ ] Ticket Audit History behavior is implemented only for source-supported scope and does not introduce unsupported audit features
+- [ ] Users can observe ticket audit history for a ticket through the application where a ticket details experience exists in the current project context
+- [ ] Audit history displays a chronological record of ticket changes with observable before/after change details where source-supported by existing data
+- [ ] Primary path for viewing an existing ticket’s audit history is implemented and verifiable end to end
+- [ ] Alternate paths for empty history, partial history, and unavailable history are implemented with user-visible handling
+- [ ] Failure paths for inaccessible ticket, missing ticket, and backend retrieval errors are implemented with safe user-visible behavior
+- [ ] No user-story behavior is invented beyond the feature title and source-supported context; unresolved behavior remains unimplemented pending clarification
 
 ## UI Acceptance Criteria
 
-- [ ] Any ticket audit-history UI that exists in local project context displays audit entries for a ticket using established UI conventions
-- [ ] Audit-history presentation, if source-supported in the application, shows traceable ticket activity information clearly enough for users to inspect changes
-- [ ] Validation, empty states, loading states, and error states for audit-history views are implemented where applicable in local project context
-- [ ] Accessibility and responsive behavior for any audit-history UI follow existing project standards and local design-system conventions
-- [ ] No new UI behavior is invented where the source does not require it
+- [ ] A ticket audit history UI surface is implemented in the ticket experience only where supported by the existing application structure
+- [ ] Audit history entries are presented with clear labels for changed field/event, actor, and timestamp where those values exist
+- [ ] Empty-state messaging is implemented when a ticket has no audit history
+- [ ] Error-state messaging is implemented when audit history cannot be loaded
+- [ ] Loading state is implemented for audit history retrieval if the data is not immediately available
+- [ ] Long history lists are rendered in a usable way consistent with existing local UI conventions
+- [ ] Date/time and change-detail formatting follow existing design-system and local UI conventions
+- [ ] Accessibility expectations are satisfied for keyboard access, screen-reader-readable labels, and readable status/error messaging
+- [ ] Responsive behavior is implemented for the audit history view in layouts already supported by the application
 
 ## API and Integration Acceptance Criteria
 
-- [ ] Ticket-related application/service operations persist audit-history records when relevant ticket activity occurs
-- [ ] Audit-history storage and retrieval behavior is implemented within the monolith architecture and follows existing local service/repository patterns
-- [ ] Audit-history records are associated with the correct ticket identifier and operation context
-- [ ] Error handling for audit-history persistence follows existing application patterns and does not silently lose required traceability data
-- [ ] Existing API and service contracts remain backward-compatible unless a source-supported change is required
+- [ ] Required application-layer operation(s) to retrieve ticket audit history are implemented where source-supported by local architecture
+- [ ] Audit history retrieval is scoped to a specific ticket identifier and rejects invalid or inaccessible ticket requests
+- [ ] Returned audit history data includes required fields for rendering supported history details without exposing unsupported internal-only data
+- [ ] API/service error responses for not found, unauthorized/forbidden, and unexpected retrieval failure are implemented consistently with existing contracts
+- [ ] Any repository/provider integration needed to read audit history follows monolith project patterns and existing local data-access conventions
+- [ ] Existing ticket-related contracts remain backward-compatible unless the source context explicitly requires a breaking change
+- [ ] No external integration is added unless already required by the existing project context for ticket audit storage/retrieval
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] Audit-history business logic captures ticket-related activities required for traceability under REQ-002
-- [ ] Each audit record persists the minimum source-supported traceability data needed to identify the ticket and the activity that occurred
-- [ ] Audit-history records are stored durably and remain retrievable after ticket activity is completed
-- [ ] Audit logging is implemented consistently across relevant ticket activity paths so equivalent actions produce equivalent traceability outcomes
-- [ ] Duplicate, partial, or orphaned audit-history records are prevented through transaction or persistence handling appropriate to the local codebase
-- [ ] Any unresolved details about exact audited event types, field-level content, actor attribution, timestamps, retention, or exposure are treated as Open Questions and must not be implemented as assumptions
+- [ ] Audit history reflects persisted ticket change events or revisions supported by the current system rather than reconstructed assumptions
+- [ ] History ordering rules are implemented consistently, with newest-first or oldest-first behavior matching existing local conventions if established
+- [ ] Each history record includes actor, event/change type, event timestamp, and changed values only when these fields are actually available from stored data
+- [ ] Sensitive or restricted fields are excluded or masked from audit history display according to existing security and data-handling rules
+- [ ] Validation is implemented for ticket identifiers and any history query inputs
+- [ ] Empty, malformed, or partially populated audit records are handled safely without breaking the ticket experience
+- [ ] Persistence/model changes are implemented only if required by existing source-supported storage behavior; no new audit schema is invented without supporting source detail
+- [ ] If the system currently lacks a defined source of audit history data, this remains an open clarification and must not be implemented as an assumption
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] Audit-history implementation satisfies traceability expectations for ticket-related activities without degrading core ticket operation reliability
-- [ ] Access to audit-history data follows existing project security and permission patterns where applicable
-- [ ] Logging, monitoring, or observability added for audit-history behavior follows local standards and does not expose sensitive data beyond existing policy
-- [ ] Performance impact of audit-history persistence is acceptable for normal ticket activity flows in the monolith
-- [ ] Implementation follows applicable Golden Repo and local architecture conventions only where they apply to the current codebase
-- [ ] Tests or verification steps cover the highest-risk behaviors: audit record creation, ticket linkage, persistence success/failure handling, and retrieval if supported
+- [ ] Access to ticket audit history is protected by the same or stricter permission model as ticket viewing, unless existing source-supported rules define otherwise
+- [ ] Audit history retrieval performs acceptably for tickets with large change histories within existing application performance expectations
+- [ ] Failures to load audit history are observable through existing logging/monitoring conventions where such observability exists in the project
+- [ ] Implementation follows monolith architecture conventions and local layering boundaries used by the project
+- [ ] Implementation uses only source-supported scope from the selected work items and current form settings
+- [ ] No TDD-specific artifacts or behaviors are introduced
+- [ ] Tests or verification steps cover highest-risk behavior: authorization, history ordering, empty/error states, and change-detail rendering
 
 ## Traceability
 
-- [ ] Every implemented audit-history change maps back to REQ-002 and the user story requiring maintenance of ticket-related audit history
-- [ ] Every implemented code path that creates or changes ticket activity can be traced to corresponding audit-history behavior in code and verification
-- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in specs/<slug>/assumptions.md (no Open Question is silently assumed)
-- [ ] No BLOCKING Open Question was implemented as an assumption (a feature with an unresolved blocking question is held at needs-clarification, not completed)
+- [ ] Every implemented change maps back to the Ticket Audit History feature intent and source-supported acceptance behavior
+- [ ] Every implemented UI, API, and data change is traceable to source context from the selected work items rather than inferred product assumptions
+- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in assumptions documentation (no Open Question is silently assumed)
+- [ ] No BLOCKING Open Question was implemented as an assumption; unresolved questions about audit data source, exposed fields, ordering rules, or permissions hold completion until clarified
 
 ## Notes
 
-- Never resolve an Open Question silently. In an unattended run, record the chosen assumption + rationale in specs/<slug>/assumptions.md; blocking questions must instead hold the feature at needs-clarification.
-- Open Questions in this feature include unspecified application type, unspecified UI/design requirements, and unspecified audit-history detail such as event scope, actor metadata, timestamp requirements, retention, and visibility rules; these must not be invented without recorded resolution.
+- Never resolve an Open Question silently. If audit-event source, visible fields, retention scope, permissions, or ordering are not defined in source-supported project context, do not implement them as assumptions.
 - Mark an item complete only after verifying actual implementation code and behavior.

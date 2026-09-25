@@ -5,57 +5,64 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] IT Support Agents can add a comment to an existing ticket
-- [ ] Added comments are associated with the correct ticket and become part of that ticket’s comment history
-- [ ] Ticket comment history can be viewed over time for tickets with one or more comments
-- [ ] Behavior is implemented for primary and failure paths that are source-supported, including successful comment creation and rejection when the actor is not an IT Support Agent
-- [ ] No unsupported behavior is implemented for unresolved details such as comment editing, deletion, attachments, formatting, notifications, or ordering rules unless explicitly clarified
+- [ ] Ticket commenting capability is implemented for the monolith application where users can add comments to a ticket
+- [ ] Commenting behavior is observable in the application through both backend and frontend flows where applicable to the mixed application context
+- [ ] Users can view existing comments associated with a ticket in a ticket-detail context
+- [ ] Primary flow for creating and displaying a new comment on a ticket is implemented and verified
+- [ ] Failure behavior for invalid, empty, unauthorized, or persistence-failed comment submission is implemented and verified
+- [ ] If editing, deleting, attachments, mentions, or threaded replies are not source-supported, they are not added as assumed scope
+- [ ] Because no user stories were provided, no unsupported acceptance behavior is inferred beyond add-and-view ticket comments
 
 ## UI Acceptance Criteria
 
-- [ ] Ticket interfaces expose a source-supported way for IT Support Agents to add comments to tickets, if the application includes a user interface
-- [ ] Ticket interfaces expose a source-supported way to view ticket comment history, if the application includes a user interface
-- [ ] Comment submission behavior presents observable success and validation/error states where implemented
-- [ ] Existing local UI conventions and design-system patterns are followed for comment input, history display, and ticket detail interactions
-- [ ] Accessibility and responsive behavior are implemented according to existing project standards where a UI is present
-- [ ] No UI behavior is implemented as an assumption for unresolved source details such as exact placement, field constraints, timestamps display, author display, or empty-state copy
+- [ ] A ticket-detail UI state exists where comments for a ticket are displayed if the feature includes a user-facing interface
+- [ ] A user input mechanism exists for submitting a new comment if the feature includes a user-facing interface
+- [ ] Validation feedback is shown for rejected comment submission where source-supported by implemented rules
+- [ ] Comment list rendering handles empty, loading, success, and error states where those states exist in the application flow
+- [ ] Existing local UI conventions are followed for form controls, spacing, typography, action placement, and feedback messaging
+- [ ] Accessibility expectations are met for comment input, submit actions, focus handling, and readable comment content
+- [ ] Responsive behavior for comment display and submission follows existing application patterns where the UI supports multiple screen sizes
 
 ## API and Integration Acceptance Criteria
 
-- [ ] Required monolith application operations for creating and retrieving ticket comments are implemented where needed by the application architecture
-- [ ] Comment creation enforces that the acting user is an IT Support Agent before persisting the comment
-- [ ] Comment retrieval returns comments scoped to the requested ticket only
-- [ ] Error responses or failure handling are implemented for invalid ticket references and unauthorized/non-agent attempts to add comments, where such flows exist in the application
-- [ ] Existing internal contracts remain backward-compatible unless a breaking change is explicitly required
-- [ ] No integration behavior is implemented as an assumption for unresolved details such as external notifications, audit integrations, or event publication
+- [ ] Monolith service operations required to create and retrieve ticket comments are implemented where comments are persisted or served via application endpoints
+- [ ] Request inputs for comment creation validate required identifiers and comment content before processing
+- [ ] Response outputs for ticket comments include all source-supported fields needed by consuming application layers
+- [ ] Error responses are implemented for invalid ticket reference, invalid comment payload, unauthorized access, and persistence failures where applicable
+- [ ] Authorization and permission checks for reading and creating ticket comments follow existing ticket access rules and local project policy
+- [ ] Repository or persistence-layer behavior stores comments against the correct ticket entity and retrieves them in the expected ticket context
+- [ ] Existing endpoint and service contracts remain backward-compatible unless a breaking change is explicitly required by source artifacts
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] A comment domain/data model exists or is extended to persist ticket-linked comments
-- [ ] Each persisted comment is linked to a ticket and captures the authoring IT Support Agent identity as required to support comment history
-- [ ] Persistence supports multiple comments over time for the same ticket
-- [ ] Business logic restricts comment creation to IT Support Agents only
-- [ ] Retrieval logic returns the full persisted comment history for a ticket as required by the feature
-- [ ] Validation and error handling cover source-supported edge cases, including nonexistent ticket targets and unauthorized actors
-- [ ] No unsupported data fields or rules are assumed for unresolved details such as maximum comment length, rich text support, edit history, soft deletion, or retention rules
+- [ ] A comment data model or persistence representation exists and is linked to its parent ticket
+- [ ] Required comment fields are implemented and validated, including ticket association and comment body, where source-supported
+- [ ] Comment creation enforces business rules for required content and ticket existence before persistence
+- [ ] Comment retrieval returns only comments associated with the requested ticket
+- [ ] Comment ordering behavior is implemented consistently according to existing project conventions; if ordering rules are not source-supported, do not assume a new rule without a recorded decision
+- [ ] Audit or metadata fields such as author and timestamps are implemented only where supported by current project context or source artifacts
+- [ ] Error handling covers missing ticket, invalid input, unauthorized access, and storage failures without corrupting ticket or comment data
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] Permission enforcement for IT Support Agent-only comment creation is implemented consistently across application layers
-- [ ] Comment creation and retrieval are reliable and do not expose comments across unrelated tickets
-- [ ] Observability follows local project standards for important comment creation and retrieval failures
-- [ ] Performance is acceptable for viewing comment history on a ticket under expected project norms
-- [ ] Implementation follows applicable monolith and repository-local architectural conventions
-- [ ] Tests or verification cover the highest-risk behavior: authorized agent comment creation, unauthorized rejection, correct ticket association, and comment history retrieval
+- [ ] Ticket commenting implementation follows the selected monolith architecture and existing module boundaries
+- [ ] Security controls prevent unauthorized creation or viewing of ticket comments according to existing access patterns
+- [ ] Reliability expectations are met so comment submission failures are surfaced clearly and do not create duplicate or partial records
+- [ ] Observability is implemented consistent with local project practices for logging or monitoring comment creation and failure paths where such practices exist
+- [ ] Performance is acceptable for retrieving and rendering comments within a ticket using existing application standards
+- [ ] Implementation uses only source-supported scope from selected work items and current form settings
+- [ ] Tests or verification steps cover highest-risk behavior, including comment creation, retrieval, validation failure, and authorization behavior
 
 ## Traceability
 
-- [ ] Every implemented change maps back to REQ-001 and the user story requiring IT Support Agents to add comments to tickets
-- [ ] Implementation covers the feature description requirement to add and view comment history on tickets over time where source-supported
-- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in assumptions documentation; no Open Question is silently assumed
-- [ ] No blocking unresolved detail is implemented as an assumption; if a blocking question prevents completion, the feature remains at needs-clarification
+- [ ] Every implemented ticket commenting change maps back to source-supported feature context for add/view comment behavior
+- [ ] No unsupported capability is implemented from assumption alone because no user stories were provided for this feature
+- [ ] Any non-blocking Open Question discovered during implementation has a recorded decision and one-line rationale in the project’s assumptions record before completion
+- [ ] Any blocking Open Question such as comment permissions, field set, ordering rules, or UI exposure is not implemented as an assumption and holds completion until clarified
+- [ ] Backend, frontend, persistence, and verification changes are traceable to source-supported behavior for ticket commenting within the mixed application context
 
 ## Notes
 
-- Do not silently assume unresolved requirements. This feature source does not specify application type, design guidelines, comment field constraints, display metadata, ordering, editing/deletion behavior, attachments, or notifications.
+- Never resolve an Open Question silently. In an unattended run, record the chosen assumption and rationale in the project assumptions record; blocking questions must instead hold the feature at needs-clarification.
+- Do not implement editing, deletion, attachments, reactions, mentions, threading, or notifications unless explicitly supported by source artifacts.
 - Mark an item complete only after verifying actual implementation code and behavior.

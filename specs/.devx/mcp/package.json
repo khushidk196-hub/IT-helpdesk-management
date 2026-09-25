@@ -1,0 +1,13 @@
+{
+  "name": "it-help-desk-management-mcp-server",
+  "version": "1.0.0",
+  "description": "Astra MCP server for IT Help Desk Management specs",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

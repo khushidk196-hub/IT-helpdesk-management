@@ -5,65 +5,66 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] System Administrators can access administration capabilities to manage users, roles, and system configuration
-- [ ] User management behavior is implemented with observable create, view, update, and disable/remove behavior where supported by the feature scope and existing application patterns
-- [ ] Role management behavior is implemented with observable create, view, update, and disable/remove behavior where supported by the feature scope and existing application patterns
-- [ ] System configuration management behavior is implemented with observable view and update behavior for supported configuration settings
-- [ ] Only authorized System Administrators can perform administration management actions
-- [ ] Primary, alternate, and failure paths are covered for user, role, and configuration management actions, including unauthorized access and invalid input handling
+- [ ] Administration management capabilities explicitly supported by the selected DevOps work items for this feature are implemented in the monolith application
+- [ ] Each source-supported administration workflow identified from backend, frontend, testing, planning, and documentation artifacts has observable end-to-end behavior in the application
+- [ ] Create, view, update, and any source-supported deactivate/delete or status-management paths for administration entities are implemented where present in source artifacts
+- [ ] Primary, alternate, and failure paths for administration management operations are implemented and verifiable from actual application behavior
+- [ ] No administration capability is implemented beyond what is supported by the selected work items and current form settings
+- [ ] Any unresolved administration behavior, scope boundary, or workflow detail remains unimplemented until clarified if it is a blocking Open Question
 
 ## UI Acceptance Criteria
 
-- [ ] Administration screens or modules for users, roles, and configuration are implemented if the application has a UI
-- [ ] User management UI supports listing records, viewing details, and performing supported administrative actions
-- [ ] Role management UI supports listing roles, viewing details, and performing supported administrative actions
-- [ ] Configuration UI supports viewing current settings and updating supported settings
-- [ ] Validation messages are shown for invalid or incomplete administrative input
-- [ ] Unauthorized users cannot see or use restricted administration actions in the UI
-- [ ] Responsive behavior and accessibility expectations are met using existing project and design-system conventions where applicable
-- [ ] UI implementation follows local monolith application conventions and existing admin/navigation patterns
+- [ ] Source-supported administration screens, pages, panels, dialogs, tables, forms, and detail views are implemented
+- [ ] Administration UI states for loading, empty, populated, success, validation error, permission denied, and system failure are implemented where source-supported
+- [ ] Form validation rules for administration management inputs are enforced consistently in the UI and match source-supported business/data rules
+- [ ] Administration actions expose clear user feedback for successful save/update and failed operations
+- [ ] Responsive behavior for administration management screens is implemented where source-supported by the selected artifacts
+- [ ] Accessibility expectations supported by source artifacts are implemented for administration navigation, forms, tables, actions, labels, and error messaging
+- [ ] Existing local UI conventions and design patterns used elsewhere in the application are followed for administration management components
+- [ ] No UI interaction, field, or screen is added based on assumption when the source does not define it
 
 ## API and Integration Acceptance Criteria
 
-- [ ] Server-side operations for managing users are implemented with required inputs, outputs, validation, and error responses
-- [ ] Server-side operations for managing roles are implemented with required inputs, outputs, validation, and error responses
-- [ ] Server-side operations for viewing and updating supported system configuration are implemented with required inputs, outputs, validation, and error responses
-- [ ] Authorization is enforced server-side for all administration management operations
-- [ ] Existing application contracts remain backward-compatible unless a source-supported change explicitly requires otherwise
-- [ ] Repository, service, and controller/module boundaries follow existing monolith architecture and local project patterns
-- [ ] Any external integration or identity/provider dependency used for user or role management follows existing project context; if not defined in source or codebase, it must not be introduced as an assumption
+- [ ] Source-supported administration management endpoints, controllers, handlers, or service operations are implemented within the monolith architecture
+- [ ] Request inputs, response outputs, validation failures, and error responses for administration operations match source-supported contracts
+- [ ] Permissions and access checks for administration APIs/services are enforced where source-supported
+- [ ] Repository, provider, and persistence-layer behavior for administration data follows the selected work items and existing project conventions
+- [ ] Any source-supported integration points used by administration management are implemented with required success and failure handling
+- [ ] Existing contracts remain backward-compatible unless a selected work item explicitly requires a breaking change
+- [ ] No external or internal integration behavior is inferred or invented when not supported by source artifacts
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] User management business rules supported by source and existing system behavior are implemented consistently across create, update, disable/remove, and retrieval flows
-- [ ] Role management business rules supported by source and existing system behavior are implemented consistently across create, update, disable/remove, and retrieval flows
-- [ ] Configuration changes persist correctly and are reflected in subsequent reads
-- [ ] Validation rules are implemented for required user, role, and configuration fields based on source-supported behavior and existing data model constraints
-- [ ] Data persistence for users, roles, role assignments, and configuration settings is implemented or extended using existing schema and persistence conventions
-- [ ] Error handling covers duplicate records, invalid identifiers, conflicting changes, unauthorized actions, and invalid configuration values where applicable
-- [ ] Changes that affect user-role relationships maintain referential and business-rule integrity
-- [ ] If lifecycle behavior for deletion vs deactivation is not defined by source or existing domain rules, it must not be implemented as an unsupported assumption
+- [ ] Source-supported administration business rules, constraints, and state transitions are implemented in application logic
+- [ ] Required administration entities, models, fields, relationships, and persistence behavior are implemented where supported by the selected artifacts
+- [ ] Field-level validation, uniqueness, required/optional status, and format constraints for administration data are enforced consistently across UI and server layers
+- [ ] Filtering, sorting, search, pagination, and status handling for administration records are implemented where source-supported
+- [ ] Error handling covers source-supported invalid inputs, duplicate data, missing records, unauthorized access, and operation conflicts
+- [ ] Audit-related or change-tracking behavior for administration actions is implemented where explicitly supported by source artifacts
+- [ ] Data creation and update flows preserve integrity and do not permit unsupported state changes
+- [ ] If administration data retention, archival, or deletion rules are not defined in source context, they are not implemented as assumptions
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] Security controls ensure only System Administrators can access and execute administration management features
-- [ ] Sensitive administration actions are logged or otherwise observable according to existing project observability and audit conventions where applicable
-- [ ] Implementation is reliable under expected administrative usage and handles failures without corrupting user, role, or configuration data
-- [ ] Performance is acceptable for administrative listing, retrieval, and update operations within existing application expectations
-- [ ] Implementation follows applicable local coding standards, architecture conventions for the monolith, and any Golden Repo guidance used by the project
-- [ ] Tests or verification steps cover highest-risk behavior, including authorization, persistence, validation, and failure scenarios for users, roles, and configuration
+- [ ] Security requirements supported by source artifacts are implemented for administration management, including authentication/authorization enforcement where applicable
+- [ ] Administration functionality is implemented within the selected monolith architecture and follows existing local architectural boundaries and conventions
+- [ ] Reliability expectations supported by source artifacts are met for administration operations, including predictable handling of service and persistence failures
+- [ ] Observability implemented for administration management includes source-supported logging, error reporting, and operational signals needed to diagnose failures
+- [ ] Performance-sensitive administration operations identified by source artifacts are implemented efficiently enough for expected application use
+- [ ] Testing or verification covers the highest-risk administration behaviors across UI, API, business logic, permissions, and failure handling
+- [ ] TDD-specific artifacts or implementation steps are not introduced
+- [ ] Implementation remains constrained to the selected DevOps work items and current form settings only
 
 ## Traceability
 
-- [ ] Every implemented change maps back to REQ-001 and the user story requirement to allow System Administrators to manage users, roles, and configuration
-- [ ] User management implementation traces to observable behavior satisfying the administration management requirement
-- [ ] Role management implementation traces to observable behavior satisfying the administration management requirement
-- [ ] Configuration management implementation traces to observable behavior satisfying the administration management requirement
-- [ ] Any non-blocking unresolved detail implemented from existing system conventions has a recorded decision and one-line rationale in project assumptions documentation; no unresolved detail is silently assumed
-- [ ] No blocking open question is implemented as an assumption; if scope-critical details such as supported configuration types, user lifecycle actions, or role assignment rules are unresolved, the affected implementation remains at needs-clarification until resolved
+- [ ] Every administration management implementation change maps back to source-supported functional requirements, workflows, or work-item details from the selected artifacts
+- [ ] Every implemented UI, API, data, and business-rule behavior for administration management is traceable to backend, frontend, testing, planning, or documentation evidence in source context
+- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in specs/<slug>/assumptions.md (no Open Question is silently assumed)
+- [ ] No BLOCKING Open Question was implemented as an assumption (a feature with an unresolved blocking question is held at needs-clarification, not completed)
+- [ ] Where user stories are absent, implementation traceability is maintained directly to the selected work items and derived source-supported behaviors
+- [ ] Any unresolved source detail required to complete administration management is explicitly held for clarification rather than guessed in code
 
 ## Notes
 
-- Do not silently assume unsupported administration behavior beyond the stated scope of managing users, roles, and configuration.
-- Where source detail is missing, implement only what is supported by existing application conventions and record any non-blocking decision with rationale.
+- Never resolve an Open Question silently. In an unattended run, record the chosen assumption + rationale in specs/<slug>/assumptions.md; blocking questions must instead hold the feature at needs-clarification.
 - Mark an item complete only after verifying actual implementation code and behavior.

@@ -5,58 +5,57 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] Ticket assignment functionality is implemented so each ticket maintains visible ownership
-- [ ] Assigned ownership is observable on each ticket in a way that makes responsibility for investigation and resolution clear
-- [ ] Users can set, update, and persist ticket ownership where local workflow and permissions allow
-- [ ] Unassigned and reassigned ticket paths are handled in a way that preserves ownership visibility and accountability
-- [ ] Failure behavior for invalid, unauthorized, or unavailable assignment actions is implemented and surfaced to the user
+- [ ] Ticket ownership assignment behavior is implemented for the monolith application in a way that supports assigning an owner to a ticket
+- [ ] Ticket ownership changes are observable in the application wherever ticket ownership is displayed or used
+- [ ] Assignment flow covers primary behavior (assign owner), alternate behavior (change existing owner), and failure behavior (invalid or unauthorized assignment attempts) where supported by source context
+- [ ] No user-story-specific behavior is invented beyond assigning and updating ticket ownership, because no user stories were provided for this feature
+- [ ] Any unresolved ownership rules, assignment triggers, or role-specific behaviors are treated as Open Questions and are not implemented as assumptions
 
 ## UI Acceptance Criteria
 
-- [ ] Ticket views display current ownership clearly and consistently wherever ticket responsibility is expected to be visible
-- [ ] Assignment and reassignment interactions are implemented where source-supported by existing application patterns
-- [ ] Empty-state behavior for tickets without an owner is implemented if the current system permits unassigned tickets; otherwise assignment is enforced by workflow
-- [ ] Validation and error messages are shown for failed assignment attempts, invalid assignees, or permission restrictions
-- [ ] Accessibility and responsive behavior follow existing project UI conventions because no feature-specific design guidance is provided in source
-- [ ] Existing design-system and local UI conventions are followed for ownership labels, selectors, status messaging, and field presentation
+- [ ] Ticket UI surfaces include a source-supported way to view current ownership and assign or reassign ownership where this feature is exposed
+- [ ] UI state reflects ownership changes after successful assignment without requiring unsupported manual workarounds
+- [ ] Validation and error feedback are shown for failed assignment attempts where assignment can be initiated from the UI
+- [ ] Existing local UI conventions are followed for forms, selection controls, action placement, loading states, and error messaging
+- [ ] Accessibility expectations are satisfied for ownership selection and submission interactions, including keyboard operation and screen-reader-accessible labels where applicable
+- [ ] Responsive behavior is preserved for ticket ownership interactions on supported screen sizes used by the application
 
 ## API and Integration Acceptance Criteria
 
-- [ ] Required application operations to read and update ticket ownership are implemented consistent with the monolith architecture
-- [ ] Ownership-related inputs, outputs, and error responses are implemented for ticket retrieval and ticket update flows where applicable
-- [ ] Authorization checks are enforced for assignment changes according to existing project permission patterns
-- [ ] Any repository or service logic for ticket ownership persists assignment changes reliably and returns the current owner on read
-- [ ] Existing API and domain contracts remain backward-compatible unless a breaking change is explicitly required by source, which it is not
+- [ ] Required monolith-side operations for reading and updating ticket ownership are implemented where source-supported
+- [ ] Ownership assignment inputs, outputs, and error responses are implemented consistently with existing local application contracts
+- [ ] Authorization and permission checks for ownership update operations are enforced where supported by current project context
+- [ ] Any repository, service, or provider changes needed to persist and retrieve ticket ownership are implemented within the monolith architecture
+- [ ] Existing contracts remain backward-compatible unless a source-supported breaking change is explicitly required
+- [ ] No external integration behavior is added unless directly supported by source context
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] Ticket data model includes ownership information sufficient to identify the current responsible party
-- [ ] Ownership changes are persisted so ticket responsibility remains visible across reads and updates
-- [ ] Reassignment updates the current owner deterministically and does not leave ticket ownership in an ambiguous state
-- [ ] Business rules enforce valid ownership targets based on existing user or agent entities in the local project context
-- [ ] Validation prevents assignment to invalid or nonexistent owners
-- [ ] Error handling covers missing ticket, invalid assignee, unauthorized update, and persistence failure scenarios
-- [ ] If audit/history behavior for assignment changes exists in the project, ownership changes integrate with it using established conventions
-- [ ] Any assumption about whether tickets may remain unassigned is treated as an Open Question and must not be implemented silently
+- [ ] Ticket ownership is represented in the domain and persistence model with the fields required to store and retrieve the current owner
+- [ ] Ownership assignment updates the ticket’s persisted state correctly for initial assignment and reassignment
+- [ ] Business rules for valid owner selection, reassignment constraints, and invalid ownership states are implemented only where supported by source context
+- [ ] Application behavior handles unassigned tickets, reassigned tickets, and failed ownership updates without corrupting ticket state
+- [ ] Data validation prevents invalid ticket references, invalid owner references, and malformed ownership updates where applicable
+- [ ] Any audit, history, or state-transition behavior related to ownership changes is implemented only if supported by source context; otherwise it remains an Open Question and must not be assumed
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] Ownership information is reliably available in normal ticket workflows so accountability is not lost due to inconsistent reads or writes
-- [ ] Security and permission controls protect assignment actions from unauthorized modification
-- [ ] Observability follows existing project conventions for logging or tracing assignment changes and failures where such conventions exist
-- [ ] Performance of ticket retrieval and update flows remains acceptable after adding ownership assignment behavior
-- [ ] Implementation follows monolith architecture constraints and existing repository/service boundaries in the local codebase
-- [ ] Tests or verification steps cover the highest-risk behavior: display of current owner, assignment update, reassignment, invalid assignee handling, and authorization enforcement
+- [ ] Security expectations are satisfied so unauthorized users cannot assign or change ticket ownership
+- [ ] Reliability expectations are satisfied so ownership updates are persisted consistently and reflected correctly on subsequent reads
+- [ ] Observability is added where consistent with local project practice so ownership update failures can be diagnosed
+- [ ] Performance of ticket retrieval and ownership update flows remains acceptable within existing application expectations
+- [ ] Implementation stays within the selected monolith architecture and does not introduce unsupported distributed-service patterns
+- [ ] Tests or verification steps cover highest-risk behavior, including successful assignment, reassignment, invalid input, and unauthorized access
+- [ ] No TDD-specific artifacts are introduced, because source context explicitly excludes them
 
 ## Traceability
 
-- [ ] Every implemented change maps back to REQ-003 and the user story requirement that each ticket maintain clear ownership through assignment
-- [ ] Every implemented behavior supporting ownership, assignment, responsibility visibility, and accountability is traceable to source-supported feature scope
-- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in assumptions.md (no Open Question is silently assumed)
-- [ ] No BLOCKING Open Question was implemented as an assumption; unresolved blocking ownership workflow questions hold the feature at needs-clarification
+- [ ] Every implemented ownership assignment change maps back to the feature description and source-supported acceptance behavior for Ticket Ownership Assignment
+- [ ] Every implemented UI, backend, data, and test change is traceable to source context from the selected work items and current form settings only
+- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in specs/<slug>/assumptions.md (no Open Question is silently assumed)
+- [ ] No BLOCKING Open Question was implemented as an assumption (a feature with an unresolved blocking question is held at needs-clarification, not completed)
 
 ## Notes
 
-- Do not silently assume whether assignment is mandatory at ticket creation, whether reassignment is unrestricted, or which roles may assign ownership unless those rules already exist in the local project context.
-- Because source design guidance is not specified, use established application conventions for screens, controls, validation, accessibility, and responsive behavior.
+- Never resolve an Open Question silently. In an unattended run, record the chosen assumption + rationale in specs/<slug>/assumptions.md; blocking questions must instead hold the feature at needs-clarification.
 - Mark an item complete only after verifying actual implementation code and behavior.

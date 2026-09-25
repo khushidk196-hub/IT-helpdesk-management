@@ -5,54 +5,62 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] Every source-supported application workflow can be executed from its start state to its terminal outcome during testing
-- [ ] End-to-end test coverage exists for each identified workflow path that is implemented in the application
-- [ ] Workflow execution during testing exercises real application behavior across the full monolith stack, not isolated unit-only behavior
-- [ ] Observable success and failure outcomes are verifiable for each workflow under test
-- [ ] Any workflow not yet testable end to end is explicitly identified as incomplete rather than treated as implicitly covered
+- [ ] End-to-end workflow testability is implemented for the full selected IT Help Desk Management work-item scope represented by this feature
+- [ ] Implementation supports coherent workflow coverage across backend, frontend, testing, planning, and documentation touchpoints where they affect executable end-to-end behavior
+- [ ] End-to-end coverage is organized for a monolith application context and does not depend on microservice-only assumptions
+- [ ] Primary workflow paths across included help desk feature areas are testable from user entry point through final persisted or externally visible outcome
+- [ ] Applicable alternate paths are testable where selected source artifacts define different valid workflow branches
+- [ ] Failure paths and recovery behavior are testable where selected source artifacts define validation, system, permission, or integration errors
+- [ ] No TDD-specific artifacts, flows, or implementation dependencies are introduced as part of this feature
 
 ## UI Acceptance Criteria
 
-- [ ] User-facing workflow steps required to complete end-to-end testing are implemented and operable where the application includes a UI
-- [ ] Required workflow state changes, validation feedback, and terminal states are observable in the UI where source-supported
-- [ ] Existing local UI conventions and design-system patterns are followed for any test-supporting UI changes
-- [ ] Accessibility and responsive behavior are preserved for any UI touched to enable workflow testability
-- [ ] If application type or UI requirements remain unspecified, no UI-specific assumptions are implemented without a recorded non-blocking decision
+- [ ] User-facing workflow steps required to execute end-to-end scenarios are implemented and automatable where source-supported
+- [ ] UI states needed for workflow progression, waiting, success, and failure are implemented and observable in tests where source-supported
+- [ ] Form validation, inline errors, blocking messages, and user guidance required for workflow completion are implemented where source-supported
+- [ ] Frontend behavior needed to make end-to-end workflows reliably testable is implemented without introducing unsupported UI assumptions
+- [ ] Responsive and accessibility behavior affecting workflow execution remains functional in the implemented paths where source-supported
+- [ ] Existing local UI patterns and conventions are followed for any screens or interactions touched by workflow testability changes
 
 ## API and Integration Acceptance Criteria
 
-- [ ] End-to-end workflow tests exercise required internal service boundaries and integration points used by the monolith workflow path
-- [ ] Testable workflow execution includes required request/response handling, error behavior, and permission behavior where those exist in the implemented workflow
-- [ ] Any external dependency needed to complete a workflow is handled in a testable manner consistent with existing project conventions
-- [ ] Existing API and integration contracts remain backward-compatible unless a source-supported change is required
-- [ ] Unresolved integration behavior is not implemented as an assumption if it would affect end-to-end workflow completion
+- [ ] Required monolith API/service operations used by end-to-end workflows are implemented and reachable through the tested application paths
+- [ ] Request inputs, outputs, status handling, and error responses needed for end-to-end workflow verification are implemented where source-supported
+- [ ] Integration points that participate in workflow completion are implemented with observable success and failure behavior where source-supported
+- [ ] Backend and frontend contracts used in tested workflows remain compatible with existing consumers unless a breaking change is explicitly required by source context
+- [ ] Testability-related instrumentation, hooks, or fixtures do not alter production workflow semantics beyond what is source-supported
+- [ ] Any repository/provider behavior required to make workflow outcomes verifiable is implemented consistently with local project architecture and monolith constraints
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] Workflow business rules required to move from initiation through completion are implemented and exercised in end-to-end tests
-- [ ] Required state transitions, validations, and exceptions along each workflow path are covered by end-to-end verification
-- [ ] Test data setup and persistence behavior support full workflow execution without bypassing required business logic
-- [ ] Data created, updated, or consumed during workflow execution is validated for correctness at key checkpoints and final outcomes
-- [ ] Edge cases and failure paths that prevent end-to-end completion are covered where source-supported by implemented workflow behavior
+- [ ] Business rules governing workflow progression, completion, rejection, retries, and exceptions are implemented where source-supported
+- [ ] Data entities, fields, state changes, and persistence behavior required to verify workflow execution are implemented where source-supported
+- [ ] Workflow transitions produce observable and verifiable data outcomes at each critical step where source-supported
+- [ ] Validation rules that gate workflow progression are enforced consistently across UI, service, and persistence layers where applicable
+- [ ] Error handling for invalid inputs, partial failures, and blocked transitions is implemented and testable where source-supported
+- [ ] Cross-step data continuity is preserved so that information entered or generated earlier in a workflow is correctly available in later workflow stages
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] End-to-end workflow tests are reliable and repeatable in the project’s test environment
-- [ ] Test execution avoids introducing security or permission bypasses beyond approved test mechanisms already used by the project
-- [ ] Logging, diagnostics, or observable outputs are sufficient to determine where a workflow failed during end-to-end testing
-- [ ] End-to-end workflow verification is implemented in a manner consistent with monolith architecture constraints and local repository conventions
-- [ ] Tests or verification steps prioritize the highest-risk workflows first, consistent with the feature’s high priority
-- [ ] Any applicable Golden Repo conventions are followed only where they exist in local project context and are relevant to workflow testability
+- [ ] End-to-end workflow execution is reliable enough for repeatable automated verification in the monolith environment
+- [ ] Security and permission behavior affecting workflow accessibility and completion is implemented and verifiable where source-supported
+- [ ] Logging, observability, or other diagnostics needed to troubleshoot workflow failures are implemented where source-supported
+- [ ] Workflow testability implementation avoids unnecessary coupling to generated planning or documentation artifacts that are not executable behavior
+- [ ] Performance of implemented workflow paths remains acceptable for end-to-end verification and does not introduce avoidable instability
+- [ ] Implementation uses only selected DevOps work items and current form settings as source context; unsupported scope expansion is not introduced
+- [ ] Implementation excludes project timeline estimation, invented business priorities, and TDD-specific deliverables
 
 ## Traceability
 
-- [ ] Each implemented change maps to REQ-001 and the user story requirement that each workflow be exercisable end to end during testing
-- [ ] Every end-to-end test case is traceable to a specific implemented workflow or workflow path
-- [ ] Every non-blocking Open Question implemented has a recorded decision and one-line rationale in the feature assumptions record
-- [ ] No blocking unresolved question about workflow scope, application type, or required test mechanism is implemented as an assumption
-- [ ] Any workflow excluded from end-to-end coverage is explicitly documented with source-based rationale or held for clarification
+- [ ] Every implemented workflow testability change maps back to source-supported feature scope, constraints, or derived workflow behavior in the provided context
+- [ ] Where no explicit user stories are provided, each implemented scenario is traceable to selected work-item behavior and not to invented requirements
+- [ ] Any unresolved detail needed for implementation is recorded as an Open Question and must not be implemented as an assumption if blocking
+- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in assumptions.md or the project’s equivalent assumptions record
+- [ ] No blocking Open Question is implemented as an assumption; unresolved blocking items keep the feature at needs-clarification rather than completed
+- [ ] Implementation verifies actual code and executable workflow behavior rather than relying on documentation-only completion
 
 ## Notes
 
-- Do not assume workflow inventory, UI presence, or integration scope beyond what is implemented and source-supported; unresolved items require clarification or a recorded non-blocking decision.
-- Mark an item complete only after verifying actual implementation code and observable end-to-end behavior.
+- No user stories were provided for this feature; derive implementation only from source-supported workflow behavior and constraints in the selected work items.
+- Do not silently assume missing workflow details, test entry points, permissions, or integration behavior. Record non-blocking assumptions with rationale; block implementation if the missing detail is required to complete behavior correctly.
+- Mark an item complete only after verifying actual implementation code and end-to-end behavior.

@@ -1,0 +1,2833 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-09-25T08:47:42.675Z",
+  "enableTdd": false,
+  "totalFeatures": 36,
+  "features": [
+    {
+      "id": 44604854,
+      "taskId": "FEATURE-44604854",
+      "title": "Ticket Categorization And Priority Management",
+      "slug": "ticket-categorization-priority-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What application surface(s) are in scope: web, mobile, desktop, API/service, or mixed?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Which actors or roles can assign or modify ticket category?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Which actors or roles can assign or modify ticket priority?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Must category be assigned at ticket creation time?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "Must priority be assigned at ticket creation time?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "Can category be updated after ticket creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Can priority be updated after ticket creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "What are the allowed category values?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "What are the allowed priority values?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "Are category and priority enumerated reference data or free-text values?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "Are default category or priority values required?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "What validation and error behavior is required for missing or invalid category values?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "What validation and error behavior is required for missing or invalid priority values?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "Where in the UI, if any, must category and priority be displayed or edited?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "Are category and priority required to appear in ticket lists, ticket details, reports, or tracking views?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "Are category and priority changes required to be audited or historically tracked?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "Are there integrations, exports, or downstream processes that depend on category or priority?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are there migration or backfill requirements for existing tickets that do not yet have category or priority?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-categorization-priority-management/specs.md",
+        "requirements": "specs/ticket-categorization-priority-management/requirements.md",
+        "prompt": "specs/ticket-categorization-priority-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604868,
+      "taskId": "FEATURE-44604868",
+      "title": "Ticket Resolution Management",
+      "slug": "ticket-resolution-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Are any roles other than IT Support Agents allowed to resolve tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are there ticket ownership, assignment, queue membership, or department-based restrictions on who may resolve a ticket?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "What authorization behavior is required when a non-permitted actor attempts to resolve a ticket?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-resolution-management/specs.md",
+        "requirements": "specs/ticket-resolution-management/requirements.md",
+        "prompt": "specs/ticket-resolution-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604867,
+      "taskId": "FEATURE-44604867",
+      "title": "Ticket Commenting",
+      "slug": "ticket-commenting",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actors can create, view, edit, or delete ticket comments?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are comments intended for internal staff only, external users only, or both?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "Is there more than one comment visibility type, such as internal versus public?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "What UI surface will host comments: ticket detail page, activity feed, separate tab, or another pattern?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "Can users add comments only, or also edit and delete them?",
+          "blocking": true
+        },
+        {
+          "id": "oq-6",
+          "text": "What fields make up a comment record?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Is comment text required, and what validation rules apply?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "Are attachments supported within comments?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "Are mentions, rich text, markdown, or formatting supported?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "How are comments ordered and displayed?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "Do comments trigger notifications, ticket updates, or workflow actions?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "Are comments exposed through an API, and if so, what operations and schemas are required?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "What authentication and authorization rules govern comment actions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-14",
+          "text": "Are comment changes audited, and are comments immutable after posting?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "Are there retention, archival, or deletion rules for comment data?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "Are there accessibility, localization, or content moderation requirements for comment interactions?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "Are there performance or volume constraints, such as maximum comments per ticket or maximum comment length?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are there any Golden Repo conventions applicable to monolith feature design for comments beyond the generic source constraints?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-commenting/specs.md",
+        "requirements": "specs/ticket-commenting/requirements.md",
+        "prompt": "specs/ticket-commenting/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604858,
+      "taskId": "FEATURE-44604858",
+      "title": "End-to-End Ticket Lifecycle Management",
+      "slug": "ticket-lifecycle-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actors may create tickets?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Which actors may assign tickets?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "Which actors may mark tickets as under investigation, resolved, or closed?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "Are there distinct roles such as requester, agent, supervisor, or administrator?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Are any lifecycle transitions restricted by role or ownership?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-lifecycle-management/specs.md",
+        "requirements": "specs/ticket-lifecycle-management/requirements.md",
+        "prompt": "specs/ticket-lifecycle-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604880,
+      "taskId": "FEATURE-44604880",
+      "title": "Ticket Classification And Priority Management",
+      "slug": "ticket-classification-priority-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which roles may set category during ticket creation?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Which roles may update ticket category after creation?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Which roles may set or update priority?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Are any roles restricted to view-only access for category and priority?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Are audit-history visibility permissions role-restricted?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-classification-priority-management/specs.md",
+        "requirements": "specs/ticket-classification-priority-management/requirements.md",
+        "prompt": "specs/ticket-classification-priority-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604859,
+      "taskId": "FEATURE-44604859",
+      "title": "User Ticket Submission And Tracking",
+      "slug": "user-ticket-tracking",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What authentication mechanism identifies an employee or business user?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are employee and business user distinct roles in the system, or simply different user categories with identical permissions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are any other actors permitted to view or act on submitted tickets within this feature?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/user-ticket-tracking/specs.md",
+        "requirements": "specs/user-ticket-tracking/requirements.md",
+        "prompt": "specs/user-ticket-tracking/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604869,
+      "taskId": "FEATURE-44604869",
+      "title": "Ticket Assignment",
+      "slug": "ticket-assignment",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Who can assign tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Who can receive ticket assignments?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Is assignment manual, automatic, or both?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "Is reassignment supported?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "Can tickets be unassigned?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "Does assignment apply to individual users, teams, queues, or all of these?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Does assignment change ticket status, ownership, or SLA behavior?",
+          "blocking": true
+        },
+        {
+          "id": "oq-8",
+          "text": "Are there restrictions on assigning closed, resolved, or archived tickets?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "What UI surface exposes assignment functionality?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "Is bulk assignment required?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "What success, warning, and error states must be shown to users?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "What accessibility requirements apply to assignment interactions?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "Is there an API or server action for assignment, and if so what is the contract?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "What validation rules determine whether an assignee is eligible?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "Are assignment changes audited or historized?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "Are notifications generated when a ticket is assigned or reassigned?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "What ticket and assignee data fields are required to support this feature?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are there any security or permission boundaries specific to assignment actions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-19",
+          "text": "Are there any performance, reliability, or observability requirements for assignment operations?",
+          "blocking": false
+        },
+        {
+          "id": "oq-20",
+          "text": "On which platforms or channels must Ticket Assignment be available within the mixed application context?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-assignment/specs.md",
+        "requirements": "specs/ticket-assignment/requirements.md",
+        "prompt": "specs/ticket-assignment/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604874,
+      "taskId": "FEATURE-44604874",
+      "title": "End-to-End Ticket Lifecycle Continuity",
+      "slug": "end-to-end-ticket-continuity",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What are the defined lifecycle stages between ticket creation and closure?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "What application platform(s) are in scope for this feature?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Which actors or roles can create, transition, and close tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "What permissions or access controls govern lifecycle stage changes?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "What constitutes the ticket’s persistent identity in the data model?",
+          "blocking": true
+        },
+        {
+          "id": "oq-6",
+          "text": "How is lifecycle stage stored and validated?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Are stage transitions constrained by allowed workflow rules?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "Is reopening a closed ticket supported, and if so, how does continuity apply?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "Are ticket merge, split, reassignment, or duplication scenarios part of lifecycle continuity?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "Is historical stage transition retention required?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "What service or API interfaces are in scope for creation, transition, and closure?",
+          "blocking": true
+        },
+        {
+          "id": "oq-12",
+          "text": "What errors must be returned when a transition fails or continuity cannot be maintained?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "Are concurrency controls required when multiple updates target the same ticket?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "Are audit, logging, or reporting requirements associated with lifecycle continuity?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "Are there existing Golden Repo implementation conventions for lifecycle state handling in the monolith that must be applied?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/end-to-end-ticket-continuity/specs.md",
+        "requirements": "specs/end-to-end-ticket-continuity/requirements.md",
+        "prompt": "specs/end-to-end-ticket-continuity/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604885,
+      "taskId": "FEATURE-44604885",
+      "title": "Ticket Lifecycle Workflow",
+      "slug": "ticket-lifecycle-workflow",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actors interact with the ticket lifecycle (for example: requester, help desk agent, technician, manager, administrator, system integration)?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Which actors can create, update, transition, assign, resolve, reopen, or close tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are any lifecycle transitions restricted by role or ownership?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Are audit or approval permissions required for specific state changes?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-lifecycle-workflow/specs.md",
+        "requirements": "specs/ticket-lifecycle-workflow/requirements.md",
+        "prompt": "specs/ticket-lifecycle-workflow/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604871,
+      "taskId": "FEATURE-44604871",
+      "title": "Ticket Status Tracking",
+      "slug": "ticket-status-tracking",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What are the defined ticket status values for this feature?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Is there a required default status when a ticket is created?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "What status transitions are allowed, and are any transitions prohibited?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "Can status changes be performed manually, automatically, or both?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "Which actors are permitted to view ticket status?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "Which actors are permitted to update ticket status?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Are there different permissions for agents, requesters, administrators, or other roles?",
+          "blocking": true
+        },
+        {
+          "id": "oq-8",
+          "text": "Must the system preserve a history of status changes?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "If status history is required, what metadata must be recorded for each change?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "Where in the UI must ticket status be displayed?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "Is ticket status editable from list views, detail views, workflow actions, or other interfaces?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "Are there required visual styles such as badges, colors, or labels for statuses?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "Are there required validation messages or user-facing error messages for invalid status changes?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "Is an API required for reading or updating ticket status?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "If an API is required, what are the operations, request fields, response fields, and error behaviors?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "Are there any integrations that consume or update ticket status?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "Are there business rules related to reopening, resolution, closure, cancellation, or escalation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are there SLA, reporting, or audit requirements tied to ticket status?",
+          "blocking": false
+        },
+        {
+          "id": "oq-19",
+          "text": "Are there accessibility requirements specific to status display or status-change interactions?",
+          "blocking": false
+        },
+        {
+          "id": "oq-20",
+          "text": "Are there retention requirements for current status and historical status-change data?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-status-tracking/specs.md",
+        "requirements": "specs/ticket-status-tracking/requirements.md",
+        "prompt": "specs/ticket-status-tracking/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604861,
+      "taskId": "FEATURE-44604861",
+      "title": "Ticket Lifecycle Workflow Validation",
+      "slug": "ticket-lifecycle-validation",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which user roles can create, update, transition, validate, override, or reopen tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are lifecycle workflow validations applied uniformly to all actors, or do privileged roles have exception paths?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are system-initiated ticket transitions in scope in addition to user-initiated transitions?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-lifecycle-validation/specs.md",
+        "requirements": "specs/ticket-lifecycle-validation/requirements.md",
+        "prompt": "specs/ticket-lifecycle-validation/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604876,
+      "taskId": "FEATURE-44604876",
+      "title": "Ticket Work Management",
+      "slug": "it-support-ticket-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Are there additional roles that may perform any of these actions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are all IT support operations users allowed to perform all six actions, or are permissions subdivided by role or capability?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are there ticket-level access restrictions, such as assignment-based visibility or team-based ownership constraints?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/it-support-ticket-management/specs.md",
+        "requirements": "specs/it-support-ticket-management/requirements.md",
+        "prompt": "specs/it-support-ticket-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604851,
+      "taskId": "FEATURE-44604851",
+      "title": "Ticket Information Update During Processing",
+      "slug": "update-ticket-info-processing",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What application platform(s) are in scope for this feature?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "What exact ticket lifecycle state or states qualify as \"during processing\"?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "What specific ticket information fields may IT Support Agents update during processing?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "Are all IT Support Agents allowed to update any ticket in processing, or only assigned/owned tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Are any roles other than IT Support Agents allowed to perform these updates?",
+          "blocking": true
+        },
+        {
+          "id": "oq-6",
+          "text": "What validation rules apply to each editable field?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "What should the system return or display on successful and failed updates?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "Is there an existing update mechanism/API to reuse, and if so, what contract governs it?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "What authorization model determines whether the actor is an IT Support Agent?",
+          "blocking": true
+        },
+        {
+          "id": "oq-10",
+          "text": "Are audit history, change tracking, or reason-for-change requirements mandatory?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "How should concurrent updates to the same ticket be handled?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "Are there repository or architectural standards for monolith-based authorization, validation, and persistence that must be applied to this feature?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/update-ticket-info-processing/specs.md",
+        "requirements": "specs/update-ticket-info-processing/requirements.md",
+        "prompt": "specs/update-ticket-info-processing/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604865,
+      "taskId": "FEATURE-44604865",
+      "title": "Ticket Lifecycle Management",
+      "slug": "ticket-lifecycle-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actors interact with ticket lifecycle behavior (for example, requester, help desk agent, manager, administrator, automation/system actor)?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Which actors are permitted to create, update, assign, transition, reopen, resolve, or close tickets?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "Are any lifecycle actions restricted by role, team ownership, assignment, or ticket status?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Are audit or approval permissions required for any lifecycle transition?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-lifecycle-management/specs.md",
+        "requirements": "specs/ticket-lifecycle-management/requirements.md",
+        "prompt": "specs/ticket-lifecycle-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604877,
+      "taskId": "FEATURE-44604877",
+      "title": "Ticket Assignment And Updates",
+      "slug": "it-agent-ticket-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What application type and platform should implement this feature?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "What specific UI surfaces are required for ticket viewing, assignment, and update?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "What ticket fields must be displayed when viewing a ticket?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "What ticket fields are editable during update?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "What data element represents ticket assignment?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "Who may be selected as the assignee for a ticket?",
+          "blocking": true
+        },
+        {
+          "id": "oq-7",
+          "text": "Are there business rules governing assignment eligibility or ticket ownership?",
+          "blocking": true
+        },
+        {
+          "id": "oq-8",
+          "text": "Are there ticket states, statuses, or workflow transitions that constrain assignment or updates?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "What validation rules apply to ticket updates?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "What should the system return or display when a ticket is not found?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "What authorization model applies beyond the explicitly supported IT support agent actor?",
+          "blocking": true
+        },
+        {
+          "id": "oq-12",
+          "text": "Is ticket list retrieval, single-ticket retrieval, or both required to satisfy \"view tickets\"?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "What API, service, or server action contracts are required?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "Are notifications, audit history, or change tracking required when a ticket is assigned or updated?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "What non-functional requirements apply for security, performance, logging, monitoring, and accessibility?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/it-agent-ticket-management/specs.md",
+        "requirements": "specs/it-agent-ticket-management/requirements.md",
+        "prompt": "specs/it-agent-ticket-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604875,
+      "taskId": "FEATURE-44604875",
+      "title": "Ticket Detail Capture",
+      "slug": "ticket-detail-capture",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which user roles are allowed to create tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Is authentication required before ticket creation?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are there any permissions or restrictions for adding attachments?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-detail-capture/specs.md",
+        "requirements": "specs/ticket-detail-capture/requirements.md",
+        "prompt": "specs/ticket-detail-capture/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604879,
+      "taskId": "FEATURE-44604879",
+      "title": "Ticket Management And Collaboration",
+      "slug": "support-ticket-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What application type(s) and platform channels are required for this feature?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "What are the exact role definitions and permission matrix for employees, business users, IT Support Agents, and any administrative roles?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "What ticket fields are required to create, update, assign, comment on, and resolve a ticket?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "What are the valid ticket statuses and lifecycle transitions?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "What constitutes \"investigate\" as a distinct system action or state?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "What category taxonomy and priority values must be supported?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "How should SLA tracking be defined, calculated, displayed, and enforced?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "What notification events, delivery channels, recipients, and timing rules are required?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "What audit history events and data elements must be recorded, and are audit records editable or immutable?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "What dashboards are required, for which roles, and with what measures or filters?",
+          "blocking": true
+        },
+        {
+          "id": "oq-11",
+          "text": "What reports are required, for which roles, and with what output formats or scheduling behavior?",
+          "blocking": true
+        },
+        {
+          "id": "oq-12",
+          "text": "What access rules govern which tickets a requester can track?",
+          "blocking": true
+        },
+        {
+          "id": "oq-13",
+          "text": "Are users permitted to comment on tickets other than IT Support Agents?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "Are users permitted to update or reopen tickets after resolution?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "Are attachments required as part of ticket collaboration?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "Are APIs required for this feature, and if so, what operations, authentication, and schemas are required?",
+          "blocking": true
+        },
+        {
+          "id": "oq-17",
+          "text": "What error handling and validation responses are required for unauthorized or invalid ticket actions?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are there any accessibility, performance, reliability, retention, or compliance requirements from the BRD not included in the extracted source context?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/support-ticket-management/specs.md",
+        "requirements": "specs/support-ticket-management/requirements.md",
+        "prompt": "specs/support-ticket-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 1518428762,
+      "taskId": "FEATURE-1518428762",
+      "title": "As an Employee, I want to receive notifications when my support ticket changes so that I stay informed about progress and required actions; As an IT Support Agent, I want to receive notifications when a support ticket is assigned or reassigned so that I can act on owned work without delay; As an IT Support Agent, I want ticket lifecycle events to trigger notifications so that stakeholders are informed of ticket activity (+83 more)",
+      "slug": "support-ticket-governance-suite",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Several stories reference “authorized roles,” “required permission,” or “configured permission” without always naming the exact role-permission matrix. A final permission matrix per action is needed before implementation.",
+          "blocking": true
+        }
+      ],
+      "storyCount": 86,
+      "totalStoryPoints": 339,
+      "files": {
+        "specs": "specs/support-ticket-governance-suite/specs.md",
+        "requirements": "specs/support-ticket-governance-suite/requirements.md",
+        "prompt": "specs/support-ticket-governance-suite/prompt.md"
+      },
+      "userStories": [
+        {
+          "id": 3690,
+          "title": "As an Employee, I want to receive notifications when my support ticket changes so that I stay informed about progress and required actions",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3698,
+          "title": "As an IT Support Agent, I want to receive notifications when a support ticket is assigned or reassigned so that I can act on owned work without delay",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 4123,
+          "title": "As an IT Support Agent, I want ticket lifecycle events to trigger notifications so that stakeholders are informed of ticket activity",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4131,
+          "title": "As an Employee, I want to receive ticket activity notifications through integrated channels so that I know when action or review is needed",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3701,
+          "title": "As an IT Manager, I want to receive notifications for SLA risk and breach events so that I can intervene before service targets are missed",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3709,
+          "title": "As a System Administrator, I want to configure notification rules for support tickets so that timely notifications can be managed without application changes",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3712,
+          "title": "As an IT Operations Analyst, I want to monitor notification delivery outcomes so that delayed or failed notifications can be identified and corrected quickly",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3721,
+          "title": "As an IT Support Agent, I want the system to record ticket workflow changes automatically so that every critical support action is traceable",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3724,
+          "title": "As an IT Manager, I want ticket audit records to be protected from alteration so that audit evidence remains trustworthy during reviews and investigations",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3732,
+          "title": "As a Compliance Reviewer, I want to view chronological ticket audit history so that I can verify how a support ticket moved through its lifecycle",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3739,
+          "title": "As a Compliance Reviewer, I want to filter ticket audit records by key criteria so that I can retrieve audit evidence efficiently for control testing and investigations",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3758,
+          "title": "As an IT Manager, I want immutable security audit history for ticket and attachment access so that compliance reviews and investigations can trace all sensitive actions",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3746,
+          "title": "As an IT Manager, I want to control role-based access to support tickets and attachments so that sensitive help desk information is visible only to authorized personnel",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3749,
+          "title": "As an IT Support Agent, I want support ticket data and attachments protected in transit and at rest so that sensitive issue information remains secure during handling",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3767,
+          "title": "Validate release test plan includes all critical workflow domains",
+          "state": "Design",
+          "storyPoints": null
+        },
+        {
+          "id": 3768,
+          "title": "Validate entry and exit criteria are release-gating and specific",
+          "state": "Design",
+          "storyPoints": null
+        },
+        {
+          "id": 3769,
+          "title": "Validate security and audit coverage is planned for negative paths",
+          "state": "Design",
+          "storyPoints": null
+        },
+        {
+          "id": 3772,
+          "title": "Happy path validation — group critical workflow tests into execution suites",
+          "state": "Design",
+          "storyPoints": null
+        },
+        {
+          "id": 3773,
+          "title": "As an IT Manager, I want critical support ticket workflows to be validated end to end so that operational, SLA, and audit control failures are detected before production use",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3781,
+          "title": "As an IT Manager, I want to view a support performance dashboard so that I can monitor ticket operations and SLA adherence",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3787,
+          "title": "As an IT Manager, I want to drill down from support summary metrics to team and agent performance so that I can identify workload imbalance and overdue ticket ownership",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4011,
+          "title": "As a Business Manager, I want to drill down from support performance summaries to ticket-level details so that I can investigate performance exceptions",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3796,
+          "title": "As an IT Manager, I want to generate support performance reports so that I can review trends and share operational results",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3801,
+          "title": "As a Reporting Administrator, I want to configure support measurement rules so that reporting and monitoring follow approved SLA and governance policies",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3810,
+          "title": "As an Information Security Auditor, I want monitoring and reporting access to be controlled and auditable so that sensitive ticket information remains protected",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3818,
+          "title": "As an Employee, I want to submit an IT support ticket in a centralized platform so that my support request enters the managed support lifecycle",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3826,
+          "title": "As an IT Support Agent, I want to process support tickets through controlled assignment and status transitions so that requests move consistently from creation to closure",
+          "state": "New",
+          "storyPoints": 8
+        },
+        {
+          "id": 3835,
+          "title": "As an IT Manager, I want secure audit trails and support dashboards so that ticket handling remains compliant, reviewable, and measurable",
+          "state": "New",
+          "storyPoints": 8
+        },
+        {
+          "id": 4184,
+          "title": "As a user, I want to use Create Support Ticket so that I can benefit from its core functionality",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4193,
+          "title": "As a user, I want to configure Create Support Ticket settings so that I can customize it to my needs",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3844,
+          "title": "As an Employee, I want to enter issue description, category, and priority when creating a support ticket so that IT Support Agents receive the information needed to process my request",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3847,
+          "title": "As an Employee, I want to add attachments during ticket creation so that I can provide supporting evidence for my support request",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3855,
+          "title": "As an Employee, I want to view the current status of my submitted support ticket so that I can track progress without contacting the help desk",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3873,
+          "title": "As an IT Support Agent, I want to open a support ticket and view its full details so that I can understand the issue and continue investigation or resolution",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3866,
+          "title": "As an IT Support Agent, I want to view the list of support tickets available to me so that I can identify and manage my assigned and accessible workload",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3881,
+          "title": "As an IT Manager, I want to review ticket assignment history so that ticket ownership changes remain auditable and compliant",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3889,
+          "title": "As an IT Support Agent, I want to update ticket information during processing so that the support ticket reflects the latest investigation details",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3892,
+          "title": "As an IT Support Agent, I want ticket updates to follow controlled status and field rules so that processing remains compliant with support governance and SLA policies",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3900,
+          "title": "As an IT Manager, I want all ticket information updates to be auditable so that support processing changes can be reviewed for compliance and operational oversight",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3903,
+          "title": "As an IT Security Administrator, I want ticket update access to be restricted by role so that sensitive support ticket information is protected during processing",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3910,
+          "title": "As an IT Support Agent, I want to add comments to tickets so that I can document investigation updates and resolution context",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3916,
+          "title": "As an IT Support Agent, I want comment access to follow ticket permissions so that sensitive ticket information remains protected",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3924,
+          "title": "As an IT Support Agent, I want to resolve assigned tickets so that completed issues are recorded and removed from my active work queue",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3930,
+          "title": "As an IT Support Agent, I want the system to validate resolution eligibility before resolving a ticket so that invalid or incomplete ticket closures do not violate support governance rules",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3938,
+          "title": "As an IT Manager, I want resolved tickets to retain complete audit history so that support operations remain traceable for governance, review, and compliance needs",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3946,
+          "title": "As an Employee, I want to create a support ticket so that my issue enters the IT Help Desk lifecycle with the correct initial status",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3955,
+          "title": "As an IT Support Agent, I want to investigate a support ticket and record updates so that the issue can progress through controlled lifecycle states",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3958,
+          "title": "As an IT Support Agent, I want to resolve a support ticket after investigation so that the issue outcome is documented before closure",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3966,
+          "title": "As an IT Support Agent, I want to close a resolved support ticket so that the lifecycle is completed with a final auditable status",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3971,
+          "title": "As a System Administrator, I want to manage ticket category values so that the help desk uses controlled and current classification options",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3980,
+          "title": "As an Employee, I want to select a priority when creating a support ticket so that the IT Support team can respond based on urgency",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 3988,
+          "title": "As an IT Support Agent, I want to update ticket priority when business impact changes so that active work reflects the current urgency",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3991,
+          "title": "As an IT Manager, I want to view agent workload dashboards so that I can balance assignments across support agents",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4000,
+          "title": "As an IT Manager, I want to review SLA performance and overdue issue reports so that I can intervene before service targets are missed",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4111,
+          "title": "As an IT Support Manager, I want to review ticket performance and SLA reports so that I can measure service delivery against operational targets",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4003,
+          "title": "As an IT Manager, I want to export dashboard and report outputs so that I can share support metrics for operational review",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 4014,
+          "title": "As an IT Audit Manager, I want report access and reporting actions to be fully auditable so that support performance reviews meet governance and compliance requirements",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 4021,
+          "title": "As an IT Manager, I want ticket activity notifications to be controlled and auditable so that support communications comply with internal security and governance requirements",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4134,
+          "title": "As a System Administrator, I want to configure notification integration settings so that ticket activity notifications can be managed without changing code",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4142,
+          "title": "As an IT Manager, I want notification delivery failures to be monitored and retried so that important ticket activity updates are not missed",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4024,
+          "title": "As an Employee, I want to access only my own support tickets so that my issue information remains private and secure",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 4032,
+          "title": "As a Support Agent, I want to access assigned and permitted support tickets so that I can investigate and resolve issues within SLA targets",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4037,
+          "title": "As a Manager, I want to access team support tickets and oversight information so that I can monitor workload, escalations, and SLA adherence",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4046,
+          "title": "As an Administrator, I want to assign and maintain user roles so that access for employees, support agents, managers, and administrators is controlled centrally",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4051,
+          "title": "As an Administrator, I want role-based permissions enforced across the user interface and APIs so that unauthorized actions are consistently blocked",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4095,
+          "title": "As an Administrator, I want to manage user group roles so that role-based access remains accurate across employee, support agent, manager, and administrator accounts",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4100,
+          "title": "As an Administrator, I want access control activity to be auditable so that role changes and denied actions can be reviewed for governance and security compliance",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 4075,
+          "title": "As an Employee, I want to access only my permitted ticket functions so that I can submit and track support tickets without viewing restricted support operations",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 4083,
+          "title": "As a Support Agent, I want role-based access to assigned ticket operations so that I can investigate, update, and resolve support tickets within my authorized scope",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4086,
+          "title": "As a Manager, I want elevated access to team ticket oversight functions so that I can monitor workload, assignments, and controlled ticket actions for my support area",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4060,
+          "title": "As a System Administrator, I want to manage support user accounts so that only approved employees and support staff can access the IT Help Desk Management System",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4065,
+          "title": "As a System Administrator, I want to manage role definitions and role assignments so that ticket access and administrative actions follow least-privilege controls",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4070,
+          "title": "As a System Administrator, I want to manage system configuration values so that ticket processing rules and operational settings can be controlled without code changes",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4166,
+          "title": "As an IT Manager, I want to control access, assignments, and SLA visibility so that support operations remain secure, accountable, and timely",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4175,
+          "title": "As an IT Manager, I want to view centralized ticket dashboards and reports so that I can monitor workload, status, and SLA performance across support operations",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4108,
+          "title": "As an IT Manager, I want to view a dashboard of ticket lifecycle status and overdue work so that I can monitor support operations and intervene on bottlenecks",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4120,
+          "title": "As a System Administrator, I want to control access to dashboards and reporting and audit their usage so that sensitive ticket information remains protected and traceable",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4145,
+          "title": "As an Employee, I want to sign in using enterprise identity so that I can securely access my support tickets without separate credentials",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4154,
+          "title": "As an IT Support Agent, I want role-based access to assigned ticket functions so that I can process support work without exposing unauthorized data",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4157,
+          "title": "As an IT Manager, I want to manage role-based access permissions so that support operations follow governance and audit requirements",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 3688,
+          "title": "Ticket SLA Calculation and Lifecycle Tracking",
+          "state": "New",
+          "storyPoints": null
+        },
+        {
+          "id": 4210,
+          "title": "As a user, I want to use SLA Monitoring and Breach Visibility so that I can benefit from its core functionality",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4225,
+          "title": "As a user, I want to configure SLA Monitoring and Breach Visibility settings so that I can customize it to my needs",
+          "state": "New",
+          "storyPoints": 3
+        },
+        {
+          "id": 4201,
+          "title": "As an IT Support Agent, I want the system to calculate SLA targets for each support ticket so that I can work against accurate response and resolution deadlines",
+          "state": "New",
+          "storyPoints": 5
+        },
+        {
+          "id": 4233,
+          "title": "System Design - 9/25/2026",
+          "state": "New",
+          "storyPoints": null
+        },
+        {
+          "id": 4234,
+          "title": "System Design - 9/25/2026",
+          "state": "New",
+          "storyPoints": null
+        }
+      ]
+    },
+    {
+      "id": 44604856,
+      "taskId": "FEATURE-44604856",
+      "title": "Ticket Ownership Assignment",
+      "slug": "ticket-ownership-assignment",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which user roles or system actors are allowed to assign ticket ownership?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Can users assign tickets only to themselves, to peers, to any eligible agent, or to teams/groups?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "Can a ticket be unassigned after assignment?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "Does a ticket support a single owner only, or multiple concurrent owners?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Is ownership assignment manual, automatic, or both?",
+          "blocking": true
+        },
+        {
+          "id": "oq-6",
+          "text": "Are reassignment workflows required, and if so, under what conditions?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "What makes a user or entity eligible to become a ticket owner?",
+          "blocking": true
+        },
+        {
+          "id": "oq-8",
+          "text": "Are assignment rules constrained by team, queue, category, priority, region, support tier, or ticket status?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "Does assigning an owner automatically change ticket status or any other ticket state?",
+          "blocking": true
+        },
+        {
+          "id": "oq-10",
+          "text": "Is ownership assignment available during ticket creation, after creation, or both?",
+          "blocking": true
+        },
+        {
+          "id": "oq-11",
+          "text": "Which UI surface or surfaces support ownership assignment?",
+          "blocking": true
+        },
+        {
+          "id": "oq-12",
+          "text": "What UI control pattern should be used to select an owner?",
+          "blocking": true
+        },
+        {
+          "id": "oq-13",
+          "text": "What user-facing copy, labels, and validation/error messages are required?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "What accessibility requirements apply to the ownership assignment interaction?",
+          "blocking": true
+        },
+        {
+          "id": "oq-15",
+          "text": "Is there an API or internal service contract for assignment, and what are its inputs and outputs?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "What error cases must be explicitly handled?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "Is repeated assignment of the same owner considered a no-op or an auditable event?",
+          "blocking": true
+        },
+        {
+          "id": "oq-18",
+          "text": "Must ownership changes be audited, and if so, what audit fields are required?",
+          "blocking": true
+        },
+        {
+          "id": "oq-19",
+          "text": "Must notifications be sent when ownership is assigned or changed?",
+          "blocking": true
+        },
+        {
+          "id": "oq-20",
+          "text": "Is assignment history visible to users, and where?",
+          "blocking": true
+        },
+        {
+          "id": "oq-21",
+          "text": "What data fields represent owner, assignee state, assignment timestamp, and assigning actor?",
+          "blocking": true
+        },
+        {
+          "id": "oq-22",
+          "text": "Are there retention or reporting requirements for ownership assignment data?",
+          "blocking": true
+        },
+        {
+          "id": "oq-23",
+          "text": "What concrete platforms are in scope for this mixed application context?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-ownership-assignment/specs.md",
+        "requirements": "specs/ticket-ownership-assignment/requirements.md",
+        "prompt": "specs/ticket-ownership-assignment/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604881,
+      "taskId": "FEATURE-44604881",
+      "title": "Role-Based Access And Administration",
+      "slug": "role-based-access-admin",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What actor types are in scope for this feature?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "What named roles must be supported?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Which roles are administrative roles?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "What permissions or capability groupings must each role have?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Can a user hold multiple roles simultaneously?",
+          "blocking": true
+        },
+        {
+          "id": "oq-6",
+          "text": "Are permissions assigned directly, through roles only, or both?",
+          "blocking": true
+        },
+        {
+          "id": "oq-7",
+          "text": "Are access restrictions applied at page level, feature level, action level, record level, field level, or some combination?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "Who is allowed to create, edit, assign, or revoke roles?",
+          "blocking": true
+        },
+        {
+          "id": "oq-9",
+          "text": "Are there any restrictions preventing users from modifying their own access?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/role-based-access-admin/specs.md",
+        "requirements": "specs/role-based-access-admin/requirements.md",
+        "prompt": "specs/role-based-access-admin/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604852,
+      "taskId": "FEATURE-44604852",
+      "title": "Ticket Viewing",
+      "slug": "ticket-viewing",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Who is allowed to view tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are there distinct roles such as requester, agent, administrator, or manager?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are users allowed to view only their own tickets, all tickets, or some filtered subset?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Is authentication required before viewing tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Are there field-level visibility restrictions for sensitive ticket data?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-viewing/specs.md",
+        "requirements": "specs/ticket-viewing/requirements.md",
+        "prompt": "specs/ticket-viewing/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604873,
+      "taskId": "FEATURE-44604873",
+      "title": "Ticket Lifecycle State Visibility",
+      "slug": "ticket-lifecycle-state-visibility",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actors need to view ticket lifecycle state?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Are there differences in visibility by role, team, requester, agent, manager, or administrator?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are any lifecycle states restricted from visibility to some users?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Can anonymous or unauthenticated users view ticket state?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-lifecycle-state-visibility/specs.md",
+        "requirements": "specs/ticket-lifecycle-state-visibility/requirements.md",
+        "prompt": "specs/ticket-lifecycle-state-visibility/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604866,
+      "taskId": "FEATURE-44604866",
+      "title": "Ticket Categorization",
+      "slug": "ticket-categorization",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What application/platform context applies to this feature?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "What actor roles interact with ticket categorization?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Who is allowed to assign, update, or view ticket categories?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Is category assignment part of ticket creation, ticket update, or both?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "Is category required or optional?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "Can a ticket have one category or multiple categories?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Are category values predefined, configurable, hierarchical, or free text?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "Is category configuration itself part of this feature scope?",
+          "blocking": true
+        },
+        {
+          "id": "oq-9",
+          "text": "Must uncategorized tickets be supported, and if so, how are they handled in display, review, monitoring, and reporting?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "Are category changes allowed after initial assignment?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "Must category history/audit be retained?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "What UI surfaces must display category data?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "What reporting and monitoring behaviors are required beyond category data availability?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "What API or service operations must expose or accept category data?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "What validation rules apply to category assignment?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "What error behavior is required for invalid, missing, or unauthorized category operations?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "Is filtering, grouping, or aggregation by category required for review, monitoring, or reporting?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are there any performance, security, accessibility, observability, or compliance requirements for this feature?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-categorization/specs.md",
+        "requirements": "specs/ticket-categorization/requirements.md",
+        "prompt": "specs/ticket-categorization/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604884,
+      "taskId": "FEATURE-44604884",
+      "title": "Operational Dashboards And Reports",
+      "slug": "operational-dashboards-reports",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Who are the intended actors for dashboards and reports?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Are dashboards and reports internal-only, customer-facing, or both?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "What permissions govern viewing dashboards, running reports, exporting reports, or administering report definitions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Are there role-based restrictions on which operational data a user may access?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/operational-dashboards-reports/specs.md",
+        "requirements": "specs/operational-dashboards-reports/requirements.md",
+        "prompt": "specs/operational-dashboards-reports/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604883,
+      "taskId": "FEATURE-44604883",
+      "title": "Audit History",
+      "slug": "audit-history",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which ticket-related activities beyond creation, tracking, assignment, updates, comments, and resolution must generate audit history?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "How is \"tracking\" defined as a discrete auditable activity?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "What fields are required in each audit history record?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "Must audit history capture actor identity?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "Must audit history capture timestamps?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "Must audit history capture before/after values for updates?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Is audit history immutable after creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "What retention, archival, or deletion policy applies to audit history?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "Which actors or roles may view audit history?",
+          "blocking": true
+        },
+        {
+          "id": "oq-10",
+          "text": "Does audit history visibility inherit from the user’s access to the associated ticket?",
+          "blocking": true
+        },
+        {
+          "id": "oq-11",
+          "text": "Is any actor permitted to edit or delete audit history records?",
+          "blocking": true
+        },
+        {
+          "id": "oq-12",
+          "text": "Must audit history be exposed in a UI, an API, both, or internal system behavior only?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "If exposed in UI, where should users access it?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "If exposed by API, what operations, authorization rules, and error behaviors are required?",
+          "blocking": true
+        },
+        {
+          "id": "oq-15",
+          "text": "Must audit history creation be synchronous with ticket activity completion?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "What should happen if the primary ticket activity succeeds but audit history persistence fails?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "Are system-generated actions and automated updates required to appear in audit history?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are there any source-approved design, accessibility, localization, security, or observability standards specific to this feature beyond general product standards?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/audit-history/specs.md",
+        "requirements": "specs/audit-history/requirements.md",
+        "prompt": "specs/audit-history/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604863,
+      "taskId": "FEATURE-44604863",
+      "title": "Administration Management",
+      "slug": "administration-management",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Who are the intended actors for Administration Management?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Is access restricted to administrative users only?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "Are there multiple administration roles with different permissions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "What actions, data, or settings may each role view, create, update, delete, or configure?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Are there approval, audit, or segregation-of-duties requirements?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/administration-management/specs.md",
+        "requirements": "specs/administration-management/requirements.md",
+        "prompt": "specs/administration-management/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604872,
+      "taskId": "FEATURE-44604872",
+      "title": "Agent Ticket Viewing",
+      "slug": "agent-ticket-viewing",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which authenticated roles are allowed to view tickets besides agents, if any?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Is ticket viewing limited by assignment, team membership, queue, tenant, or organization?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are there restricted ticket types or fields that some agents must not see?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/agent-ticket-viewing/specs.md",
+        "requirements": "specs/agent-ticket-viewing/requirements.md",
+        "prompt": "specs/agent-ticket-viewing/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604862,
+      "taskId": "FEATURE-44604862",
+      "title": "Verifiable Critical Workflow Outcomes",
+      "slug": "verifiable-workflow-outcomes",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which named business or system roles are authorized to create, review, approve, or modify the generated specifications?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are there different access levels for viewing full-scope specifications versus feature-bundle subsets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are there workflow approval requirements before generated specifications become authoritative?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/verifiable-workflow-outcomes/specs.md",
+        "requirements": "specs/verifiable-workflow-outcomes/requirements.md",
+        "prompt": "specs/verifiable-workflow-outcomes/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604857,
+      "taskId": "FEATURE-44604857",
+      "title": "Role-Based Access Control",
+      "slug": "role-based-access-control",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What specific roles are supported by Role-Based Access Control?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "What permissions or capabilities does each role grant?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Which application surfaces are in scope for RBAC enforcement?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Which backend operations must enforce role checks?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Which frontend capabilities must reflect role restrictions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-6",
+          "text": "Is access control enforced only at feature level, or also at route, action, record, or field level?",
+          "blocking": true
+        },
+        {
+          "id": "oq-7",
+          "text": "Can a user have multiple roles, and if so, how are permissions combined?",
+          "blocking": true
+        },
+        {
+          "id": "oq-8",
+          "text": "Is there a default-deny rule when no explicit permission exists?",
+          "blocking": true
+        },
+        {
+          "id": "oq-9",
+          "text": "How should unauthorized access be represented in the UI?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "What response contract should backend authorization failures return?",
+          "blocking": true
+        },
+        {
+          "id": "oq-11",
+          "text": "Who can assign, remove, or modify user roles?",
+          "blocking": true
+        },
+        {
+          "id": "oq-12",
+          "text": "Are there administrative interfaces for role management?",
+          "blocking": true
+        },
+        {
+          "id": "oq-13",
+          "text": "Are roles configurable data or fixed application definitions?",
+          "blocking": true
+        },
+        {
+          "id": "oq-14",
+          "text": "Are audit logs required for role changes or access denials?",
+          "blocking": true
+        },
+        {
+          "id": "oq-15",
+          "text": "Are there performance, reliability, security, or observability constraints for authorization checks?",
+          "blocking": true
+        },
+        {
+          "id": "oq-16",
+          "text": "Does RBAC depend on an external identity, directory, or user-management integration?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/role-based-access-control/specs.md",
+        "requirements": "specs/role-based-access-control/requirements.md",
+        "prompt": "specs/role-based-access-control/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604855,
+      "taskId": "FEATURE-44604855",
+      "title": "Agent Ticket Operations",
+      "slug": "agent-ticket-operations",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Are there additional roles that may perform any of these operations?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Are there ticket-level access restrictions, such as ownership, queue membership, team scope, or assignment-based visibility?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Is assigning limited to self-assignment, assignment to other agents, or both?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/agent-ticket-operations/specs.md",
+        "requirements": "specs/agent-ticket-operations/requirements.md",
+        "prompt": "specs/agent-ticket-operations/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604870,
+      "taskId": "FEATURE-44604870",
+      "title": "Ticket Information Updates",
+      "slug": "ticket-information-updates",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which other roles, if any, may view or edit ticket information during processing?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "What authentication and authorization rules determine whether a user is recognized as an IT Support Agent?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Are there ticket ownership, queue, or status-based constraints on which tickets an IT Support Agent may update?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-information-updates/specs.md",
+        "requirements": "specs/ticket-information-updates/requirements.md",
+        "prompt": "specs/ticket-information-updates/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604853,
+      "taskId": "FEATURE-44604853",
+      "title": "Support Ticket Creation",
+      "slug": "support-ticket-creation",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actor types are allowed to create support tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "What authentication and authorization rules apply to ticket creation?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Is ticket creation available through web, mobile, desktop, API, or multiple channels?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "What UI entry point initiates support ticket creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "What fields must a user provide when creating a ticket?",
+          "blocking": false
+        },
+        {
+          "id": "oq-6",
+          "text": "Which ticket fields are required versus optional?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Are attachments supported during ticket creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "Is ticket category, priority, impact, urgency, or assignment captured at creation time?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "Does the system auto-generate a ticket ID or reference number on creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "What initial status is assigned to a newly created ticket?",
+          "blocking": false
+        },
+        {
+          "id": "oq-11",
+          "text": "Are there validation rules for title, description, contact data, or other inputs?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "What error messages and validation messages must be displayed to the user?",
+          "blocking": false
+        },
+        {
+          "id": "oq-13",
+          "text": "Must duplicate or related ticket detection occur during creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "Are notifications sent when a ticket is created, and if so to whom?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "Is there an API for support ticket creation, and if so what is its contract?",
+          "blocking": false
+        },
+        {
+          "id": "oq-16",
+          "text": "Are there integration requirements with external systems or internal workflow services on ticket creation?",
+          "blocking": false
+        },
+        {
+          "id": "oq-17",
+          "text": "Are audit logging, history tracking, or retention requirements required for created tickets?",
+          "blocking": false
+        },
+        {
+          "id": "oq-18",
+          "text": "Are accessibility, localization, or content style requirements defined elsewhere for this feature?",
+          "blocking": false
+        },
+        {
+          "id": "oq-19",
+          "text": "Are there performance or reliability requirements for ticket submission and persistence?",
+          "blocking": false
+        },
+        {
+          "id": "oq-20",
+          "text": "What specific acceptance criteria or user stories govern this feature, since none were provided in the source?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/support-ticket-creation/specs.md",
+        "requirements": "specs/support-ticket-creation/requirements.md",
+        "prompt": "specs/support-ticket-creation/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604878,
+      "taskId": "FEATURE-44604878",
+      "title": "Centralized IT Help Desk Platform",
+      "slug": "it-help-desk-tickets",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What named actor roles exist (for example requester, agent, manager, administrator)?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "Which actors are permitted to create, assign, investigate, resolve, and close tickets?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "Are there role-based access restrictions on viewing or updating tickets?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Does “B2B/internal” refer exclusively to internal organizational users, or also to authorized partner/business users?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/it-help-desk-tickets/specs.md",
+        "requirements": "specs/it-help-desk-tickets/requirements.md",
+        "prompt": "specs/it-help-desk-tickets/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604864,
+      "taskId": "FEATURE-44604864",
+      "title": "Ticket Audit History",
+      "slug": "ticket-audit-history",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actors may view ticket audit history?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Which actors, if any, may create, amend, redact, or delete audit history entries?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Is audit history intended for internal staff only, or also for end users/requesters?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "Are permission rules inherited from existing ticket-view permissions?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/ticket-audit-history/specs.md",
+        "requirements": "specs/ticket-audit-history/requirements.md",
+        "prompt": "specs/ticket-audit-history/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604860,
+      "taskId": "FEATURE-44604860",
+      "title": "End-to-End Workflow Testability",
+      "slug": "end-to-end-workflow-testability",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "What explicit user stories, business scenarios, or workflow steps define “End-to-End Workflow Testability” beyond generation-scope constraints?",
+          "blocking": true
+        },
+        {
+          "id": "oq-2",
+          "text": "What are the specific included work-item identifiers or categories under the 624 selected items for this feature bundle?",
+          "blocking": false
+        },
+        {
+          "id": "oq-3",
+          "text": "Should the generated specification set be delivered as a single file, multiple files, or a defined directory/package structure?",
+          "blocking": false
+        },
+        {
+          "id": "oq-4",
+          "text": "What approval or review workflow applies to the generated specifications?",
+          "blocking": false
+        },
+        {
+          "id": "oq-5",
+          "text": "Are there required role-based permissions for initiating generation, viewing output, editing output, or publishing output?",
+          "blocking": true
+        },
+        {
+          "id": "oq-6",
+          "text": "What constitutes “implementation-ready” in measurable terms for this feature?",
+          "blocking": false
+        },
+        {
+          "id": "oq-7",
+          "text": "Are there platform-specific requirements for the underlying IT Help Desk Management product that must be reflected in generated specs?",
+          "blocking": false
+        },
+        {
+          "id": "oq-8",
+          "text": "What behavior is required if selected work items conflict, duplicate each other, or contain incomplete information?",
+          "blocking": false
+        },
+        {
+          "id": "oq-9",
+          "text": "What error handling is required if not all 624 work items can be retrieved or processed?",
+          "blocking": false
+        },
+        {
+          "id": "oq-10",
+          "text": "Are there generation-time performance limits, file-size constraints, or output-volume constraints for full-scope runs?",
+          "blocking": true
+        },
+        {
+          "id": "oq-11",
+          "text": "Is there a required format for preserving traceability from generated specification sections back to individual selected work items?",
+          "blocking": false
+        },
+        {
+          "id": "oq-12",
+          "text": "Are there any mandated accessibility, localization, security, audit, or observability requirements for interfaces or services involved in specification generation?",
+          "blocking": true
+        },
+        {
+          "id": "oq-13",
+          "text": "Should testing-related work items influence only acceptance criteria, or also functional requirements and non-functional validation sections when source-supported?",
+          "blocking": false
+        },
+        {
+          "id": "oq-14",
+          "text": "How should planning and documentation items be weighted when they conflict with implementation-oriented backend or frontend artifacts?",
+          "blocking": false
+        },
+        {
+          "id": "oq-15",
+          "text": "Is there any required persistence, versioning, naming convention, or retention policy for the generated specification files?",
+          "blocking": false
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/end-to-end-workflow-testability/specs.md",
+        "requirements": "specs/end-to-end-workflow-testability/requirements.md",
+        "prompt": "specs/end-to-end-workflow-testability/prompt.md"
+      },
+      "userStories": []
+    },
+    {
+      "id": 44604882,
+      "taskId": "FEATURE-44604882",
+      "title": "SLA Monitoring And Notifications",
+      "slug": "sla-monitoring-notifications",
+      "state": "planned",
+      "status": "needs-clarification",
+      "openQuestions": [
+        {
+          "id": "oq-1",
+          "text": "Which actors interact with SLA monitoring and notifications?",
+          "blocking": false
+        },
+        {
+          "id": "oq-2",
+          "text": "Who is authorized to view SLA status?",
+          "blocking": true
+        },
+        {
+          "id": "oq-3",
+          "text": "Who is authorized to configure SLA rules or notification settings, if configuration is part of scope?",
+          "blocking": true
+        },
+        {
+          "id": "oq-4",
+          "text": "Who receives notifications: agents, managers, requesters, admins, support groups, or other roles?",
+          "blocking": true
+        },
+        {
+          "id": "oq-5",
+          "text": "Are there permission differences between viewing SLA data and receiving SLA notifications?",
+          "blocking": true
+        }
+      ],
+      "storyCount": 0,
+      "totalStoryPoints": 0,
+      "files": {
+        "specs": "specs/sla-monitoring-notifications/specs.md",
+        "requirements": "specs/sla-monitoring-notifications/requirements.md",
+        "prompt": "specs/sla-monitoring-notifications/prompt.md"
+      },
+      "userStories": []
+    }
+  ]
+}

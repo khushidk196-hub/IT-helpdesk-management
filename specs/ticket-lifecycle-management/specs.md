@@ -1,256 +1,237 @@
 # Feature: Ticket Lifecycle Management
 Status: NEW
 Owner: Astra
-Last Updated: 2026-09-22
+Last Updated: 2026-09-25
 
 ## Summary
-Ticket Lifecycle Management enables the system to manage tickets through the defined lifecycle stages of creation, assignment, investigation, resolution, and closure. The feature solves the business need for traceable progression of tickets from initial creation to final closure, ensuring that tickets move through the required lifecycle stages in a controlled and observable manner.
+Ticket Lifecycle Management defines the feature area responsible for managing the progression of help desk tickets through their lifecycle within the selected IT Help Desk Management system. Based on the available source, this specification establishes the implementation contract for lifecycle-related behavior within a monolith architecture and across mixed application contexts where backend and frontend implementation details may both be relevant.
+
+The source does not provide user stories or explicit lifecycle stages, transitions, UI flows, or API operations. Therefore, this specification defines the feature intent and known boundaries from the source while identifying all unsupported implementation details as open questions that must be resolved before development.
 
 ## Scope
-**In scope**
-- Support for the ticket lifecycle stages explicitly defined in source:
-  - Creation
-  - Assignment
-  - Investigation
-  - Resolution
-  - Closure
-- Traceable progression of a ticket through those lifecycle stages
-- Workflow behavior necessary to move a ticket from one lifecycle stage to the next
+### In Scope
+- Development specification for the feature titled **Ticket Lifecycle Management**.
+- Implementation within a **monolith** architecture, as explicitly selected in source.
+- Consideration of both frontend and backend implications where supported by source evidence indicating a mixed application type.
+- Inclusion of testable requirements only where supported by the feature metadata and source context.
+- Identification of missing lifecycle, UI, API, data, and permission details required for implementation.
 
-**Out of scope**
-- Any lifecycle stages not named in source
-- SLA behavior, escalation, prioritization, notifications, reporting, or analytics
-- Detailed UI layouts or screens not described in source
-- Specific API designs, integration patterns, or eventing behavior not described in source
-- Role-specific assignment logic beyond the fact that assignment is part of the lifecycle
+### Out of Scope
+- Project delivery timeline estimation.
+- Invented business priorities not present in the source artifacts.
+- TDD-specific files or TDD artifacts.
+- Any UI screens, lifecycle states, transitions, APIs, fields, roles, validations, or business rules not explicitly supported by the source context.
+- Any assumptions that all selected work items define this feature’s detailed behavior without direct evidence for this feature.
 
 ## Application Type & Platform Context
-**Application type:** Unknown
+- **Application Type:** Mixed
+- **Source Evidence:** “Preserve implementation detail from backend, frontend, testing, planning, and documentation items where they shape the development specs.”
+- **Architecture Style:** Monolith
+- **Source Evidence:** “User-selected Architecture Style: monolith”
 
-**Source evidence**
-- Derived Source Signals: "Application Type: unknown"
-- Application Type Evidence: "Not specified in source."
+The source supports that this feature may affect both frontend and backend layers, but it does not identify specific target platforms such as web, mobile, desktop, or service-only.
 
-**Open Question**
-- What application platform(s) are in scope for this feature: web, mobile, desktop, API/service, or mixed?
+### Open Question
+- Which concrete platforms are in scope for Ticket Lifecycle Management: web, mobile, desktop, internal admin console, API/service, or another combination?
 
 ## Actors and Permissions
-**Explicitly supported actors**
-- Unspecified system users who create and manage tickets through lifecycle stages
+The source context does not identify any actors, user roles, system roles, or permissions for Ticket Lifecycle Management.
 
-**Explicitly supported permissions**
-- The source supports that the system must manage progression through creation, assignment, investigation, resolution, and closure.
-- No role-based permission model is specified.
-
-**Access constraints**
-- Not specified in source.
-
-**Open Questions**
-- Which actor types are permitted to create tickets?
-- Which actor types are permitted to assign tickets?
-- Which actor types are permitted to move tickets into investigation, resolution, and closure?
-- Are there any restrictions on who may close a ticket after resolution?
+### Open Questions
+- Which actors interact with ticket lifecycle behavior (for example, requester, help desk agent, manager, administrator, automation/system actor)?
+- Which actors are permitted to create, update, assign, transition, reopen, resolve, or close tickets?
+- Are any lifecycle actions restricted by role, team ownership, assignment, or ticket status?
+- Are audit or approval permissions required for any lifecycle transition?
 
 ## Feature Development Intent
-This is feature-development work to build or enable lifecycle management behavior for tickets. The system must support the full defined lifecycle and preserve traceability as tickets progress from creation through closure. The delivered outcome is that a ticket can exist in each required stage and can be progressed through the required workflow in a way that is verifiable and traceable.
+This is feature-development work because the source identifies Ticket Lifecycle Management as a distinct feature within the IT Help Desk Management work-item set and requires an implementation-ready specification for monolith delivery.
+
+The implementation outcome to be delivered is a complete lifecycle-management capability definition for tickets, but the source does not provide the actual lifecycle behaviors. Therefore, the immediate development intent supported by source is:
+- prepare the feature for implementation within the monolith architecture,
+- preserve relevant frontend/backend considerations where they exist,
+- define only supported requirements,
+- and surface unresolved lifecycle contracts that must be answered before build work begins.
 
 ## UI Design & Interaction Contract
-The source does not define UI screens, layouts, navigation, copy, validation messages, or accessibility requirements specific to this feature.
+The source provides no ticket lifecycle UI designs, screens, page flows, navigation, interaction patterns, copy, labels, messages, or accessibility requirements specific to this feature.
 
-**Source-supported interaction contract**
-- The system must support ticket progression through the lifecycle stages:
-  - Creation
-  - Assignment
-  - Investigation
-  - Resolution
-  - Closure
-- That progression must be traceable.
+### Supported UI Contract
+- The feature may have frontend implications because the application type is mixed.
+- No further UI behavior is source-supported.
 
-**Open Questions**
-- What UI surfaces, if any, are required to create, assign, investigate, resolve, and close tickets?
-- How should lifecycle state be displayed to users?
-- Should users be able to manually trigger each transition from the UI?
-- Are there required validation messages for invalid lifecycle transitions?
-- Are there accessibility or design standards for lifecycle interactions beyond general product standards?
+### Open Questions
+- What screens or views expose ticket lifecycle actions?
+- What lifecycle actions must be available in the UI?
+- What ticket information must be visible when lifecycle actions are performed?
+- Are lifecycle transitions initiated from a ticket detail view, list view, workflow board, bulk action menu, or another interface?
+- What validation messages, confirmation dialogs, warnings, or success messages are required?
+- Are there accessibility, keyboard navigation, focus management, color contrast, or screen-reader requirements specific to lifecycle interactions?
+- Is status history or audit history displayed in the UI?
 
 ## API Contract
-The source does not specify any API endpoints, methods, payloads, response schemas, or error contracts.
+The source does not define any API contract for Ticket Lifecycle Management.
 
-**Source-supported API behavior**
-- If the feature is implemented with service or API operations, those operations must support:
-  - Creating a ticket
-  - Assigning a ticket
-  - Progressing a ticket to investigation
-  - Progressing a ticket to resolution
-  - Closing a ticket
-- The system must preserve traceability of ticket progression across lifecycle stages.
+### Supported API Contract
+- The application type evidence indicates backend implementation detail may be relevant.
+- No operations, endpoints, payloads, methods, error models, integration behaviors, or idempotency rules are provided in source.
 
-**Open Questions**
-- Are API endpoints required for ticket lifecycle management?
-- What operations, methods, and payloads are required for lifecycle transitions?
-- What response data must be returned for each lifecycle operation?
-- What error should be returned for unsupported or invalid lifecycle transitions?
-- Are lifecycle operations required to be idempotent?
+### Open Questions
+- Are lifecycle actions exposed through internal APIs, external APIs, or only server-rendered monolith actions?
+- What lifecycle operations must be supported programmatically?
+- What request inputs and response outputs are required for each lifecycle operation?
+- What validation errors and authorization errors must be returned?
+- Are lifecycle transitions required to be idempotent?
+- Are there integrations with notification, SLA, reporting, audit, or external ticketing systems?
 
 ## Business Logic & Rules
-- The system shall support the ticket lifecycle stages of:
-  - Creation
-  - Assignment
-  - Investigation
-  - Resolution
-  - Closure
-- A ticket must be able to progress through the defined lifecycle from creation to closure.
-- The progression through lifecycle stages must be traceable.
-- Assignment, investigation, resolution, and closure are lifecycle stages or lifecycle actions that must be supported by the system.
-- No alternate lifecycle paths, skipped stages, re-open behavior, cancellation behavior, or backward transitions are specified in source.
+The source does not provide explicit business logic for how tickets move through their lifecycle.
 
-**Open Questions**
-- Must lifecycle progression follow the exact sequence listed in source, or are some transitions allowed to skip intermediate stages?
-- Is a ticket required to be assigned before it can enter investigation?
-- Is investigation required before resolution?
-- Is resolution required before closure?
-- Is reopening a closed or resolved ticket supported?
-- Must the system record who performed each transition and when, as part of traceability?
+### Supported Business Rules
+- The feature concerns “Ticket Lifecycle Management.”
+- The implementation must conform to monolith architecture selection.
+- Requirements must be derived only from selected DevOps work items and current form settings as source context.
+- TDD artifacts are excluded.
+
+### Open Questions
+- What are the defined ticket lifecycle states?
+- What state transitions are allowed?
+- Are transitions conditional on assignment, categorization, approval, resolution details, or elapsed time?
+- Can tickets be reopened after closure or resolution?
+- Does the lifecycle include cancellation, on-hold, escalation, merge, duplicate, or archived states?
+- Are there automatic transitions triggered by business rules or timers?
+- Are there SLA impacts tied to lifecycle transitions?
+- Is status history immutable and auditable?
+- Are comments, resolution notes, or closure reasons mandatory for specific transitions?
 
 ## Data Model & Validation
-**Source-supported entities**
-- Ticket
+The source provides no concrete data model for tickets or lifecycle records.
 
-**Source-supported data expectations**
-- A ticket must have a lifecycle progression that is traceable.
-- A ticket must be capable of existing in the lifecycle stages:
-  - Creation
-  - Assignment
-  - Investigation
-  - Resolution
-  - Closure
+### Supported Data Contract
+- The feature domain includes “tickets.”
+- No fields, schemas, validation rules, or retention requirements are provided.
 
-**Validation supported by source**
-- The system must only be considered compliant if it supports all named lifecycle stages.
-- The system must preserve traceability of progression through lifecycle stages.
-
-**Open Questions**
-- What field represents the ticket's current lifecycle state?
-- What data constitutes traceability for lifecycle progression?
-- Is lifecycle history required as a persisted record?
-- Are timestamps required for each lifecycle stage transition?
-- Is assignee data required at assignment stage, and what fields define it?
-- Are resolution details required before closure?
+### Open Questions
+- What ticket fields are required to support lifecycle management?
+- Is ticket status stored as a single current-state field, as a state machine record, or with both current and historical representations?
+- Are timestamps required for each transition?
+- Are actor identity, reason codes, notes, and audit metadata required for transitions?
+- What validation rules apply to lifecycle-related fields?
+- Are there controlled vocabularies or reference values for statuses and reasons?
+- What retention requirements apply to lifecycle history?
 
 ## Functional Requirements
-FR-1. The system shall support ticket creation as a lifecycle stage for a ticket.  
-FR-2. The system shall support ticket assignment as a lifecycle stage or transition in the ticket lifecycle.  
-FR-3. The system shall support ticket investigation as a lifecycle stage or transition in the ticket lifecycle.  
-FR-4. The system shall support ticket resolution as a lifecycle stage or transition in the ticket lifecycle.  
-FR-5. The system shall support ticket closure as a lifecycle stage or transition in the ticket lifecycle.  
-FR-6. The system shall support management of a ticket through the lifecycle from creation to closure.  
-FR-7. The system shall maintain traceable progression of a ticket across the supported lifecycle stages.  
-FR-8. The system shall persist the current lifecycle state of each ticket such that the ticket's position in the lifecycle can be retrieved and verified.  
-FR-9. The system shall reject any attempt to use a lifecycle state outside the defined set of creation, assignment, investigation, resolution, and closure.  
-FR-10. The system shall make lifecycle progression data available for verification that a ticket has progressed through supported stages from creation to closure.
+FR-1. The system shall provide Ticket Lifecycle Management as a feature within the IT Help Desk Management monolith solution.  
+Source basis: Feature Title, architecture selection.
 
-## Testability Notes
-- Verify that a ticket can be created and represented in the lifecycle.
-- Verify that ticket state can be changed to assignment, investigation, resolution, and closure.
-- Verify that only the defined lifecycle states are accepted.
-- Verify that the current lifecycle state of a ticket is persisted and retrievable.
-- Verify that lifecycle progression is traceable across transitions.
-- Verify failure behavior when an unsupported lifecycle state is submitted.
+FR-2. The implementation of Ticket Lifecycle Management shall be specified and developed within a monolith architecture.  
+Source basis: User-selected Architecture Style: monolith.
+
+FR-3. The feature specification shall consider both frontend and backend implementation impacts where lifecycle behavior requires them.  
+Source basis: Application Type: mixed; backend/frontend evidence.
+
+FR-4. The implementation and specification for this feature shall use only the selected DevOps work items and current form settings as source context.  
+Source basis: extracted design guidance.
+
+FR-5. The feature specification and implementation scope shall exclude TDD artifacts.  
+Source basis: constraints.
+
+FR-6. The feature specification shall not define project delivery timeline estimates.  
+Source basis: non-goals.
+
+FR-7. The feature specification shall not invent business priorities not present in the source artifacts.  
+Source basis: non-goals.
+
+FR-8. The feature shall not proceed to detailed implementation of lifecycle states, transitions, permissions, UI flows, API operations, or data fields until those items are explicitly defined in source artifacts or resolved through open questions.  
+Source basis: absence of user stories and detailed acceptance criteria in source context.
 
 ## Non-Functional Requirements
-- The feature shall conform to the selected architecture style of **monolith** as identified in source context.
-- All functional requirements in this spec shall be implementable in a way that is verifiable by automated tests.
-- No source-supported performance, scalability, accessibility, reliability, security, compliance, or observability requirements are specified for this feature.
+NFR-1. The feature shall conform to the selected **monolith** architecture style.
 
-**Open Questions**
-- Are there required audit, logging, or observability standards for lifecycle transitions?
-- Are there performance expectations for lifecycle operations?
-- Are there security or access-control requirements for lifecycle management?
-- Are there retention requirements for lifecycle traceability data?
+NFR-2. The specification shall remain traceable to source artifacts only and shall not introduce unsupported product behavior.
+
+NFR-3. The specification shall support mixed application concerns where frontend and backend implementation details are relevant.
+
+NFR-4. The specification shall exclude TDD-specific deliverables.
+
+### Open Questions
+- Are there required performance expectations for lifecycle updates?
+- Are there reliability or recovery requirements for failed lifecycle transitions?
+- Are there security, audit, privacy, or compliance requirements for ticket lifecycle data?
+- Are there observability requirements such as logs, monitoring, or alerts for lifecycle events?
+- Are there concurrency requirements for simultaneous ticket updates?
 
 ## Acceptance Scenarios
-### Scenario 1: Create a ticket in the lifecycle
-**Given** the system supports ticket lifecycle management  
-**When** a ticket is created  
-**Then** the ticket shall exist within the defined lifecycle  
-**And** its lifecycle state shall be traceable
+Because no user story acceptance criteria were provided, the acceptance scenarios below cover only source-supported outcomes for specification and scope control.
 
-### Scenario 2: Progress a ticket through all defined lifecycle stages
-**Given** a ticket exists in the system  
-**When** the ticket is managed through creation, assignment, investigation, resolution, and closure  
-**Then** the system shall support each of those lifecycle stages  
-**And** the progression through those stages shall be traceable
+### Scenario 1: Feature is specified for monolith architecture
+**Given** Ticket Lifecycle Management is being prepared for development  
+**When** the feature specification is produced  
+**Then** it shall define the feature within a monolith architecture context
 
-### Scenario 3: Assign a ticket
-**Given** a ticket exists in the system  
-**When** the ticket is assigned  
-**Then** the system shall support assignment as part of the ticket lifecycle  
-**And** the ticket's lifecycle progression shall remain traceable
+### Scenario 2: Mixed application context is acknowledged
+**Given** the source identifies the application type as mixed  
+**When** the feature specification is written  
+**Then** it shall recognize that both frontend and backend implementation considerations may apply
 
-### Scenario 4: Move a ticket into investigation
-**Given** a ticket exists in the system  
-**When** the ticket is moved into investigation  
-**Then** the system shall support investigation as part of the ticket lifecycle  
-**And** the ticket's lifecycle progression shall remain traceable
+### Scenario 3: Unsupported lifecycle details are not invented
+**Given** no user stories or acceptance criteria define ticket states, transitions, or permissions  
+**When** the feature specification is produced  
+**Then** those details shall not be invented as implementation facts  
+**And** they shall be documented as open questions
 
-### Scenario 5: Resolve a ticket
-**Given** a ticket exists in the system  
-**When** the ticket is resolved  
-**Then** the system shall support resolution as part of the ticket lifecycle  
-**And** the ticket's lifecycle progression shall remain traceable
+### Scenario 4: TDD artifacts are excluded
+**Given** the source excludes TDD artifacts  
+**When** the feature specification is generated  
+**Then** it shall not include TDD-specific deliverables or requirements
 
-### Scenario 6: Close a ticket
-**Given** a ticket exists in the system  
-**When** the ticket is closed  
-**Then** the system shall support closure as part of the ticket lifecycle  
-**And** the ticket's lifecycle progression shall remain traceable
-
-### Scenario 7: Reject an unsupported lifecycle state
-**Given** a ticket exists in the system  
-**When** an attempt is made to set the ticket to a lifecycle state outside creation, assignment, investigation, resolution, and closure  
-**Then** the system shall reject the unsupported lifecycle state  
-**And** the ticket shall remain within the defined lifecycle state set
+### Scenario 5: Scope is limited to source-supported content
+**Given** the source requires use of selected DevOps work items and current form settings only  
+**When** the feature specification is produced  
+**Then** the resulting requirements shall be traceable to the available source context  
+**And** unsupported product details shall be recorded as open questions rather than assumed
 
 ## Traceability Matrix
 | Source ID | Requirement | Acceptance Criteria | Test Coverage |
 |---|---|---|---|
-| Feature 44604865 | FR-1 | System supports creation in the ticket lifecycle | Automated test verifies ticket creation enters the lifecycle |
-| Feature 44604865 | FR-2 | System supports assignment in the ticket lifecycle | Automated test verifies ticket can be assigned |
-| Feature 44604865 | FR-3 | System supports investigation in the ticket lifecycle | Automated test verifies ticket can move to investigation |
-| Feature 44604865 | FR-4 | System supports resolution in the ticket lifecycle | Automated test verifies ticket can move to resolution |
-| Feature 44604865 | FR-5 | System supports closure in the ticket lifecycle | Automated test verifies ticket can be closed |
-| US 1 / BRD §60 REQ-001 | FR-6 | System supports lifecycle of creation, assignment, investigation, resolution, and closure | Automated test verifies end-to-end lifecycle progression |
-| Feature 44604865 / BRD §60 REQ-001 | FR-7 | Progression is traceable | Automated test verifies lifecycle progression records are retrievable and ordered |
-| Derived from lifecycle support requirement | FR-8 | Current lifecycle state is persisted and verifiable | Automated test verifies state retrieval after each transition |
-| Derived from defined lifecycle stage set | FR-9 | Only defined lifecycle states are supported | Automated test verifies unsupported state is rejected |
-| Feature 44604865 / BRD §60 REQ-001 | FR-10 | Lifecycle progression can be verified from creation to closure | Automated test verifies progression evidence exists across supported stages |
+| Feature 44604865 | FR-1 | Feature is defined as Ticket Lifecycle Management within IT Help Desk Management | Review spec includes feature-specific summary and scope |
+| Feature 44604865 | FR-2 | Specification and implementation context use monolith architecture | Review architecture references in Summary, Scope, and NFRs |
+| Feature 44604865 | FR-3 | Specification acknowledges frontend and backend implications due to mixed application type | Review Application Type & Platform Context and related requirements |
+| Feature 44604865 | FR-4 | Spec uses only selected DevOps work items and current form settings as source context | Review traceability and absence of unsupported invented detail |
+| Feature 44604865 | FR-5 | TDD artifacts are excluded from specification scope | Review Scope and NFR sections for exclusion |
+| Feature 44604865 | FR-6 | No project delivery timeline estimation is included | Review absence of timeline commitments |
+| Feature 44604865 | FR-7 | No unsupported business priorities are introduced | Review absence of priority assumptions |
+| Feature 44604865 | FR-8 | Missing lifecycle behavior is not treated as defined and is instead captured as open questions | Review Open Questions and lack of invented lifecycle contract |
 
 ## Open Questions
-- What application platform(s) are in scope for this feature: web, mobile, desktop, API/service, or mixed?
-- Which actor roles interact with ticket lifecycle management?
-- What permissions govern creation, assignment, investigation, resolution, and closure?
-- Does the lifecycle require strict sequential transitions, or may stages be skipped?
-- Is assignment mandatory before investigation?
-- Is investigation mandatory before resolution?
-- Is resolution mandatory before closure?
-- Is reopening supported after resolution or closure?
-- What data is required to make lifecycle progression "traceable"?
-- Must the system record transition actor, timestamp, and reason?
-- What UI surfaces are required for lifecycle actions?
-- Are API endpoints required, and if so, what are their contracts?
-- What error behavior is required for invalid lifecycle transitions?
-- What validation messages must be shown to users or returned by services?
-- Are there retention, audit, logging, security, or reporting requirements related to lifecycle history?
+1. What specific user stories, business requirements, or acceptance criteria define the ticket lifecycle for this feature?
+2. What are the valid ticket lifecycle states?
+3. What transitions are allowed between those states?
+4. Which actors or roles can perform each lifecycle action?
+5. What permissions or access constraints apply?
+6. Which platforms are in scope: web, mobile, desktop, API/service, or another combination?
+7. What UI screens, views, or workflows support lifecycle actions?
+8. What user-facing copy, labels, confirmations, and validation messages are required?
+9. What API operations, if any, are required to support lifecycle management?
+10. What request/response contracts and error behaviors apply?
+11. What ticket fields and lifecycle-history fields are required?
+12. Are comments, reason codes, assignee changes, or resolution notes mandatory for any transition?
+13. Are audit logs or status histories required, and if so, what must they capture?
+14. Are there automated lifecycle transitions or scheduled rules?
+15. Are there notifications, integrations, or SLA impacts tied to lifecycle changes?
+16. What non-functional requirements apply for performance, security, reliability, observability, accessibility, and retention?
+17. Are there Golden Repo conventions applicable to monolith implementation for this feature beyond the source-extracted guidance? If yes, what are they?
 
 ## Source References
-- Feature ID: 44604865
-- Feature Reference: 44604865
-- Feature Title: Ticket Lifecycle Management
-- Feature Description: Manage tickets through the defined lifecycle stages from creation to closure with traceable progression.
-- User Story: US 1
-- User Story Acceptance Criteria: "The system shall support the ticket lifecycle of creation, assignment, investigation, resolution, and closure."
-- Requirement Reference: BRD-BRD-IThelpdeskrequirements-1.0.pdf §60 REQ-001
-- Source Documents: BRD-BRD-IThelpdeskrequirements-1.0.pdf
-- Source reference noted in feature description: BRD-BRD-IThelpdeskrequirements-1.0.pdf § ASTRA; BRD-BRD-IThelpdeskrequirements-1.0.pdf §60 REQ-001
-- Derived Source Signal: Application Type unknown
-- Derived Source Signal: Design Guidelines not specified in source
+- **Feature ID:** 44604865
+- **Feature Reference:** 44604865
+- **Feature Title:** Ticket Lifecycle Management
+- **Feature State:** New
+- **Architecture Selection:** monolith
+- **Derived Source Signal:** Application Type = mixed
+- **Application Type Evidence:** “Preserve implementation detail from backend, frontend, testing, planning, and documentation items where they shape the development specs”
+- **Design Guidance Extracted From Source:** “Use only selected DevOps work items and current form settings as source context”
+- **Constraint Used:** “Do not include TDD artifacts”
+- **Non-goal Used:** “Project delivery timeline estimation”
+- **Non-goal Used:** “Inventing business priorities not present in the source artifacts”
+- **User Story Source:** No user stories were provided for this feature
+- **Golden Repo References:** None provided in source context

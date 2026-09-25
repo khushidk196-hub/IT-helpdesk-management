@@ -5,60 +5,67 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] Role-based access control is implemented and enforced for at least the employee, support agent, manager, and administrator roles
-- [ ] Application behavior differs by assigned role in an observable way wherever access restrictions apply
-- [ ] Authorized users can access permitted functionality and protected resources for their role
-- [ ] Unauthorized users are blocked from functionality and protected resources outside their role permissions
-- [ ] Direct navigation, deep links, and non-UI access paths to protected functionality are also subject to role checks
-- [ ] Primary and failure paths for role authorization are implemented and verifiable for each required role
+- [ ] Role-based access control is implemented across the monolith for all source-supported protected actions, routes, screens, and data operations
+- [ ] Users can access only the application capabilities permitted by their assigned role(s), with observable allow/deny behavior in the application
+- [ ] Unauthorized access attempts are blocked consistently for direct navigation, UI-triggered actions, and backend-invoked operations
+- [ ] Permission checks are enforced server-side and are not dependent on UI visibility alone
+- [ ] Any source-supported default role assignment, role change, or access revocation behavior is implemented and verified
+- [ ] Primary access path, denied-access path, and failure handling for missing or invalid authorization context are implemented and verified
+- [ ] If role hierarchy, multiple-role behavior, or permission inheritance is required by source-supported artifacts, it is implemented consistently across the feature
+- [ ] No functional behavior is invented for missing user stories; unresolved authorization scope details remain unimplemented pending clarification
 
 ## UI Acceptance Criteria
 
-- [ ] UI-visible navigation, screens, actions, and controls respect the current user role where the application exposes them
-- [ ] Unauthorized UI actions are hidden or disabled only when backed by server-side or application-layer authorization enforcement
-- [ ] Users receive a clear access-denied outcome when attempting to access restricted functionality
-- [ ] Role-restricted screens and states are implemented only where supported by the application context; unspecified screens or messages are not invented as assumptions
-- [ ] Existing local UI conventions and any established design-system patterns for restricted actions, error states, and navigation are followed where applicable
-- [ ] If UI behavior for unauthorized access is not defined in source or project conventions, the decision is recorded as a non-blocking assumption before implementation
+- [ ] Protected navigation items, screens, controls, and actions are shown, hidden, disabled, or denied in accordance with source-supported role rules
+- [ ] Unauthorized users receive a clear and consistent access-denied experience where source-supported
+- [ ] Login/session-state transitions preserve correct role-based UI behavior after sign-in, sign-out, refresh, and session expiry where applicable
+- [ ] Validation, messaging, and interaction patterns for denied or restricted actions follow existing local UI conventions
+- [ ] Accessibility is preserved for protected UI states, including readable denied-state messaging and usable keyboard/screen-reader behavior where applicable
+- [ ] Responsive behavior does not expose unauthorized actions or bypass role restrictions on different screen sizes
+- [ ] Existing design-system and local UI conventions are followed for protected content and access-denied states
 
 ## API and Integration Acceptance Criteria
 
-- [ ] All protected endpoints, handlers, controllers, services, or equivalent entry points enforce authorization by role
-- [ ] Authorization checks are applied consistently across UI-triggered requests and direct API/service access
-- [ ] Requests from users lacking the required role are rejected with the project-standard unauthorized/forbidden behavior
-- [ ] Role information used for authorization is sourced from the application’s existing identity/authentication context where applicable
-- [ ] Existing public and internal contracts remain backward-compatible unless a source-supported change is required
-- [ ] Integration points that rely on user identity or permissions honor RBAC rules without bypass paths
+- [ ] API/service endpoints enforce role-based permissions for all source-supported protected operations
+- [ ] Requests made without required roles or permissions return the correct authorization failure behavior and do not perform the protected operation
+- [ ] Authenticated requests with sufficient roles or permissions succeed and return expected data and status behavior
+- [ ] Authorization checks are applied consistently across controllers, services, repositories, and other monolith layers where relevant
+- [ ] Any source-supported role or permission data contract is implemented with required inputs, outputs, and error handling
+- [ ] Existing API contracts remain backward-compatible unless a source-supported requirement explicitly requires a breaking change
+- [ ] External integrations, identity providers, or repository/provider behavior are updated only where explicitly supported by source context
+- [ ] If the source does not define role source-of-truth, token claims, or integration behavior, those details are treated as Open Questions and must not be implemented as assumptions
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] The system recognizes at least four roles: employee, support agent, manager, and administrator
-- [ ] Authorization rules are implemented so that access decisions are based on assigned role
-- [ ] Role assignment, lookup, and evaluation behavior align with existing domain and persistence patterns where applicable
-- [ ] Missing, invalid, or unrecognized role data is handled safely by denying access rather than granting it implicitly
-- [ ] Default access behavior follows least privilege unless an existing source-supported rule states otherwise
-- [ ] Any role-to-permission mapping introduced for enforcement is implemented in a maintainable, centralized form consistent with local architecture
-- [ ] No additional roles, permissions, or inheritance rules are implemented unless supported by source or documented as a non-blocking assumption
-- [ ] If role hierarchy, permission matrix, or assignment workflow is required to complete implementation but not defined in source, it is treated as an Open Question and must not be implemented as an unstated assumption
+- [ ] Required role, permission, user-role, or related authorization entities and fields are implemented where source-supported
+- [ ] Authorization rules for create, read, update, delete, administrative, and configuration actions are implemented where source-supported
+- [ ] Data access is restricted so users cannot read or mutate protected records outside their authorization scope
+- [ ] Any source-supported role assignment, revocation, migration, or persistence rules are implemented and verified
+- [ ] Business rules for denied operations prevent partial writes, side effects, and inconsistent state changes
+- [ ] Error handling covers unauthorized, forbidden, missing-role, invalid-role, and stale-session cases where applicable
+- [ ] If auditing or authorization-event recording is required by source-supported artifacts, it is implemented for role changes and denied access events
+- [ ] If role definitions, permission matrices, or scope boundaries are not defined in source context, they remain unresolved Open Questions and must not be silently assumed
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] RBAC enforcement is implemented as a security control and cannot be bypassed through client manipulation alone
-- [ ] Authorization decisions are applied consistently and reliably across the monolith application layers
-- [ ] Access-denied and authorization-relevant failures are handled using existing logging and observability conventions where applicable
-- [ ] Implementation avoids unnecessary performance overhead in repeated authorization checks, following local project patterns
-- [ ] Security and permission behavior is covered by tests or verification steps for each required role and denial path
-- [ ] Implementation follows applicable repository conventions and architecture constraints for a monolith codebase
+- [ ] Security expectations are satisfied by enforcing least privilege and preventing privilege escalation through UI, API, or direct request manipulation
+- [ ] Permission enforcement is reliable under normal, repeated, and concurrent usage where applicable
+- [ ] Observability is implemented for authorization failures and role-related errors where source-supported logging or monitoring conventions exist
+- [ ] Performance remains acceptable for permission checks on protected routes and operations within the monolith context
+- [ ] Implementation aligns with the selected monolith architecture and applies shared authorization logic consistently rather than duplicating rule behavior unnecessarily
+- [ ] Only source-supported Golden Repo guidance, local standards, policies, and conventions are applied; no unsupported standards are invented
+- [ ] Tests or verification steps cover highest-risk behavior, including authorized access, denied access, direct endpoint access, hidden/disabled UI states, and server-side enforcement
+- [ ] TDD-specific artifacts are not introduced, because they are explicitly out of scope in the source context
 
 ## Traceability
 
-- [ ] Every implemented RBAC change maps back to REQ-004 and the user story requiring enforcement for employee, support agent, manager, and administrator roles
-- [ ] Each implemented authorization rule or protected resource is traceable to a source-supported access-control need or a recorded non-blocking assumption
-- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in specs/<slug>/assumptions.md (no Open Question is silently assumed)
+- [ ] Every implemented RBAC change maps back to source-supported feature context, derived source signals, or related acceptance behavior from the provided materials
+- [ ] Every implemented permission rule, protected endpoint, UI restriction, and data restriction has a traceable source-supported rationale
+- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in `specs/<slug>/assumptions.md` (no Open Question is silently assumed)
 - [ ] No BLOCKING Open Question was implemented as an assumption (a feature with an unresolved blocking question is held at needs-clarification, not completed)
+- [ ] Missing user stories, undefined role matrices, undefined permission scopes, and undefined identity/claim details are treated as unresolved until clarified, not inferred into implementation
 
 ## Notes
 
-- Never resolve an Open Question silently. In an unattended run, record the chosen assumption + rationale in specs/<slug>/assumptions.md; blocking questions must instead hold the feature at needs-clarification.
-- The source requires enforcement for at least employee, support agent, manager, and administrator roles; it does not define a full permission matrix, role hierarchy, or exact restricted resources, so those details must not be silently invented.
+- Never resolve an Open Question silently. In an unattended run, record the chosen assumption + rationale in `specs/<slug>/assumptions.md`; blocking questions must instead hold the feature at needs-clarification.
 - Mark an item complete only after verifying actual implementation code and behavior.

@@ -20,7 +20,6 @@ Follow the specification exactly. Do not add features not described in the spec.
 - **Golden UI Design System:** `specs/.devx/skills/ui-design/golden-ui-design-system.md` (REQUIRED when present)
 - **Specification:** `specs/ticket-assignment/specs.md`
 - **Implementation Acceptance Checklist:** `specs/ticket-assignment/requirements.md`
-- **TDD Test Specs:** `specs/ticket-assignment/tdd-tests.md`
 
 
 ## Skill Files (Use In Your AI Prompt)
@@ -31,13 +30,10 @@ Use these skill files explicitly when implementing this feature:
 - `specs/.devx/skills/next/SKILL.md`
 - `specs/.devx/skills/autopilot/SKILL.md`
 - `specs/.devx/skills/ui-design/SKILL.md`
-- `specs/.devx/skills/tdd-cycle/SKILL.md`
 
 ## User Stories
 
-- **[1]** The system shall allow IT Support Agents to assign tickets
-  Acceptance:
-The system shall allow IT Support Agents to assign tickets.
+See specs.md for details.
 
 
 
@@ -50,8 +46,7 @@ The system shall allow IT Support Agents to assign tickets.
 5. Read `specs/ticket-assignment/specs.md` thoroughly before writing any code
 6. Read this feature's Open Questions (`specs/.devx/features.json` `openQuestions[]`, or the `## Open Questions` section in `specs/ticket-assignment/specs.md`). Interactive run: surface the consolidated list, ask the human user for a decision before coding, apply their answer, and record the decision plus a one-line rationale in `specs/ticket-assignment/assumptions.md`. Unattended run: choose a reasonable assumption and record it plus a rationale in `specs/ticket-assignment/assumptions.md` — never assume silently. A feature held at `needs-clarification` (tracker `NEEDS_CLARIFICATION`) has an unresolved blocking question and must be resolved and re-enabled before implementing
 7. Implement each item from `specs/ticket-assignment/requirements.md` one at a time
-8. Follow the TDD Red → Green → Refactor cycle for each implementation acceptance item
-9. All tests must pass before moving to the next checklist item
+8. Validate each checklist item as you implement it
 
 ## Constraints
 
@@ -62,16 +57,6 @@ The system shall allow IT Support Agents to assign tickets.
 - Do not rely on Astra or live Golden Repo access during IDE implementation
 - Each implementation acceptance item in requirements.md must be satisfied
 
-## TDD Instructions
-
-This feature uses Test-Driven Development. For each requirement:
-
-1. **Red** — Write a failing test first (see `tdd-tests.md` for test specifications)
-2. **Green** — Write minimum code to pass the test
-3. **Refactor** — Clean up while keeping tests green
-
-Reference: `specs/ticket-assignment/tdd-tests.md`
-
 ## Validation
 
 After implementation, verify:
@@ -81,7 +66,5 @@ After implementation, verify:
 - [ ] Open Questions were reviewed; each was surfaced/asked (interactive) or recorded with a decision + rationale in `specs/ticket-assignment/assumptions.md` (unattended), and no blocking Open Question was left unresolved and unrecorded (never assumed silently)
 - [ ] All implementation acceptance items in `requirements.md` are satisfied
 - [ ] All user scenarios from `specs.md` work correctly
-- [ ] All TDD tests pass
-- [ ] Code has been refactored with tests still green
 - [ ] No extra features were added beyond the spec
 - [ ] Code follows project conventions

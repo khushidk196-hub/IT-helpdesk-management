@@ -1,221 +1,219 @@
 # Feature: Administration Management
 Status: NEW
 Owner: Astra
-Last Updated: 2026-09-22
+Last Updated: 2026-09-25
 
 ## Summary
-Administration Management enables System Administrators to manage users, roles, and system configuration. The feature addresses the need for centralized administrative control within the system and is intended to deliver administrative capabilities that support setup and ongoing governance of access and configuration.
+Administration Management defines the development specification for the administration-related portion of the selected IT Help Desk Management work-item set. The feature exists to provide an implementation-ready specification for administration capabilities within a monolith architecture, using only the supplied DevOps source artifacts.
+
+The expected outcome is a clear, authoritative specification that supports development across relevant backend, frontend, testing, planning, and documentation concerns where those concerns materially shape the feature behavior and validation. Because no user stories or administration-specific acceptance criteria were provided, this specification captures only source-supported intent and explicitly identifies unresolved product, UI, API, data, and permission details as Open Questions.
 
 ## Scope
 ### In Scope
-- Management of users by System Administrators.
-- Management of roles by System Administrators.
-- Management of system configuration by System Administrators.
+- Specification of the Administration Management feature as part of the selected IT Help Desk Management work-item set.
+- Monolith architecture context for this feature.
+- Inclusion of implementation-relevant detail from:
+  - backend artifacts
+  - frontend artifacts
+  - testing artifacts, where they inform acceptance and validation
+  - planning artifacts, where they shape the development specification
+  - documentation artifacts, where they shape the development specification
+- Definition of feature requirements only where supported by the provided feature source.
 
 ### Out of Scope
-- Any user, role, or configuration sub-functions not explicitly defined in the source.
-- Detailed workflows for creating, editing, deleting, activating, deactivating, or assigning users/roles/configuration, because these are not specified in the source.
-- Authentication, authorization model details, audit logging, notifications, reporting, and analytics, because they are not specified in the source.
-- UI layouts, navigation structures, and API endpoint definitions, because they are not specified in the source.
+- Project delivery timeline estimation.
+- Invented business priorities not present in the source artifacts.
+- TDD-specific artifacts.
+- Any administration sub-feature, screen, workflow, API, permission model, or data contract not evidenced in the source context.
+- Cross-feature scope outside what can be directly attributed to Administration Management from the provided source.
 
 ## Application Type & Platform Context
-Application type is unknown.
+**Application Type:** Mixed
 
-**Source evidence**
-- Derived Source Signals: Application Type: unknown
-- Application Type Evidence: Not specified in source.
+**Source Evidence:**
+- "Preserve implementation detail from backend, frontend, testing, planning, and documentation items where they shape the development specs"
+
+This indicates the feature operates in a mixed application context and may involve both frontend and backend implementation concerns. However, the source does not identify specific runtime platforms, clients, or delivery channels.
 
 **Open Question**
-- What application type(s) and platform(s) does this feature target: web, mobile, desktop, API/service, or mixed?
+- Which concrete platform surfaces are included for Administration Management: web, mobile, desktop, internal admin portal, service/API only, or another combination?
 
 ## Actors and Permissions
-### Actors
-- System Administrator
+The source identifies no explicit actors, personas, roles, or permissions for Administration Management.
 
-### Permissions Supported by Source
-- System Administrators shall be allowed to manage users.
-- System Administrators shall be allowed to manage roles.
-- System Administrators shall be allowed to manage configuration.
-
-### Access Constraints
-- Administrative management capabilities are restricted to the System Administrator role, based on the source statement that specifically grants this capability to System Administrators.
+### Source-Supported Constraints
+- The feature title implies administration-related capabilities.
+- No user stories, role definitions, or access rules were provided.
 
 ### Open Questions
-- Are any additional administrative or delegated roles permitted to perform any subset of user, role, or configuration management?
-- What specific actions constitute “manage” for users, roles, and configuration?
-- Are there any restrictions on which users, roles, or configuration items a System Administrator may manage?
+- Who are the intended actors for Administration Management?
+- Is access restricted to administrative users only?
+- Are there multiple administration roles with different permissions?
+- What actions, data, or settings may each role view, create, update, delete, or configure?
+- Are there approval, audit, or segregation-of-duties requirements?
 
 ## Feature Development Intent
-This is feature-development work to add or enable administrative capabilities for System Administrators. The behavior to be built or changed is the system’s ability to support management of users, roles, and configuration by the System Administrator actor. The intended outcome is that administrative tasks in these three focus areas can be performed through the system rather than remaining unsupported or manual.
+This is feature-development work intended to produce an implementation-ready specification for Administration Management within a monolith architecture. The work must define the administration feature in sufficient detail for development and validation while remaining constrained to the provided source artifacts.
+
+Because the source contains no user stories or acceptance criteria for administration behavior, the immediate delivery outcome of this specification is:
+- a bounded definition of what is currently supported by source evidence
+- explicit identification of missing implementation details required before build
+- testable requirements only for source-supported constraints
+
+The feature must not introduce unverified administration workflows or contracts.
 
 ## UI Design & Interaction Contract
-The source does not define UI screens, layouts, navigation, interaction patterns, copy, validation messaging, or accessibility requirements for this feature.
+No administration-specific UI screens, layouts, navigation paths, states, copy, interaction patterns, validation messaging, or accessibility requirements were provided in the source context.
 
-### Source-Supported UI Contract
-- The system must provide some means for System Administrators to manage users, roles, and configuration.
-- No further UI behavior is specified in the source.
+### Source-Supported UI Constraints
+- Frontend implementation detail may be relevant where shaped by selected work items.
+- No UI artifact content specific to Administration Management was supplied.
 
 ### Open Questions
-- Is a user interface required for this feature, or is management performed only through backend/admin APIs?
-- If a UI is required, what screens or modules must exist for user management, role management, and configuration management?
-- What actions must be available in each administrative area?
-- What validation messages, confirmation states, empty states, and error states are required?
-- Are there any accessibility standards or design system requirements applicable to the UI?
+- Does Administration Management include a dedicated UI?
+- If yes, what screens or pages are in scope?
+- What administration tasks must users perform in the UI?
+- What fields, actions, tables, forms, filters, or detail views are required?
+- What empty, loading, success, error, and unauthorized states are required?
+- What user-facing copy and validation messages are required?
+- What accessibility requirements apply to administration workflows?
 
 ## API Contract
-The source does not define any API operations, protocols, endpoints, request/response schemas, error models, or integration behavior.
+No administration-specific API operations, methods, endpoints, payloads, response contracts, error models, or integration behaviors were provided in the source context.
 
-### Source-Supported API Contract
-- If APIs are part of the implementation, they must support System Administrator management of users, roles, and configuration consistent with the business requirement.
-- No specific API contract is provided by the source.
+### Source-Supported API Constraints
+- Backend implementation detail may be relevant where shaped by selected work items.
+- No API artifact content specific to Administration Management was supplied.
 
 ### Open Questions
-- Are API endpoints required for user, role, and configuration management?
-- What operations must be supported for each managed domain?
-- What input and output data structures are required?
-- What authorization mechanism determines that the caller is a System Administrator?
-- What error responses are required for unauthorized access, invalid data, missing records, or conflicting updates?
+- Does Administration Management expose or consume APIs?
+- If yes, what operations are required?
+- What request inputs and response outputs are required for each operation?
+- What authorization rules apply to each operation?
+- What errors must be returned and under what conditions?
 - Are operations required to be idempotent?
-- Are there external integrations involved in managing users, roles, or configuration?
+- Are there integrations with identity, audit, configuration, or other system services?
 
 ## Business Logic & Rules
+The source provides no administration-specific business rules, calculations, decision logic, state transitions, policy rules, or exception-handling behavior.
+
 ### Source-Supported Rules
-- The system shall allow System Administrators to manage users.
-- The system shall allow System Administrators to manage roles.
-- The system shall allow System Administrators to manage configuration.
+- The feature must use only selected DevOps work items and current form settings as source context.
+- The feature must align to a monolith architecture selection.
+- TDD artifacts must not be generated.
+- Testing-related work items may inform acceptance and validation where applicable.
 
-### Constraints
-- The permission to perform these management actions is explicitly tied to the System Administrator actor.
-
-### Undefined Business Logic Requiring Clarification
-- The exact set of management actions for users is not defined.
-- The exact set of management actions for roles is not defined.
-- The exact set of management actions for configuration is not defined.
-- No lifecycle, approval, conflict-resolution, or dependency rules are defined in the source.
+### Open Questions
+- What business capabilities are included under Administration Management?
+- What configurable entities or settings are managed by administrators?
+- What rules govern creating, editing, activating, deactivating, or deleting administration records?
+- Are there constraints on modification of system-critical settings?
+- Are audit trails, approvals, or rollback behaviors required?
+- What exception paths must be handled?
 
 ## Data Model & Validation
-The source identifies three managed domains but does not define their data structures.
+No administration-specific entities, fields, schemas, validation rules, reference data, or retention requirements were provided in the source context.
 
-### Source-Supported Entities
-- User
-- Role
-- Configuration
-
-### Source-Supported Validation
-- None specified.
+### Source-Supported Data Constraints
+- No new data fields or entities can be specified without supporting source evidence.
 
 ### Open Questions
-- What fields exist for User entities?
-- What fields exist for Role entities?
-- What fields exist for Configuration entities?
-- What validations apply to each entity and field?
-- Are there uniqueness constraints, referential constraints, required fields, or immutable fields?
-- How are users associated with roles?
-- What constitutes a configuration item, and is configuration typed, grouped, versioned, or environment-specific?
-- Are there retention, history, or archival requirements for administrative changes?
+- What entities are part of Administration Management?
+- What fields are required for each entity?
+- Which fields are mandatory, unique, formatted, or range-limited?
+- Are there reference data lists or controlled vocabularies?
+- What data retention or archival rules apply?
+- Are there data-quality rules for administration records?
+- Are historical changes required to be stored?
 
 ## Functional Requirements
-FR-001: The system shall provide functionality that allows a System Administrator to manage users.  
-FR-002: The system shall provide functionality that allows a System Administrator to manage roles.  
-FR-003: The system shall provide functionality that allows a System Administrator to manage configuration.  
-FR-004: The system shall restrict the administration management capabilities defined by this feature to the System Administrator actor, as supported by the source requirement wording.  
-FR-005: The implementation of user management, role management, and configuration management shall be verifiable through automated tests of service logic, authorization behavior, and data validation where applicable.  
-FR-006: Any operation exposed to fulfill user, role, or configuration management shall enforce that the acting principal is authorized as a System Administrator before the management action is performed.  
-FR-007: The system shall fail management operations that do not satisfy the System Administrator authorization condition defined by this feature.
-
-## Testability Notes
-- Automated tests should verify that authorized System Administrator access can perform the supported administration-management behaviors once implemented.
-- Automated tests should verify that non-System-Administrator access is denied for administration-management operations.
-- Backend/service tests should cover authorization enforcement on every operation exposed for user, role, and configuration management.
-- Data validation tests are required once the source-of-truth fields and validation rules for users, roles, and configuration are defined.
-- CRUD-level tests cannot be fully specified until “manage” is decomposed into explicit supported actions.
+1. The Administration Management specification shall be constrained to information present in the supplied source context for Feature ID 44604863.
+2. The Administration Management feature specification shall assume a monolith architecture.
+3. The specification shall consider backend, frontend, testing, planning, and documentation artifacts only where they shape implementation-relevant behavior for the feature.
+4. The specification shall not define TDD-specific artifacts or requirements.
+5. Where administration-specific behavior, UI, API, data, permissions, or business logic is not supported by source evidence, the specification shall record the missing information as Open Questions rather than inventing requirements.
+6. The feature shall be treated as operating in a mixed application context unless superseded by additional source evidence.
+7. Acceptance and validation content shall be derived only from source-supported constraints because no user story acceptance criteria were provided.
 
 ## Non-Functional Requirements
-### Security
-- Administrative management capabilities for users, roles, and configuration shall be access-controlled to System Administrators.
-
-### Reliability
-- The feature shall behave consistently with the source requirement by permitting authorized administrative management and preventing unauthorized use.
-
-### Observability
-- No source-supported observability requirements are specified.
-
-### Performance
-- No source-supported performance requirements are specified.
-
-### Accessibility
-- No source-supported accessibility requirements are specified.
-
-### Compliance
-- No source-supported compliance requirements are specified.
-
-### Operational Constraints
-- User-selected Architecture Style: monolith.
-
-### Open Questions
-- Are there logging, monitoring, or auditability requirements for administrative actions?
-- Are there performance expectations for administrative operations?
-- Are there security requirements beyond role-based restriction, such as approval, dual control, or session re-authentication?
+1. The specification shall be implementation-ready only to the extent supported by the provided source artifacts.
+2. The specification shall avoid introducing unsupported platform, integration, security, operational, or usability requirements.
+3. The specification shall maintain consistency with the selected monolith architecture context.
+4. The specification shall use testing-related source artifacts, where present, to shape validation expectations for the feature.
+5. The specification shall clearly identify unresolved product and technical decisions required before implementation can proceed.
 
 ## Acceptance Scenarios
-### Scenario 1: System Administrator manages users
-**Given** a user acting as a System Administrator  
-**When** the user accesses functionality intended for user management  
-**Then** the system shall allow the System Administrator to manage users
+### Scenario 1: Feature specification respects source-only scope
+**Given** Feature ID 44604863 is the source for Administration Management  
+**When** the Administration Management specification is produced  
+**Then** it includes only requirements and constraints supported by the provided source context  
+**And** it does not invent administration behaviors, screens, APIs, fields, or roles
 
-### Scenario 2: System Administrator manages roles
-**Given** a user acting as a System Administrator  
-**When** the user accesses functionality intended for role management  
-**Then** the system shall allow the System Administrator to manage roles
+### Scenario 2: Monolith architecture is preserved
+**Given** the selected architecture style is monolith  
+**When** the Administration Management specification is written  
+**Then** the feature is specified within a monolith architecture context
 
-### Scenario 3: System Administrator manages configuration
-**Given** a user acting as a System Administrator  
-**When** the user accesses functionality intended for configuration management  
-**Then** the system shall allow the System Administrator to manage configuration
+### Scenario 3: Mixed application context is recognized
+**Given** the source states that implementation detail from backend and frontend artifacts may shape the development specs  
+**When** platform context is documented  
+**Then** the feature is identified as mixed application type  
+**And** unresolved platform-specific delivery details are captured as Open Questions
 
-### Scenario 4: Non-System-Administrator attempts administration management
-**Given** a user who is not authorized as a System Administrator  
-**When** the user attempts to access or execute user, role, or configuration management functionality  
-**Then** the system shall deny the management action
+### Scenario 4: Missing administration detail is handled explicitly
+**Given** no user stories were provided for Administration Management  
+**And** no administration-specific UI, API, data model, business rules, or permissions are present in the source  
+**When** the feature specification is produced  
+**Then** those missing details are listed in Open Questions  
+**And** no unsupported implementation contract is asserted
 
-### Scenario 5: Authorization is enforced before administrative change execution
-**Given** an administration management operation for users, roles, or configuration  
-**When** the operation is invoked  
-**Then** the system shall verify System Administrator authorization before performing the management action
+### Scenario 5: Excluded artifact types remain excluded
+**Given** the source states that TDD artifacts must not be generated  
+**When** the Administration Management specification is produced  
+**Then** it excludes TDD-specific requirements and deliverables
 
 ## Traceability Matrix
 | Source ID | Requirement | Acceptance Criteria | Test Coverage |
 |---|---|---|---|
-| Feature 44604863 / US 1 / BRD §67 REQ-001 | FR-001: System allows System Administrator to manage users | The system shall allow System Administrators to manage users, roles, and configuration. | Automated service/authorization test verifies authorized System Administrator can execute user-management capability |
-| Feature 44604863 / US 1 / BRD §67 REQ-001 | FR-002: System allows System Administrator to manage roles | The system shall allow System Administrators to manage users, roles, and configuration. | Automated service/authorization test verifies authorized System Administrator can execute role-management capability |
-| Feature 44604863 / US 1 / BRD §67 REQ-001 | FR-003: System allows System Administrator to manage configuration | The system shall allow System Administrators to manage users, roles, and configuration. | Automated service/authorization test verifies authorized System Administrator can execute configuration-management capability |
-| Feature 44604863 / US 1 / BRD §67 REQ-001 | FR-004: Restrict administration management capabilities to System Administrator actor | The system shall allow System Administrators to manage users, roles, and configuration. | Automated authorization test verifies only System Administrator is permitted |
-| Feature 44604863 / US 1 / BRD §67 REQ-001 | FR-006: Enforce System Administrator authorization before management action | The system shall allow System Administrators to manage users, roles, and configuration. | Automated backend test verifies authorization check occurs prior to operation success |
-| Feature 44604863 / US 1 / BRD §67 REQ-001 | FR-007: Deny unauthorized management operations | The system shall allow System Administrators to manage users, roles, and configuration. | Automated negative-path test verifies unauthorized actor cannot perform management operation |
+| Feature 44604863 | The specification shall be constrained to supplied source context only. | No unsupported administration-specific requirements are defined. | Review spec sections to confirm unsupported UI/API/data/permission details are captured only as Open Questions. |
+| Feature 44604863 | The feature shall be specified in a monolith architecture context. | Monolith architecture is stated and used consistently. | Verify architecture references in Summary, Scope, Feature Development Intent, and Non-Functional Requirements. |
+| Feature 44604863 | The feature shall be treated as mixed application type based on source evidence. | Mixed application type is documented with source evidence. | Verify Application Type & Platform Context section cites backend/frontend evidence and records missing platform details as Open Questions. |
+| Feature 44604863 | The specification shall consider backend, frontend, testing, planning, and documentation artifacts only where they shape implementation-relevant behavior. | Relevant artifact categories are reflected without inventing unsupported behavior. | Review Scope and Feature Development Intent for alignment to source-derived artifact categories. |
+| Feature 44604863 | The specification shall not include TDD-specific artifacts. | No TDD-specific requirements or deliverables are present. | Review all sections for absence of TDD content. |
+| Feature 44604863 | Missing administration-specific details shall be documented as Open Questions. | Open Questions section captures unresolved UI, API, business, data, permission, and platform decisions. | Verify absence of user stories/AC is reflected in Open Questions and not replaced with inferred product behavior. |
 
 ## Open Questions
-1. What exact actions are included in “manage users”?
-2. What exact actions are included in “manage roles”?
-3. What exact actions are included in “manage configuration”?
-4. What application type and platform(s) are in scope for this feature?
-5. Is a UI required, and if so, what specific administrative screens or modules must be provided?
-6. Are APIs required, and if so, what operations, inputs, outputs, and error contracts are required?
-7. What data fields and validation rules apply to users, roles, and configuration?
-8. How is System Administrator authorization determined and enforced in the system?
-9. Are any non-System-Administrator roles permitted any administrative functions?
-10. Are there any audit logging, monitoring, or history requirements for administrative actions?
-11. Are there any constraints on modifying protected users, protected roles, or sensitive configuration?
-12. Are there any bulk operations, import/export, or search/filter requirements for administration?
-13. Are there environment, tenant, or scope boundaries for configuration management?
-14. Are there any business rules governing role assignment, role hierarchy, or configuration dependencies?
+1. What concrete administration capabilities are included in Administration Management?
+2. What user stories or business scenarios define the expected administration workflows?
+3. Which actors and roles can access Administration Management?
+4. What permissions apply to each actor or role?
+5. Which platform surfaces are in scope for this feature?
+6. Does the feature require a user interface, API, or both?
+7. What screens, pages, or navigation entry points are required?
+8. What backend operations or service behaviors are required?
+9. What entities, records, settings, or configurations are administered?
+10. What fields and validations are required for each administered entity?
+11. What business rules govern create, update, delete, activation, deactivation, or other state changes?
+12. Are auditability, approvals, or history tracking required?
+13. What error conditions and user/system responses are required?
+14. Are there integration dependencies with authentication, authorization, configuration, or other services?
+15. What accessibility, usability, performance, reliability, or security requirements apply specifically to Administration Management?
+16. Are there administration-specific acceptance criteria or test cases in the selected work-item set that were not included in the provided source excerpt?
 
 ## Source References
 - Feature ID: 44604863
 - Feature Reference: 44604863
 - Feature Title: Administration Management
-- User Story: US 1
-- User Story Acceptance Criteria: “The system shall allow System Administrators to manage users, roles, and configuration.”
-- Requirement Reference: BRD-BRD-IThelpdeskrequirements-1.0.pdf §67 REQ-001
-- Source Documents: BRD-BRD-IThelpdeskrequirements-1.0.pdf
-- Source References in feature description: BRD-BRD-IThelpdeskrequirements-1.0.pdf § ASTRA; BRD-BRD-IThelpdeskrequirements-1.0.pdf §67 REQ-001
-- Golden Repo convention references used: None explicitly provided in source context
+- Feature State: New
+- Architecture Selection: monolith
+- Derived Source Signal: Application Type = mixed
+- Application Type Evidence:
+  - "Preserve implementation detail from backend, frontend, testing, planning, and documentation items where they shape the development specs"
+- Source Note:
+  - "No user stories were provided for this feature."
+- Source Constraint:
+  - "Use only selected DevOps work items and current form settings as source context"
+- Source Constraint:
+  - "Do not include TDD artifacts"
+- Source Clarification:
+  - "Include all 624 selected work items in this generation run"

@@ -1,327 +1,257 @@
-# TDD Test Specifications: Ticket Lifecycle Management
+# TDD Test Specifications: End-to-End Ticket Lifecycle Management
 
 ## Overview
-These tests validate backend support for the ticket lifecycle defined in REQ-001: creation, assignment, investigation, resolution, and closure, with traceable progression across stages.
-
-TDD approach:
-1. Write failing tests for each lifecycle stage and rule.
-2. Implement only the minimum API/service/data logic needed to pass.
-3. Refactor once tests are green, preserving traceability, validation, and workflow integrity.
-
-Assumed backend scope for this feature:
-- Ticket domain/service logic
-- Lifecycle transition rules
-- API endpoints for lifecycle actions
-- Persistence of current status and status history/audit trail
-- Validation of required data for transitions
-
-Golden Repo-aligned constraints applied:
-- Validate input at API boundaries
-- Enforce domain rules in service layer
-- Persist state changes atomically
-- Return clear failure outcomes for invalid transitions or missing required data
-- Keep lifecycle changes traceable via history/audit records
+These tests validate backend behavior for managing support tickets through the full lifecycle: creation, assignment, investigation, resolution, and closure. The TDD approach should follow a strict Red → Green → Refactor sequence for each lifecycle step, starting with failing tests for core domain rules, then minimal implementation, then safe refactoring with all tests kept green.
 
 ## Unit Test Specifications
 
-### Lifecycle State Model
-- **Test:** creates ticket with initial lifecycle state
-  - **Given:** valid ticket creation data
-  - **When:** a ticket is created
-  - **Then:** the ticket is persisted with initial status `Created` and no later-stage fields populated
+### Ticket Creation
+- **Test:** creates a ticket with required fields and initial lifecycle state
+  - **Given:** a valid support request payload with all required ticket data
+  - **When:** the ticket creation service is invoked
+  - **Then:** a new ticket is created with a unique identifier and an initial status representing newly created/open work
   - **Priority:** High
-  - **TDD Phase:** Red: assert created status exists by default; Green: add minimal initialization logic; Refactor: centralize default state creation if reused
+  - **TDD Phase:** Red: write failing test for valid creation and default state; Green: implement minimal validation and persistence mapping; Refactor: extract shared request-to-domain validation only if reused 3+ times
 
-- **Test:** allows only defined lifecycle states
-  - **Given:** a ticket entity or status update request with an undefined status value
-  - **When:** validation/domain rules are applied
-  - **Then:** the request is rejected with a validation/domain error
+- **Test:** rejects ticket creation when required fields are missing
+  - **Given:** a support request payload missing one or more required fields
+  - **When:** the ticket creation service is invoked
+  - **Then:** validation fails with a structured error and no ticket is persisted
   - **Priority:** High
-  - **TDD Phase:** Red: write failing validation test; Green: add enum/allowlist enforcement; Refactor: extract shared status validation only if reused 3+ times
+  - **TDD Phase:** Red: write failing negative test for required fields; Green: implement minimal field validation; Refactor: consolidate validation rules under domain validator if repeated
 
-### Lifecycle Transition Rules
-- **Test:** permits valid sequential transition from Created to Assigned
-  - **Given:** an existing ticket in `Created` status and valid assignment data
-  - **When:** assignment is requested
-  - **Then:** status changes to `Assigned`
+- **Test:** rejects ticket creation when field values are invalid
+  - **Given:** a support request payload with invalid values such as empty strings, overlong text, or malformed enumerated inputs
+  - **When:** the ticket creation service is invoked
+  - **Then:** validation fails and the ticket is not created
   - **Priority:** High
-  - **TDD Phase:** Red: assert transition succeeds; Green: add minimal transition rule; Refactor: move transition matrix into domain policy if pattern grows
+  - **TDD Phase:** Red: add failing invalid-data test; Green: implement only required validation constraints; Refactor: centralize boundary checks
 
-- **Test:** permits valid sequential transition from Assigned to Investigation
-  - **Given:** a ticket in `Assigned` status
-  - **When:** investigation is started
-  - **Then:** status changes to `Investigation`
+### Ticket Assignment
+- **Test:** assigns an existing ticket to a valid support assignee
+  - **Given:** an existing ticket in an assignable state and a valid assignee identifier
+  - **When:** the assignment service is invoked
+  - **Then:** the ticket assignee is updated and status reflects assignment/in-progress according to lifecycle rules
   - **Priority:** High
-  - **TDD Phase:** Red → Green → Refactor as above
+  - **TDD Phase:** Red: write failing test for successful assignment transition; Green: implement minimal state transition and assignee update; Refactor: extract lifecycle transition policy if used repeatedly
 
-- **Test:** permits valid sequential transition from Investigation to Resolution
-  - **Given:** a ticket in `Investigation` status and required resolution details
-  - **When:** resolution is recorded
-  - **Then:** status changes to `Resolved`
+- **Test:** rejects assignment for a non-existent ticket
+  - **Given:** a ticket identifier that does not exist
+  - **When:** the assignment service is invoked
+  - **Then:** a not-found error is returned and no update occurs
   - **Priority:** High
-  - **TDD Phase:** Red → Green → Refactor as above
+  - **TDD Phase:** Red: add failing not-found test; Green: implement repository lookup guard; Refactor: standardize not-found handling
 
-- **Test:** permits valid sequential transition from Resolved to Closed
-  - **Given:** a ticket in `Resolved` status
-  - **When:** closure is requested
-  - **Then:** status changes to `Closed`
+- **Test:** rejects assignment when assignee is invalid or unavailable
+  - **Given:** an existing ticket and an invalid, unknown, or ineligible assignee identifier
+  - **When:** the assignment service is invoked
+  - **Then:** validation fails and the ticket remains unchanged
+  - **Priority:** Medium
+  - **TDD Phase:** Red: write failing assignee validation test; Green: implement minimal assignee eligibility check; Refactor: isolate assignee policy from ticket service
+
+- **Test:** rejects assignment when lifecycle state does not allow transition
+  - **Given:** a ticket already resolved or closed
+  - **When:** the assignment service is invoked
+  - **Then:** the request is rejected as an invalid state transition
   - **Priority:** High
-  - **TDD Phase:** Red → Green → Refactor as above
+  - **TDD Phase:** Red: write failing state-guard test; Green: add minimal transition rule; Refactor: move transition matrix into domain policy
 
-- **Test:** rejects skipping lifecycle stages
-  - **Given:** a ticket in `Created` or `Assigned` status
-  - **When:** a later-stage transition such as resolve or close is requested directly
+### Investigation Progression
+- **Test:** updates ticket to investigation state from an allowed prior state
+  - **Given:** a created or assigned ticket
+  - **When:** the investigation-start service is invoked
+  - **Then:** the ticket status changes to investigation/in-progress and auditable lifecycle metadata is updated
+  - **Priority:** High
+  - **TDD Phase:** Red: add failing transition test; Green: implement minimal state update; Refactor: reuse lifecycle metadata handling
+
+- **Test:** rejects investigation start from a disallowed lifecycle state
+  - **Given:** a ticket already resolved or closed
+  - **When:** the investigation-start service is invoked
+  - **Then:** the transition is rejected and the ticket is unchanged
+  - **Priority:** Medium
+  - **TDD Phase:** Red: write failing invalid-transition test; Green: enforce minimal state guard; Refactor: unify transition validation logic
+
+### Ticket Resolution
+- **Test:** resolves a ticket with required resolution details
+  - **Given:** a ticket in an allowed pre-resolution state and valid resolution data
+  - **When:** the resolution service is invoked
+  - **Then:** the ticket status changes to resolved and resolution details are stored
+  - **Priority:** High
+  - **TDD Phase:** Red: write failing resolution success test; Green: implement minimal status transition and resolution persistence; Refactor: extract resolution validation if repeated
+
+- **Test:** rejects resolution when required resolution details are missing
+  - **Given:** a ticket in an allowed state but missing mandatory resolution information
+  - **When:** the resolution service is invoked
+  - **Then:** validation fails and the ticket remains unresolved
+  - **Priority:** High
+  - **TDD Phase:** Red: write failing negative test; Green: add minimal required-field rule; Refactor: consolidate resolution-specific validator
+
+- **Test:** rejects resolution from a disallowed state
+  - **Given:** a ticket still in a state that has not reached investigation/assignment readiness, or already closed
+  - **When:** the resolution service is invoked
+  - **Then:** the transition is rejected
+  - **Priority:** High
+  - **TDD Phase:** Red: write failing invalid-transition test; Green: implement state transition guard; Refactor: align with central lifecycle rules
+
+### Ticket Closure
+- **Test:** closes a resolved ticket successfully
+  - **Given:** a resolved ticket eligible for closure
+  - **When:** the closure service is invoked
+  - **Then:** the ticket status changes to closed and closure metadata is recorded
+  - **Priority:** High
+  - **TDD Phase:** Red: write failing closure success test; Green: implement minimal close transition; Refactor: share lifecycle metadata behavior
+
+- **Test:** rejects closure for a ticket that is not resolved
+  - **Given:** a ticket in created, assigned, or investigation state
+  - **When:** the closure service is invoked
   - **Then:** the request is rejected as an invalid lifecycle transition
   - **Priority:** High
-  - **TDD Phase:** Red: write failing tests for representative skip cases; Green: enforce transition rules; Refactor: consolidate invalid-transition handling
+  - **TDD Phase:** Red: write failing premature-close test; Green: enforce resolved-only closure; Refactor: merge into lifecycle transition policy
 
-- **Test:** rejects transitions after closure
-  - **Given:** a ticket in `Closed` status
-  - **When:** any further lifecycle change is requested
-  - **Then:** the request is rejected and no state is modified
+### Lifecycle Integrity
+- **Test:** enforces valid lifecycle order across all ticket states
+  - **Given:** tickets in various lifecycle states
+  - **When:** lifecycle transition requests are evaluated
+  - **Then:** only creation → assignment/investigation → resolution → closure paths defined by requirements are allowed
   - **Priority:** High
-  - **TDD Phase:** Red: assert immutability after closure; Green: block post-closure transitions; Refactor: encapsulate terminal-state behavior
+  - **TDD Phase:** Red: create failing transition-matrix tests; Green: implement minimal allowed-transition rules; Refactor: replace conditionals with a maintainable state policy object
 
-### Assignment Rules
-- **Test:** assignment requires assignee identifier
-  - **Given:** a ticket in `Created` status and an assignment request missing assignee data
-  - **When:** assignment is validated
-  - **Then:** the request fails validation and status remains unchanged
-  - **Priority:** High
-  - **TDD Phase:** Red: failing validation test; Green: require assignee field; Refactor: reuse boundary validation structure
-
-- **Test:** successful assignment stores assignee and assignment timestamp
-  - **Given:** a valid assignment request
-  - **When:** assignment succeeds
-  - **Then:** assignee details and assignment timestamp are persisted with status `Assigned`
-  - **Priority:** High
-  - **TDD Phase:** Red: assert persisted assignment metadata; Green: store required fields; Refactor: standardize lifecycle metadata mapping
-
-### Investigation Rules
-- **Test:** investigation can start only for assigned ticket
-  - **Given:** a ticket not in `Assigned` status
-  - **When:** investigation start is requested
-  - **Then:** the request is rejected as an invalid transition
-  - **Priority:** High
-  - **TDD Phase:** Red: failing invalid-state test; Green: add precondition check; Refactor: merge with transition policy
-
-- **Test:** successful investigation stores investigation start metadata
-  - **Given:** a ticket in `Assigned` status
-  - **When:** investigation is started
-  - **Then:** status becomes `Investigation` and investigation start metadata is recorded
+- **Test:** preserves ticket history or audit-relevant change metadata for each lifecycle transition
+  - **Given:** an existing ticket undergoing lifecycle updates
+  - **When:** assignment, investigation, resolution, or closure occurs
+  - **Then:** each change records traceable metadata sufficient for backend audit requirements
   - **Priority:** Medium
-  - **TDD Phase:** Red → Green → Refactor
-
-### Resolution Rules
-- **Test:** resolution requires resolution details
-  - **Given:** a ticket in `Investigation` status and a resolution request missing required details
-  - **When:** resolution is validated
-  - **Then:** the request is rejected and the ticket remains in `Investigation`
-  - **Priority:** High
-  - **TDD Phase:** Red: failing validation test; Green: require resolution content; Refactor: align required-field validation patterns
-
-- **Test:** successful resolution stores resolution metadata
-  - **Given:** a valid resolution request for a ticket in `Investigation`
-  - **When:** resolution is recorded
-  - **Then:** status becomes `Resolved` and resolution details/timestamp are persisted
-  - **Priority:** High
-  - **TDD Phase:** Red → Green → Refactor
-
-### Closure Rules
-- **Test:** closure allowed only for resolved ticket
-  - **Given:** a ticket not in `Resolved` status
-  - **When:** closure is requested
-  - **Then:** the request is rejected as an invalid transition
-  - **Priority:** High
-  - **TDD Phase:** Red: failing precondition test; Green: enforce resolved-only closure; Refactor: unify closure rule with transition policy
-
-- **Test:** successful closure stores closure metadata
-  - **Given:** a ticket in `Resolved` status
-  - **When:** closure succeeds
-  - **Then:** status becomes `Closed` and closure timestamp is persisted
-  - **Priority:** Medium
-  - **TDD Phase:** Red → Green → Refactor
-
-### Traceability and Audit
-- **Test:** each lifecycle transition creates a history record
-  - **Given:** an existing ticket with one or more lifecycle changes
-  - **When:** each valid transition occurs
-  - **Then:** a history record is stored with ticket id, from-status, to-status, timestamp, and actor/context if available
-  - **Priority:** High
-  - **TDD Phase:** Red: assert history grows per transition; Green: persist one record per state change; Refactor: extract audit writer after repeated usage
-
-- **Test:** invalid transition does not create history record
-  - **Given:** an invalid lifecycle action
-  - **When:** the request is processed
-  - **Then:** no status change and no new history record are persisted
-  - **Priority:** High
-  - **TDD Phase:** Red: failing negative test; Green: make writes conditional on valid transition; Refactor: keep transaction boundaries clear
-
-### API Request Validation
-- **Test:** rejects malformed or incomplete lifecycle action payloads
-  - **Given:** an API request with missing required fields or invalid field formats
-  - **When:** the request reaches the API boundary
-  - **Then:** the API returns a validation error and does not invoke state-changing domain behavior
-  - **Priority:** High
-  - **TDD Phase:** Red: boundary validation tests first; Green: add request validation; Refactor: standardize error responses
-
-- **Test:** rejects lifecycle action for non-existent ticket
-  - **Given:** a lifecycle action request for an unknown ticket identifier
-  - **When:** the service attempts to load the ticket
-  - **Then:** a not-found result is returned and no write occurs
-  - **Priority:** High
-  - **TDD Phase:** Red: failing not-found test; Green: add lookup guard; Refactor: share not-found handling conventions
+  - **TDD Phase:** Red: write failing metadata expectation test; Green: add minimal audit fields/events; Refactor: extract shared audit writer if repeated 3+ times
 
 ## Integration Test Specifications
 
-### Ticket Creation API to Persistence
-- **Test:** create ticket endpoint persists initial lifecycle state
-  - **Given:** a valid create-ticket API request
-  - **When:** the request is processed through API, service, and repository layers
-  - **Then:** a ticket record is stored with status `Created` and an initial traceable record if required by design
+### Ticket API Endpoints
+- **Test:** POST create ticket persists a valid new ticket and returns created response
+  - **Given:** a valid API request payload
+  - **When:** the create-ticket endpoint is called
+  - **Then:** the API returns success, persists the ticket, and returns identifier plus initial lifecycle state
   - **Priority:** High
 
-### Assignment Workflow Integration
-- **Test:** assignment endpoint updates ticket and persists assignment metadata
-  - **Given:** an existing created ticket and valid assignment request
-  - **When:** the assignment API is called
-  - **Then:** the response reflects `Assigned`, the ticket store is updated, and history contains the transition
+- **Test:** POST create ticket returns validation error for invalid payload
+  - **Given:** an invalid API request payload
+  - **When:** the create-ticket endpoint is called
+  - **Then:** the API returns a client validation error with no database write
   - **Priority:** High
 
-### Investigation Workflow Integration
-- **Test:** investigation endpoint updates ticket and history atomically
-  - **Given:** an assigned ticket
-  - **When:** the investigation start API is called
-  - **Then:** status becomes `Investigation` and corresponding history is persisted in the same successful operation
+- **Test:** update assignment endpoint persists assignee and status transition
+  - **Given:** an existing assignable ticket and valid assignee input
+  - **When:** the assignment endpoint is called
+  - **Then:** the API returns success and the database reflects assignment changes
   - **Priority:** High
 
-### Resolution Workflow Integration
-- **Test:** resolution endpoint stores resolution details and status change atomically
-  - **Given:** a ticket in `Investigation` and a valid resolution payload
-  - **When:** the resolution API is called
-  - **Then:** the ticket is updated to `Resolved`, resolution metadata is stored, and history is recorded
+- **Test:** resolve endpoint persists resolution details and resolved status
+  - **Given:** an existing ticket in a resolvable state and valid resolution payload
+  - **When:** the resolve endpoint is called
+  - **Then:** the API returns success and stored ticket data reflects resolution
   - **Priority:** High
 
-### Closure Workflow Integration
-- **Test:** closure endpoint finalizes ticket and prevents subsequent modifications
-  - **Given:** a ticket in `Resolved`
-  - **When:** the closure API is called and then another lifecycle action is attempted
-  - **Then:** the ticket becomes `Closed`, closure history is persisted, and later lifecycle mutation is rejected
+- **Test:** close endpoint persists closed status only for resolved tickets
+  - **Given:** a resolved ticket
+  - **When:** the close endpoint is called
+  - **Then:** the API returns success and the database reflects closure
   - **Priority:** High
 
-### Invalid Transition Handling
-- **Test:** invalid lifecycle action returns error and no partial persistence
-  - **Given:** a request that skips required stages
-  - **When:** the lifecycle API is called
-  - **Then:** an error response is returned, ticket state is unchanged, and no history/audit record is added
+### Service and Persistence Interaction
+- **Test:** service layer writes ticket state changes atomically per lifecycle operation
+  - **Given:** a valid lifecycle update request
+  - **When:** the service performs persistence operations
+  - **Then:** all required updates succeed together or none are committed
   - **Priority:** High
 
-### Not Found and Validation Handling
-- **Test:** lifecycle endpoint returns not found for unknown ticket id
-  - **Given:** a valid lifecycle request with a non-existent ticket id
-  - **When:** the API is called
-  - **Then:** a not-found response is returned and no persistence side effects occur
+- **Test:** repository returns current ticket state before applying transition rules
+  - **Given:** a lifecycle update request for an existing ticket
+  - **When:** the service processes the request
+  - **Then:** transition validation is based on the latest persisted state
   - **Priority:** High
 
-- **Test:** lifecycle endpoint returns validation error for missing required transition fields
-  - **Given:** a request missing assignee or resolution details where required
-  - **When:** the API is called
-  - **Then:** a validation error response is returned and the ticket remains unchanged
-  - **Priority:** High
+### Backend Integration Constraints
+- **Test:** invalid assignee reference is rejected when validated against backend user/support source
+  - **Given:** an assignment request with an unknown or unauthorized assignee
+  - **When:** the system validates assignee eligibility through the backend integration boundary
+  - **Then:** the request fails and no ticket update is persisted
+  - **Priority:** Medium
 
-### Concurrency and Consistency
-- **Test:** concurrent lifecycle updates do not produce inconsistent final state
-  - **Given:** two competing valid-looking lifecycle requests against the same ticket
-  - **When:** they are processed concurrently
-  - **Then:** only one consistent transition path is persisted and conflicting update handling is returned for the loser
+- **Test:** not-found ticket operations return consistent backend error responses across lifecycle endpoints
+  - **Given:** lifecycle API calls for a missing ticket identifier
+  - **When:** assignment, investigation, resolution, or closure endpoints are invoked
+  - **Then:** each returns a consistent not-found response contract
   - **Priority:** Medium
 
 ## Acceptance Test Scenarios
 
-### US 1 - Ticket lifecycle from creation to closure
-- **Scenario:** create a ticket and initialize lifecycle
-  - **Given:** valid ticket creation data
-  - **When:** the client creates a ticket
-  - **Then:** the system stores the ticket in `Created` status
+### US 1 / REQ-001
+- **Scenario:** Create a support ticket at the start of the lifecycle
+  - **Given:** a requester submits a valid support request
+  - **When:** the ticket creation API is invoked
+  - **Then:** a new ticket is created with an initial lifecycle state
 
-- **Scenario:** assign a created ticket
-  - **Given:** a ticket in `Created` status and valid assignee data
-  - **When:** the client requests assignment
-  - **Then:** the system moves the ticket to `Assigned` and records assignment details
+- **Scenario:** Assign a created ticket for handling
+  - **Given:** an existing newly created ticket
+  - **When:** a valid assignee is provided through the assignment API
+  - **Then:** the ticket is assigned and progresses in the lifecycle
 
-- **Scenario:** move assigned ticket into investigation
-  - **Given:** a ticket in `Assigned` status
-  - **When:** the client starts investigation
-  - **Then:** the system moves the ticket to `Investigation` and records the transition
+- **Scenario:** Move an assigned ticket into investigation
+  - **Given:** a ticket ready for work
+  - **When:** investigation is started
+  - **Then:** the ticket reflects investigation as its current lifecycle stage
 
-- **Scenario:** resolve a ticket under investigation
-  - **Given:** a ticket in `Investigation` status and valid resolution details
-  - **When:** the client records a resolution
-  - **Then:** the system moves the ticket to `Resolved` and stores resolution details
+- **Scenario:** Resolve a ticket after investigation
+  - **Given:** a ticket in an allowed pre-resolution state
+  - **When:** valid resolution details are submitted
+  - **Then:** the ticket is marked resolved and stores the resolution outcome
 
-- **Scenario:** close a resolved ticket
-  - **Given:** a ticket in `Resolved` status
-  - **When:** the client closes the ticket
-  - **Then:** the system moves the ticket to `Closed` and records closure details
+- **Scenario:** Close a resolved ticket at the end of the lifecycle
+  - **Given:** a resolved ticket
+  - **When:** the closure API is invoked
+  - **Then:** the ticket is marked closed and can no longer progress forward
 
-- **Scenario:** reject out-of-order lifecycle progression
-  - **Given:** a ticket that has not reached the required prior stage
-  - **When:** the client requests a later lifecycle stage directly
-  - **Then:** the system rejects the request and preserves the current status
-
-- **Scenario:** maintain traceable progression through all lifecycle stages
-  - **Given:** a ticket that has progressed through multiple lifecycle stages
-  - **When:** lifecycle history is queried or inspected
-  - **Then:** each valid transition is traceable in chronological order
+- **Scenario:** Reject invalid lifecycle transitions
+  - **Given:** a ticket in a lifecycle state that does not allow the requested next action
+  - **When:** an unsupported transition is requested
+  - **Then:** the system rejects the request and preserves the current ticket state
 
 ## Test-First Development Guidelines
-1. **Write first (Red phase):**
-   1. Create ticket initializes `Created`
-   2. Created → Assigned valid transition
-   3. Assigned → Investigation valid transition
-   4. Investigation → Resolved requires resolution details
-   5. Resolved → Closed valid transition
-   6. Reject skip transitions
-   7. Reject post-closure changes
-   8. Create history record per valid transition
-   9. Reject invalid payloads and unknown ticket ids
-   10. Integration tests for atomic persistence across API/service/repository
+1. Write failing unit tests for ticket creation validation and default initial state.
+2. Write failing unit tests for lifecycle transition rules in order: assignment, investigation, resolution, closure.
+3. Write failing unit tests for negative paths: missing data, invalid assignee, missing resolution details, invalid transitions, not-found ticket.
+4. Write failing integration tests for create, assign, resolve, and close API flows with persistence verification.
+5. Write failing integration tests for transaction safety and consistent error contracts.
 
-2. **Implementation sequence (Green phase):**
-   1. Add minimal ticket status model and default creation state
-   2. Add transition guard logic for allowed next states
-   3. Implement assignment behavior and required assignee validation
-   4. Implement investigation start behavior
-   5. Implement resolution behavior with required details
-   6. Implement closure behavior
-   7. Add history/audit persistence for successful transitions
-   8. Add API boundary validation and not-found handling
-   9. Add transaction/consistency handling for integrated writes
-   10. Run full suite after each increment; proceed only when green
+Green phase recommendations:
+1. Implement ticket creation with minimal required fields, default state, and persistence.
+2. Implement assignment with existence checks, assignee validation boundary, and allowed transition rule.
+3. Implement investigation transition with only necessary state handling.
+4. Implement resolution with mandatory resolution data and allowed transition enforcement.
+5. Implement closure restricted to resolved tickets.
+6. Implement consistent API error mapping and atomic persistence behavior.
+7. Run the full suite after each increment; do not proceed until all tests are green.
 
-3. **Refactoring considerations (Refactor phase):**
-   - Extract lifecycle transition policy once transition checks repeat
-   - Consolidate shared validation/error patterns across lifecycle actions
-   - Isolate audit/history writing behind a domain service if repeated 3+ times
-   - Keep controller/API layer thin; enforce business rules in service/domain layer
-   - Preserve atomic updates between ticket state and history persistence
-   - Re-run full test suite after each refactor step
+Refactor phase considerations:
+- Centralize lifecycle transition rules into a domain policy/state model.
+- Consolidate repeated validation/error patterns only after the Rule of Three.
+- Keep API handlers thin and business rules in service/domain layers.
+- Standardize structured validation and not-found error responses.
+- Re-run all unit and integration tests after every refactor step.
 
 ## Edge Cases & Boundary Tests
 - Boundary condition tests
-  - Create ticket with minimum valid required input still initializes `Created`
-  - Resolution details at minimum allowed length/shape are accepted
-  - Invalid/empty identifiers for ticket or assignee are rejected
-  - Re-submitting the same closure request should not create duplicate closure transitions if idempotency is expected; otherwise should fail consistently
+  - Create ticket with minimum valid payload and maximum allowed field lengths.
+  - Resolve ticket with minimum required resolution content.
+  - Validate identifier format boundaries for ticket IDs and assignee IDs if constrained by repo standards.
 
 - Error handling tests
-  - Unknown ticket id returns not-found and no write
-  - Missing assignee on assignment returns validation error
-  - Missing resolution details on resolution returns validation error
-  - Invalid status value or unsupported action returns validation/domain error
-  - Persistence failure while writing history or status update results in no partial state change
+  - Reject empty, null, malformed, or overlong required fields.
+  - Reject operations on non-existent tickets.
+  - Reject assignment, investigation, resolution, or closure when current state does not permit the transition.
+  - Reject duplicate or repeated terminal actions such as resolving an already resolved/closed ticket or closing an already closed ticket.
+  - Verify no partial database writes occur on validation or integration failure.
 
 - Concurrency/timing tests (if applicable)
-  - Simultaneous assignment attempts result in one consistent persisted outcome
-  - Concurrent resolve and close requests cannot bypass required sequence
-  - Transition timestamps are recorded consistently and ordered for the same ticket
+  - Concurrent assignment attempts on the same ticket should not leave conflicting assignee/state data.
+  - Concurrent resolution and closure attempts should preserve a valid final state and reject stale updates.
+  - Repeated identical lifecycle requests should not corrupt ticket state; define and test idempotent or conflict behavior per API contract.

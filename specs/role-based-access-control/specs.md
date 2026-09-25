@@ -1,223 +1,263 @@
 # Feature: Role-Based Access Control
 Status: NEW
 Owner: Astra
-Last Updated: 2026-09-22
+Last Updated: 2026-09-25
 
 ## Summary
-This feature enforces role-based access control (RBAC) in the IT helpdesk system. The business objective is to ensure system access is aligned to defined user roles, with support for at least the following roles: employee, support agent, manager, and administrator. The expected outcome is that users can access only the capabilities and information permitted for their assigned role, in accordance with REQ-004.
+Role-Based Access Control defines access restrictions based on user roles within the IT Help Desk Management system. The feature’s purpose is to ensure that application capabilities are available only to permitted roles across the mixed application surface indicated by the source context. The expected outcome is a monolith-implemented authorization capability that can be applied consistently across backend and frontend feature areas included in the selected work-item set.
 
 ## Scope
-### In Scope
-- Enforcement of access control based on user role.
-- Support for at least these roles:
-  - employee
-  - support agent
-  - manager
-  - administrator
-- Application of RBAC as a security control for the helpdesk system.
-- Behavior necessary to ensure the system restricts access according to assigned role.
+**In scope**
+- Specification of role-based access control behavior for the feature area identified as “Role-Based Access Control.”
+- Access restriction behavior that applies across the mixed application context supported by backend and frontend implementation details in the selected work items.
+- Definition of requirements, business rules, validation expectations, and acceptance scenarios for role-based authorization where supported by the source.
 
-### Out of Scope
-- Definition of specific permissions for each role beyond the requirement to enforce role-based access.
-- Role assignment workflows.
-- User provisioning, authentication, or identity provider integration.
-- UI administration screens for managing roles or permissions.
-- Audit logging, reporting, or analytics related to access control.
-- Multi-role users, delegated access, temporary elevation, or approval workflows.
-- Field-level, record-level, or tenant-level access rules.
-- Any platform-specific implementation details not stated in the source.
+**Out of scope**
+- Definition of specific roles, permissions, or role hierarchies, because none are provided in the source context.
+- Authentication behavior, login flows, identity provider integration, or session management, because these are not described in the source.
+- API endpoint definitions, UI screen designs, or database schema details not supported by the source context.
+- Project delivery timelines, business prioritization, and TDD artifacts.
+- Any feature behavior outside the selected work items and current form settings.
 
 ## Application Type & Platform Context
-The target application type is unknown.
+**Application type:** Mixed
 
-### Source Evidence
-- Derived Source Signals: Application Type: unknown
-- Application Type Evidence: Not specified in source.
+**Source evidence**
+- “Preserve implementation detail from backend, frontend, testing, planning, and documentation items where they shape the development specs”
 
-### Open Question
-- What application platform(s) are in scope for RBAC enforcement: web, mobile, API/service, desktop, or a combination?
+**Platform context**
+- The feature applies to a mixed application environment with both backend and frontend implications.
+- The selected architecture style is **monolith**.
+
+**Open Question**
+- Which concrete application surfaces are in scope for RBAC enforcement (for example: web UI, administrative UI, service layer, internal tools, APIs)?
 
 ## Actors and Permissions
-### Actors
-The source explicitly identifies these roles:
-- employee
-- support agent
-- manager
-- administrator
+The source identifies a role-based access control feature, which implies:
+- **Actors:** authenticated system users
+- **Access model:** permissions are determined by assigned role
 
-### Permissions
-The source requires the system to enforce role-based access aligned to the listed roles. However, it does not define the exact permissions, accessible functions, or access boundaries for any role.
+The source does **not** define:
+- named roles
+- role ownership/administration responsibilities
+- whether multiple roles per user are supported
+- whether permissions are additive, hierarchical, or mutually exclusive
+- whether access decisions apply to navigation visibility, action execution, data visibility, or all three
 
-### Access Constraints
-- Access must be enforced by role.
-- Enforcement must include at least the four named roles.
-
-### Open Questions
-- What system capabilities, screens, data, and actions are permitted for each role?
-- Are users assigned exactly one role or can users have multiple roles?
-- Is there a default access level for unauthenticated or unassigned users?
-- Are there hierarchical permissions between support agent, manager, and administrator, or are they independently defined?
+**Open Questions**
+- What user roles exist for this feature?
+- What permissions are assigned to each role?
+- Who can create, assign, modify, or revoke roles?
+- Is RBAC limited to feature access, or does it also govern record-level or field-level access?
+- Are service accounts, administrators, or support personnel subject to distinct access rules?
 
 ## Feature Development Intent
-This is feature-development work because the system must implement or update authorization behavior so that access decisions are made according to assigned user roles. The required delivery outcome is a functioning RBAC capability that recognizes at least employee, support agent, manager, and administrator roles and blocks unauthorized access where role permissions do not allow it. The feature must satisfy the stated business requirement that access be enforced by role, not merely documented or displayed.
+This is feature-development work because the system must implement or refine authorization behavior so that access to system capabilities is controlled by role. The behavior must be delivered in a way that is compatible with the monolith architecture and applicable across the mixed frontend/backend application context indicated by the source.
+
+At minimum, the implementation must deliver:
+- a consistent authorization mechanism based on role
+- enforcement of access restrictions wherever protected functionality exists
+- validation that unauthorized actors cannot use protected functionality
+- specification-ready behavior for both success and denial outcomes
+
+Because no user stories or explicit acceptance criteria are provided, the specification defines only source-supported intent and records all missing implementation detail as open questions.
 
 ## UI Design & Interaction Contract
-The source does not define any UI screens, navigation, layouts, messages, or interaction patterns for RBAC.
+The source context does not provide specific UI screens, navigation patterns, copy, layouts, or interaction states for this feature.
 
-### Source-Supported UI Contract
-- None specified.
+Source-supported UI implication:
+- Since the application type is mixed and includes frontend implementation detail, RBAC may affect what users can see or do in the UI.
 
-### Open Questions
-- Are there user-facing screens where access must be hidden, disabled, or blocked based on role?
-- Should unauthorized attempts show an error message, redirect, or a dedicated access-denied page?
-- Are there role management or administration interfaces in scope?
-- Are there accessibility or copy requirements for access-denied states?
+Required UI behavior supported by the feature title but not fully specified:
+- UI functionality associated with protected capabilities must respect role-based access rules.
+
+Not defined by source:
+- whether unauthorized UI elements are hidden, disabled, or shown with an error on interaction
+- whether users receive an access-denied page, inline message, modal, or toast
+- accessibility behavior for permission-denied states
+- role-management screens
+
+**Open Questions**
+- How should unauthorized access appear in the UI: hidden actions, disabled controls, blocked routes, or explicit denial messages?
+- Is there an access-denied screen or standardized permission error message?
+- Are there UI requirements for administrators to manage user roles?
+- What accessibility expectations apply to restricted UI states?
 
 ## API Contract
-The source does not define any API endpoints, methods, payloads, response schemas, or integration contracts related to RBAC.
+No API operations, endpoints, methods, payloads, or error contracts are provided in the source context.
 
-### Source-Supported API Contract
-- None specified.
+Source-supported API implication:
+- Because backend implementation detail is in scope, RBAC enforcement may need to be applied at server-side boundaries.
 
-### Open Questions
-- Must RBAC be enforced on API endpoints, server-rendered routes, service-layer operations, or all of these?
-- What response behavior is required when access is denied?
-- Are role values stored and evaluated internally, or supplied by an external identity system?
-- Are there existing APIs or services whose authorization behavior must be updated for this feature?
+Required contract-level behavior supported by source:
+- Protected backend functionality must enforce role-based access restrictions.
+- Unauthorized requests to protected functionality must be denied.
+
+Not defined by source:
+- endpoint paths
+- transport protocols
+- request/response schemas
+- error status codes
+- idempotency expectations
+- integration contracts with identity or user-management services
+
+**Open Questions**
+- Which backend operations are protected by RBAC?
+- What is the canonical authorization failure response format?
+- What HTTP or service-layer error codes should be returned for unauthorized and forbidden access cases?
+- Is authorization evaluated per request, per session, or by another mechanism?
+- Does the monolith integrate with an external identity or user directory source for role resolution?
 
 ## Business Logic & Rules
-- The system must enforce access based on role.
-- The system must support at least these roles for access enforcement:
-  - employee
-  - support agent
-  - manager
-  - administrator
-- Access control is a security requirement and is high priority.
-- Role-based enforcement is mandatory; access behavior must align with assigned role.
+Source-supported rules:
+1. Access to system functionality must be determined by role.
+2. RBAC behavior must be implemented within the selected monolith architecture.
+3. The feature applies across mixed application layers where frontend and backend implementation details are relevant.
+4. Only selected work items and current form settings may define scope.
 
-### Open Questions
-- What exact authorization rules apply to each role?
-- Does “at least” allow additional roles in this release, and if so, what are they?
-- What should occur if a user has no assigned role or an invalid role?
-- What is the precedence rule if a user has multiple roles, if multi-role assignment is supported?
+Rules not supported by source and therefore not specified:
+- named roles
+- permission matrices
+- inheritance rules
+- conflict resolution when a user has multiple roles
+- default role assignment
+- privileged override behavior
+- record-level access constraints
+- audit requirements for access decisions
+
+**Open Questions**
+- What is the authoritative role-to-permission mapping?
+- If a user has multiple roles, how are permissions combined?
+- Is there a default-deny policy for undefined permissions?
+- Are authorization checks required at both UI and backend layers for the same capability?
+- Are audit logs required for permission denials or role changes?
 
 ## Data Model & Validation
-### Source-Supported Entities and Values
-- User role, with support for at least the following values:
-  - employee
-  - support agent
-  - manager
-  - administrator
+The source context does not define any explicit RBAC data model.
 
-### Validation
-- Access control logic must recognize and enforce at least the four required roles.
-- Role values outside the supported set are not defined by the source.
+Potential entities implied by feature title, but not source-defined:
+- user
+- role
+- permission
+- role assignment
 
-### Open Questions
-- Where and how is the user role stored?
-- Is role a required attribute for all authenticated users?
-- Are role names fixed canonical values or display labels subject to localization?
-- Must the system reject unknown role values or treat them as no access?
-- Are role definitions configurable or static?
+Because the source does not provide fields or structures, no concrete data contract can be specified.
+
+Source-supported validation expectation:
+- Access decisions must be based on role.
+- Protected functionality must validate authorization before permitting use.
+
+Not defined by source:
+- role identifiers
+- permission identifiers
+- assignment records
+- validation constraints for role names or mappings
+- retention or history rules
+
+**Open Questions**
+- What entities and fields represent roles and permissions in the monolith?
+- Can users hold multiple roles?
+- Are roles configurable data or fixed system constants?
+- Are role assignments versioned or audited?
+- What validation rules apply when assigning or changing roles?
 
 ## Functional Requirements
-FR-1. The system shall enforce role-based access control for system access decisions.  
-FR-2. The system shall support RBAC enforcement aligned to at least the following roles: employee, support agent, manager, and administrator.  
-FR-3. The system shall evaluate the user’s assigned role when determining whether access is allowed or denied.  
-FR-4. The system shall deny access when the user’s role does not permit the requested access, according to the configured role-based authorization rules.  
-FR-5. The system shall provide a deterministic authorization outcome for each protected access decision based on the user role and the applicable role rules.  
-FR-6. The system shall treat employee, support agent, manager, and administrator as distinct roles for authorization purposes.  
-FR-7. The RBAC implementation shall be applicable to the helpdesk system components that are subject to access control under REQ-004, with exact protected resources to be confirmed.  
-FR-8. The system shall define and enforce behavior for users with missing, invalid, or unsupported role assignments before release.  
-FR-9. The system shall define and enforce role-permission mappings for employee, support agent, manager, and administrator before release.  
-FR-10. Any server-side protected operation in scope for this feature shall be inaccessible when authorization by role fails.
-
-## Testability Notes
-- Automated tests should verify that authorization decisions are enforced server-side and cannot be bypassed by client behavior.
-- Automated tests should verify distinct handling of the four required roles.
-- Automated tests should verify denial behavior for unauthorized access attempts.
-- Automated tests should verify behavior for missing, invalid, or unsupported role assignments once specified.
-- Automated tests should verify role-permission mappings for protected operations once those mappings are defined.
+1. The system shall enforce access to protected functionality using role-based access control.
+2. The system shall apply RBAC enforcement within the monolith architecture used for this feature.
+3. The system shall enforce RBAC in backend functionality associated with protected operations.
+4. The system shall ensure frontend-exposed protected functionality respects role-based access restrictions.
+5. The system shall deny access when a user attempts to use functionality not permitted for the user’s role.
+6. The system shall allow access when a user attempts to use functionality permitted for the user’s role.
+7. The feature implementation shall derive its behavior only from the selected work items and current form settings.
+8. The feature specification shall not include authentication, role definitions, permission matrices, or management workflows unless those are provided by source artifacts.
+9. The system’s behavior for unauthorized access responses in UI and API contexts shall be confirmed before implementation.  
+   - **Open Question dependency**
+10. The system’s supported roles and their permissions shall be defined before implementation.  
+   - **Open Question dependency**
+11. The system’s role assignment and role administration model shall be defined before implementation.  
+   - **Open Question dependency**
+12. The system’s protected operations and application surfaces subject to RBAC shall be enumerated before implementation.  
+   - **Open Question dependency**
 
 ## Non-Functional Requirements
-- Security: Access control shall be enforced by role as required by REQ-004.
-- Reliability: Authorization decisions shall be applied consistently for the same role and protected operation.
-- Maintainability: The implementation shall support at least the required four roles without collapsing them into a single equivalent access level.
-- Architecture alignment: The implementation shall be compatible with the selected architecture style of monolith.
-- Testability: Each authorization rule implemented for this feature shall be verifiable by automated tests at the service, API, or server-side authorization layer.
+1. The RBAC implementation shall conform to the selected **monolith** architecture style.
+2. The RBAC implementation shall be applicable across the mixed application context supported by backend and frontend work-item detail.
+3. The specification and resulting implementation shall not introduce scope from outside the selected work items and current form settings.
+4. Test and validation coverage for RBAC shall include both permitted-access and denied-access outcomes.
+5. TDD artifacts shall not be generated as part of this feature scope.
 
-### Open Questions
-- Are there any required performance thresholds for authorization checks?
-- Are there any compliance, audit, logging, or monitoring requirements for access decisions?
-- Are there any security standards from the Golden Repo that must be applied specifically to authorization enforcement in the monolith?
+**Open Questions**
+- Are there required performance constraints for authorization checks?
+- Are there security standards or audit obligations for access-control enforcement?
+- Are there observability requirements for denied access attempts?
+- Are there availability or fail-safe requirements if role resolution fails?
 
 ## Acceptance Scenarios
-### Scenario 1: Required roles are recognized by the RBAC system
-**Given** the system enforces access by role  
-**When** role definitions are configured for employee, support agent, manager, and administrator  
-**Then** the system recognizes each of those roles as valid roles for authorization enforcement
+### Scenario 1: Authorized user accesses protected functionality
+**Given** a user has a role that permits a protected capability  
+**When** the user attempts to access that protected capability  
+**Then** the system allows access
 
-### Scenario 2: Access is enforced according to assigned role
-**Given** a user has one of the supported roles  
-**When** the user attempts to access a protected system capability  
-**Then** the system evaluates the user’s assigned role  
-**And** the system allows or denies access according to the role-based authorization rules
-
-### Scenario 3: Unauthorized access is denied
-**Given** a user attempts to access a protected capability not permitted for the user’s assigned role  
-**When** the access decision is made  
+### Scenario 2: Unauthorized user is denied protected functionality
+**Given** a user has a role that does not permit a protected capability  
+**When** the user attempts to access that protected capability  
 **Then** the system denies access
 
-### Scenario 4: Distinct roles are enforced distinctly
-**Given** the system supports employee, support agent, manager, and administrator roles  
-**When** authorization rules are applied  
-**Then** the system treats those roles as distinct authorization roles rather than a single shared access level
+### Scenario 3: Backend enforcement applies to protected operations
+**Given** a protected backend operation exists  
+**When** a user without the required role attempts to invoke that operation  
+**Then** the backend denies access based on role
 
-### Scenario 5: Missing or invalid role handling is enforced
-**Given** a user has no role assignment or an unsupported role assignment  
-**When** the user attempts to access a protected capability  
-**Then** the system applies the defined handling for missing or invalid roles  
-**And** access is not granted unless explicitly allowed by the finalized authorization rules
+### Scenario 4: Frontend-exposed functionality respects RBAC
+**Given** protected functionality is exposed through the frontend  
+**When** a user interacts with that functionality  
+**Then** the resulting behavior respects the user’s role-based access rights
+
+### Scenario 5: Undefined implementation details block completion
+**Given** supported roles, permission mappings, and denial-response behavior are not defined in source artifacts  
+**When** implementation planning begins  
+**Then** those items must be resolved through open questions before development can be completed with full contract certainty
 
 ## Traceability Matrix
 | Source ID | Requirement | Acceptance Criteria | Test Coverage |
 |---|---|---|---|
-| US 1 / REQ-004 | FR-1: The system shall enforce role-based access control for system access decisions. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Automated authorization tests verify protected operations require role-based evaluation. |
-| US 1 / REQ-004 | FR-2: The system shall support RBAC enforcement aligned to at least the following roles: employee, support agent, manager, and administrator. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Automated tests verify the four required roles are recognized by authorization logic. |
-| US 1 / REQ-004 | FR-3: The system shall evaluate the user’s assigned role when determining whether access is allowed or denied. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Automated tests verify decisions vary based on assigned role. |
-| US 1 / REQ-004 | FR-4: The system shall deny access when the user’s role does not permit the requested access, according to the configured role-based authorization rules. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Automated negative-path tests verify unauthorized access is denied. |
-| US 1 / REQ-004 | FR-5: The system shall provide a deterministic authorization outcome for each protected access decision based on the user role and the applicable role rules. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Automated tests verify repeatable authorization outcomes for the same role and operation. |
-| US 1 / REQ-004 | FR-6: The system shall treat employee, support agent, manager, and administrator as distinct roles for authorization purposes. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Automated tests verify distinct role handling in authorization logic. |
-| US 1 / REQ-004 | FR-7: The RBAC implementation shall be applicable to the helpdesk system components that are subject to access control under REQ-004, with exact protected resources to be confirmed. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Coverage pending confirmation of protected resources in scope. |
-| US 1 / REQ-004 | FR-8: The system shall define and enforce behavior for users with missing, invalid, or unsupported role assignments before release. | Derived from need to enforce role-based access safely; not explicitly specified in source. | Automated tests should verify safe handling once behavior is defined. |
-| US 1 / REQ-004 | FR-9: The system shall define and enforce role-permission mappings for employee, support agent, manager, and administrator before release. | Derived from role-based enforcement requirement; mappings not specified in source. | Automated tests should verify mappings once defined. |
-| US 1 / REQ-004 | FR-10: Any server-side protected operation in scope for this feature shall be inaccessible when authorization by role fails. | The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles. | Automated backend tests verify access denial on protected operations. |
+| Feature 44604857 | FR-1 Enforce access using role-based access control | Protected functionality is controlled by role | Verify protected capability permits authorized role and blocks unauthorized role |
+| Feature 44604857 | FR-2 Apply RBAC within monolith architecture | Authorization behavior is implemented in monolith context | Verify implementation points align to monolith application boundaries |
+| Feature 44604857 | FR-3 Enforce RBAC in backend functionality | Unauthorized backend access is denied based on role | Test protected backend operation with permitted and non-permitted roles |
+| Feature 44604857 | FR-4 Ensure frontend-protected functionality respects RBAC | Frontend-exposed protected behavior follows role restrictions | Test frontend interaction outcomes for authorized and unauthorized users |
+| Feature 44604857 | FR-5 Deny non-permitted access | User without required role cannot use protected functionality | Negative-path access test |
+| Feature 44604857 | FR-6 Allow permitted access | User with required role can use protected functionality | Positive-path access test |
+| Feature 44604857 | FR-9 Confirm unauthorized response behavior before implementation | UI/API denial behavior is defined prior to build completion | Specification review and contract confirmation test |
+| Feature 44604857 | FR-10 Define supported roles and permissions before implementation | Role-permission mapping is approved prior to build completion | Requirements completeness review |
+| Feature 44604857 | FR-11 Define role assignment/administration model before implementation | Assignment and administration rules are approved prior to build completion | Requirements completeness review |
+| Feature 44604857 | FR-12 Enumerate protected operations and surfaces before implementation | In-scope protected capabilities are identified prior to build completion | Scope and authorization coverage review |
 
 ## Open Questions
-1. What specific permissions, actions, resources, or modules are assigned to employee, support agent, manager, and administrator?
-2. Which parts of the helpdesk system are protected by this RBAC feature in the current release?
-3. What application platform(s) are in scope: web, mobile, desktop, API/service, or mixed?
-4. Is the authorization enforcement required at UI level, API level, service level, route level, data level, or all applicable layers?
-5. What is the required behavior when a user is unauthenticated, has no assigned role, or has an invalid/unsupported role?
-6. Can a user have multiple roles? If yes, what conflict or precedence rules apply?
-7. Are additional roles beyond the required four expected in this release?
-8. How are roles assigned and maintained, and is role management in scope for this feature?
-9. What user-visible response is required for access denial?
-10. Are there existing interfaces, endpoints, or operations whose authorization must be retrofitted as part of this feature?
-11. Are there audit, logging, monitoring, or reporting requirements for authorization decisions?
-12. Are role values fixed canonical system values, and what exact identifiers must be used?
-13. Are there Golden Repo conventions for authorization enforcement in a monolith that must be applied to implementation and tests?
-14. Are there any required non-functional targets for authorization latency, availability, or resilience?
+1. What specific roles are supported by Role-Based Access Control?
+2. What permissions or capabilities does each role grant?
+3. Which application surfaces are in scope for RBAC enforcement?
+4. Which backend operations must enforce role checks?
+5. Which frontend capabilities must reflect role restrictions?
+6. Is access control enforced only at feature level, or also at route, action, record, or field level?
+7. Can a user have multiple roles, and if so, how are permissions combined?
+8. Is there a default-deny rule when no explicit permission exists?
+9. How should unauthorized access be represented in the UI?
+10. What response contract should backend authorization failures return?
+11. Who can assign, remove, or modify user roles?
+12. Are there administrative interfaces for role management?
+13. Are roles configurable data or fixed application definitions?
+14. Are audit logs required for role changes or access denials?
+15. Are there performance, reliability, security, or observability constraints for authorization checks?
+16. Does RBAC depend on an external identity, directory, or user-management integration?
 
 ## Source References
 - Feature ID: 44604857
 - Feature Reference: 44604857
 - Feature Title: Role-Based Access Control
-- Feature Description: Enforce access by role for employees, support agents, managers, and administrators.
-- User Story: US 1
-- User Story Acceptance Criteria: “The system must enforce role-based access aligned to at least employee, support agent, manager, and administrator roles.”
-- Requirement Reference: BRD-BRD-IThelpdeskrequirements-1.0.pdf §92 REQ-004
-- Source Reference: BRD-BRD-IThelpdeskrequirements-1.0.pdf § [S8]
-- Source Documents: BRD-BRD-IThelpdeskrequirements-1.0.pdf
-- Architecture Context: User-selected Architecture Style: monolith
-- Derived Source Signal: Application Type unknown
+- Feature State: New
+- Architecture Style: monolith
+- Derived Source Signal: Application Type = mixed
+- Application Type Evidence: “Preserve implementation detail from backend, frontend, testing, planning, and documentation items where they shape the development specs”
+- User Stories: None provided
+- Acceptance Criteria: None provided in source context
+- Golden Repo convention references used: None provided in source context

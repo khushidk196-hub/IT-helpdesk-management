@@ -5,65 +5,69 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] Ticket lifecycle behavior is implemented to support progression through creation, assignment, investigation, resolution, and closure
-- [ ] Users can create a ticket and the created ticket is persisted with an initial lifecycle state
-- [ ] Users can assign a ticket and the ticket state and assignment details update traceably
-- [ ] Users can move an assigned ticket into investigation and the state transition is recorded
-- [ ] Users can mark a ticket as resolved and the resolution state is recorded
-- [ ] Users can close a resolved ticket and the final lifecycle state is recorded
-- [ ] Observable application behavior exists for each required lifecycle stage and each stage-to-stage transition supported by the feature
-- [ ] Invalid or unsupported lifecycle transitions are blocked with consistent error handling
-- [ ] Lifecycle progression is traceable through recorded status history, audit trail, or equivalent source-supported persistence behavior
+- [ ] Ticket lifecycle behavior is implemented for all source-supported states, transitions, and actions defined for Ticket Lifecycle Management
+- [ ] Ticket creation, update, assignment, status progression, resolution, closure, and reopening behaviors are implemented where supported by source artifacts
+- [ ] Observable lifecycle behavior exists for primary flows, alternate flows, and failure paths for ticket handling
+- [ ] Invalid lifecycle transitions are prevented and return user-visible or API-visible errors consistent with local application conventions
+- [ ] Any lifecycle automation, notifications, or side effects are implemented only where explicitly supported by source context
+- [ ] No lifecycle behavior is invented beyond source-supported work-item scope because no user stories were provided for this feature
+- [ ] Any unresolved lifecycle state model, transition rule, or role-specific action remains unimplemented until clarified by source-backed requirements
 
 ## UI Acceptance Criteria
 
-- [ ] Ticket creation, assignment, investigation, resolution, and closure can be performed from implemented application screens or workflows where UI exists in the product context
-- [ ] Ticket detail views display the current lifecycle state and relevant assignment/resolution/closure information
-- [ ] Lifecycle actions are only presented when the current ticket state permits the action
-- [ ] Users receive clear validation or error feedback when a lifecycle action fails or is not permitted
-- [ ] Existing design-system, accessibility, and responsive UI conventions used by the application are followed for lifecycle controls and state presentation
-- [ ] No application-type-specific UI behavior is assumed beyond existing product context because the source does not specify application type or design guidelines
+- [ ] Ticket lifecycle screens or views show current ticket status, permitted next actions, and relevant ticket metadata where source-supported
+- [ ] UI controls for lifecycle actions are available only in states and permissions supported by the feature requirements
+- [ ] Validation messages are shown for missing required fields, invalid state changes, and prohibited actions using existing UI conventions
+- [ ] Loading, empty, success, and error states are implemented for ticket lifecycle interactions where UI behavior is source-supported
+- [ ] Responsive behavior is preserved for ticket lifecycle screens in the mixed application context where applicable
+- [ ] Accessibility expectations are met for lifecycle controls, status indicators, forms, and feedback messages using existing project standards
+- [ ] Existing design-system and local UI patterns are followed; no new UI pattern is introduced unless required by source-supported behavior
+- [ ] No UI workflow or lifecycle control is implemented from assumption where the source does not define the needed interaction
 
 ## API and Integration Acceptance Criteria
 
-- [ ] Application services, endpoints, or controller actions required to create tickets and progress them through assignment, investigation, resolution, and closure are implemented
-- [ ] Lifecycle operations validate inputs and return consistent success and error responses aligned with local project conventions
-- [ ] Ticket retrieval operations expose current lifecycle state and traceable progression data needed by consuming layers
-- [ ] Authorization or permission checks for lifecycle actions follow existing application policies and are enforced where applicable
-- [ ] Existing internal contracts remain backward-compatible unless a source-supported change is required
-- [ ] No external integration behavior is implemented as an assumption unless supported by local project context; unresolved integration details must remain unimplemented if they require an Open Question decision
+- [ ] Required ticket lifecycle API or service operations are implemented for source-supported actions such as create, retrieve, update, assign, transition, resolve, close, and reopen
+- [ ] Each lifecycle operation validates inputs, returns expected outputs, and handles errors according to local application conventions
+- [ ] Permission enforcement is applied to lifecycle operations based on source-supported roles or access rules
+- [ ] Repository and persistence interactions correctly store lifecycle state, transition history, and related ticket data where required by source artifacts
+- [ ] Any integrations triggered by lifecycle events are implemented only where explicitly supported by selected work items
+- [ ] Existing API and service contracts remain backward-compatible unless a source artifact explicitly requires change
+- [ ] Monolith architecture conventions are followed for module boundaries, service orchestration, and persistence access within the existing codebase
+- [ ] No external integration behavior is inferred from planning or documentation artifacts unless it is supported as an implementation requirement
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] Ticket domain logic enforces the defined lifecycle stages: creation, assignment, investigation, resolution, and closure
-- [ ] Allowed lifecycle transitions are explicitly implemented in business logic rather than inferred implicitly
-- [ ] Ticket data model supports persistence of current state and the data required to trace lifecycle progression
-- [ ] Assignment behavior records who or what the ticket is assigned to if such assignment data exists in local domain context
-- [ ] Resolution behavior records resolution completion in a traceable manner
-- [ ] Closure behavior records closure completion in a traceable manner
-- [ ] Attempts to bypass required lifecycle sequencing are rejected unless existing source-supported rules permit them
-- [ ] Error handling covers missing tickets, invalid state changes, and failed persistence scenarios
-- [ ] State changes are persisted reliably so that lifecycle history remains consistent after updates
+- [ ] Ticket lifecycle business rules are implemented for allowed states, allowed transitions, required fields per action, and transition restrictions where source-supported
+- [ ] Ticket entities and persistence models include all source-supported lifecycle fields such as status, assignee, timestamps, resolution data, and audit/history data where required
+- [ ] Lifecycle transitions update related data consistently, including status timestamps, assigned ownership, and closure or resolution metadata where applicable
+- [ ] Reopen and rollback behavior is implemented only where supported by source-backed lifecycle rules
+- [ ] Concurrent or duplicate lifecycle actions are handled safely according to local reliability conventions
+- [ ] Validation prevents inconsistent ticket states and persistence of invalid lifecycle combinations
+- [ ] Error handling covers unsupported transitions, missing tickets, permission denial, invalid inputs, and persistence failures
+- [ ] Lifecycle history or audit behavior is implemented where required by source-supported backend or documentation artifacts
+- [ ] No business rule is assumed from common help-desk patterns when the source context does not define it
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] Implementation aligns with the selected monolith architecture and existing module boundaries, service layering, and repository patterns in the codebase
-- [ ] Security and permission enforcement for lifecycle actions follows existing project standards and does not expose unauthorized state changes
-- [ ] Observability for lifecycle changes is implemented using existing logging/auditing conventions where available in the project
-- [ ] Performance is acceptable for common ticket lifecycle operations within existing application expectations
-- [ ] Reliability considerations are addressed so repeated or concurrent lifecycle actions do not corrupt ticket state
-- [ ] Tests or verification steps cover the highest-risk behaviors, especially valid transitions, invalid transitions, and traceability of status changes
-- [ ] Golden Repo guidance is applied only where it is relevant to established repository conventions and constraints in the current project
+- [ ] Security and authorization controls protect ticket lifecycle operations and exposed data according to source-supported expectations
+- [ ] Reliability expectations are met for lifecycle updates, including consistent persistence and safe handling of failed transitions
+- [ ] Observability is implemented for important lifecycle operations and failures using existing project logging, monitoring, and diagnostic conventions
+- [ ] Performance is acceptable for common lifecycle actions and ticket retrieval within local project expectations
+- [ ] Implementation remains consistent with the selected monolith architecture and does not introduce unsupported distributed-service patterns
+- [ ] Implementation uses only selected DevOps work items and current form settings as requirement sources
+- [ ] TDD-specific artifacts are not introduced as part of implementing this feature
+- [ ] Tests or verification steps cover the highest-risk lifecycle behavior, including transition rules, permissions, validation, and failure handling
 
 ## Traceability
 
-- [ ] Every implemented lifecycle behavior maps back to BRD-BRD-IThelpdeskrequirements-1.0.pdf §60 REQ-001 and the feature user story acceptance criterion
-- [ ] Each implemented state transition can be traced to source-supported lifecycle stages: creation, assignment, investigation, resolution, and closure
-- [ ] Every non-blocking Open Question implemented during delivery has a recorded decision and one-line rationale in the project assumptions record
-- [ ] No blocking unresolved detail is implemented as an assumption; if lifecycle rules such as mandatory transition order, role restrictions, or required ticket fields are unclear and blocking, the feature remains at needs-clarification until resolved
+- [ ] Every implemented ticket lifecycle change maps back to source-supported feature requirements, derived source signals, or selected work-item details
+- [ ] Because no user stories were provided, each implemented behavior is traceable to explicit source artifacts rather than inferred user intent
+- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in assumptions documentation (no Open Question is silently assumed)
+- [ ] No BLOCKING Open Question was implemented as an assumption; unresolved lifecycle states, transitions, permissions, or integrations must hold completion until clarified
+- [ ] Any requirement gap caused by missing user stories or incomplete lifecycle definitions is recorded as needing clarification rather than implemented by convention
 
 ## Notes
 
-- Do not silently assume unspecified lifecycle rules such as whether transitions can be skipped, whether reassignment is allowed, who may perform each action, or what exact audit fields are mandatory.
-- Application type, detailed UI design guidance, and specific integration behavior are not specified in the source and must be implemented only from established local project context or resolved clarification.
+- Do not silently assume ticket statuses, transition sequences, role permissions, SLA behavior, notification rules, or audit requirements if they are not explicitly supported by source artifacts.
+- If lifecycle definitions are incomplete, implement only the source-supported subset and record any non-blocking assumption with rationale in assumptions documentation; blocking gaps must remain unresolved and prevent completion.
 - Mark an item complete only after verifying actual implementation code and behavior.

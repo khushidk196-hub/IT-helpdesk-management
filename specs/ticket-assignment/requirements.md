@@ -5,54 +5,62 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] IT Support Agents can assign a ticket to an owner from the ticket record
-- [ ] Assigned ownership is saved and the selected assignee is displayed on the ticket record
-- [ ] Assignment behavior is implemented for the primary flow of selecting an assignee and confirming the update
-- [ ] Failure behavior is implemented for unsupported assignment attempts, including permission-denied and invalid assignee handling, where supported by the existing application context
+- [ ] Ticket Assignment behavior is implemented for the monolith application where a ticket can be assigned to an intended assignee through observable application behavior
+- [ ] Assignment supports the full source-supported flow across backend and frontend layers where applicable in the mixed application context
+- [ ] Primary assignment flow, reassignment flow, unassignment flow if supported by implementation context, and failure paths are covered by executable behavior and verification
+- [ ] Assignment changes are reflected consistently anywhere ticket ownership or current assignee is displayed in the application
+- [ ] If assignment is restricted by ticket state, role, queue, team, or ownership rules, those source-supported constraints are enforced in the implementation
+- [ ] No functional behavior is invented beyond source-supported Ticket Assignment scope; unresolved behavior remains unimplemented pending clarification
 
 ## UI Acceptance Criteria
 
-- [ ] The ticket record UI exposes an assignment control for IT Support Agents
-- [ ] The ticket record UI displays the current assignee in a clear, observable way after assignment
-- [ ] Assignment-related UI states are implemented, including initial unassigned or existing-assignee display as supported by current data behavior
-- [ ] Validation or error feedback is shown when an assignment action cannot be completed
-- [ ] Existing design-system, accessibility, and responsive UI conventions already used in the application are followed
-- [ ] No UI design behavior not supported by source or local project conventions is introduced as an assumption
+- [ ] Ticket views that support assignment provide an implemented and testable interaction for selecting or changing the assignee where UI exists in local project context
+- [ ] The UI shows the current assignee state clearly, including empty or unassigned state if supported
+- [ ] Validation and user feedback are implemented for invalid assignment actions, unavailable assignees, unauthorized attempts, and service failures where source-supported
+- [ ] Loading, success, and error states for assignment actions are implemented and observable in the UI where applicable
+- [ ] Assignment UI follows existing design-system and local UI conventions already used by the monolith application
+- [ ] Accessibility expectations are satisfied for assignment controls, labels, focus behavior, keyboard interaction, and status/error messaging where applicable
+- [ ] Responsive behavior for assignment interactions is implemented consistently with existing application patterns where applicable
 
 ## API and Integration Acceptance Criteria
 
-- [ ] Application service or controller logic supports updating ticket ownership for authorized IT Support Agents
-- [ ] Assignment inputs are validated against existing ticket and user/agent records before persisting the change
-- [ ] Assignment responses or refreshed reads return the assignee information needed to display it on the ticket record
-- [ ] Error handling is implemented for invalid ticket identifiers, invalid assignee identifiers, and unauthorized assignment attempts, where supported by existing contracts
-- [ ] Existing contracts remain backward-compatible unless a source-supported change is required
+- [ ] Required monolith service/controller operations for assigning and reassigning tickets are implemented with source-supported inputs, outputs, and error handling
+- [ ] Assignment-related request validation is enforced server-side for ticket identity, assignee identity, and any supported business constraints
+- [ ] Authorization and permission checks for assignment operations are implemented before state changes occur
+- [ ] Persistence/repository behavior updates ticket assignment data correctly and atomically for supported assignment operations
+- [ ] Any source-supported notifications, audit events, or downstream side effects triggered by assignment are implemented and verified
+- [ ] Existing contracts remain backward-compatible unless a breaking change is explicitly required by source-supported implementation context
+- [ ] Integration behavior does not assume external provider contracts or side effects that are not present in the source context
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] Ticket data model and persistence support storing the assigned owner for a ticket
-- [ ] Assignment updates only the ticket ownership fields required to represent the assignee
-- [ ] Business logic restricts assignment capability to IT Support Agents
-- [ ] Assignment only succeeds when the target ticket exists and the selected assignee is valid within the local application context
-- [ ] Existing ticket lifecycle and related business behavior are not broken by adding assignment support
-- [ ] Unresolved details such as eligible assignee population, reassignment rules, and default unassigned behavior are not implemented as assumptions unless recorded as non-blocking decisions; any blocking Open Question must stop completion
+- [ ] Ticket data model and persistence include the required assignment-related fields and relationships needed to store current assignee state
+- [ ] Assignment and reassignment update ticket state consistently across domain logic, persistence, and read models where applicable
+- [ ] Business rules for valid assignees, self-assignment, reassignment, unassignment, closed/resolved ticket handling, and cross-team assignment are implemented only where source-supported
+- [ ] Concurrency-sensitive behavior is handled so competing assignment changes do not leave ticket data in an inconsistent state
+- [ ] Auditability requirements for who assigned, when assignment changed, and previous assignee state are implemented where supported by existing project conventions or source requirements
+- [ ] Error handling covers missing tickets, missing assignees, invalid assignment targets, unauthorized actions, and persistence failures
+- [ ] Any calculated or derived ticket views that depend on assignment data are updated correctly after assignment changes
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] Authorization controls enforce that only permitted IT Support Agents can assign tickets
-- [ ] Assignment changes are implemented reliably so the saved assignee remains consistent on subsequent reads
-- [ ] Logging, audit, or observability follows existing project conventions for ticket update actions where such conventions exist
-- [ ] Implementation fits the selected monolith architecture and local module boundaries
-- [ ] Tests or verification cover the highest-risk behavior: authorized assignment success, unauthorized assignment rejection, invalid assignee handling, and assignee display on the ticket record
+- [ ] Assignment implementation follows monolith architecture conventions used by the project and does not introduce unsupported distributed-service patterns
+- [ ] Security expectations are satisfied so only permitted users can view or modify assignment data as required by application context
+- [ ] Reliability expectations are met so assignment actions either complete successfully or fail without partial ticket updates
+- [ ] Observability is implemented for assignment failures and important state changes using existing logging/monitoring conventions where available
+- [ ] Performance is acceptable for assignment operations and assignee lookups under expected help-desk usage patterns in local project context
+- [ ] Implementation uses only source-supported work-item context and applicable local conventions; no unsupported feature expansion is introduced
+- [ ] Tests or verification steps cover the highest-risk behavior, including permission checks, business-rule enforcement, persistence updates, and failure handling
 
 ## Traceability
 
-- [ ] Every implemented change maps back to REQ-001 and the user story requiring that the system allow IT Support Agents to assign tickets
-- [ ] Every implemented UI, API, business-rule, and persistence change traces to source-supported ticket assignment or assignee display behavior
-- [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in specs/<slug>/assumptions.md (no Open Question is silently assumed)
-- [ ] No BLOCKING Open Question was implemented as an assumption (a feature with an unresolved blocking question is held at needs-clarification, not completed)
+- [ ] Every implemented Ticket Assignment change maps back to source-supported feature intent and any derived functional behavior present in the selected work-item context
+- [ ] Because no user stories were provided for this feature, no user-story-specific behavior is invented; any added behavior must be traceable to source-supported implementation context
+- [ ] Every non-blocking Open Question that affects implementation has a recorded decision and one-line rationale in the feature assumptions record; no Open Question is silently assumed
+- [ ] No BLOCKING Open Question is implemented as an assumption; unresolved assignment scope details must hold completion at needs-clarification
+- [ ] If assignment-specific details such as eligible assignee rules, notification behavior, unassignment support, or ticket-state restrictions are not explicitly resolved by source context, they are not implemented as assumptions
 
 ## Notes
 
-- Never resolve an Open Question silently. In an unattended run, record the chosen assumption + rationale in specs/<slug>/assumptions.md; blocking questions must instead hold the feature at needs-clarification.
-- Open Questions requiring clarification before completion include any source-unsupported rules for who can be assigned, whether reassignment is allowed, whether assignment is mandatory or optional, and any notification or audit requirements not stated in the source.
+- Never resolve an Open Question silently. In an unattended run, record the chosen assumption and rationale in the feature assumptions record; blocking questions must instead hold the feature at needs-clarification.
 - Mark an item complete only after verifying actual implementation code and behavior.

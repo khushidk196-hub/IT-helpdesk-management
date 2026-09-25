@@ -1,0 +1,258 @@
+{
+  "trackerVersion": 1,
+  "updatedAt": "2026-09-25T08:47:42.676Z",
+  "tasks": {
+    "FEATURE-44604854": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Categorization And Priority Management",
+      "featureId": 44604854,
+      "slug": "ticket-categorization-priority-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604868": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Resolution Management",
+      "featureId": 44604868,
+      "slug": "ticket-resolution-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604867": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Commenting",
+      "featureId": 44604867,
+      "slug": "ticket-commenting",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604858": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "End-to-End Ticket Lifecycle Management",
+      "featureId": 44604858,
+      "slug": "ticket-lifecycle-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604880": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Classification And Priority Management",
+      "featureId": 44604880,
+      "slug": "ticket-classification-priority-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604859": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "User Ticket Submission And Tracking",
+      "featureId": 44604859,
+      "slug": "user-ticket-tracking",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604869": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Assignment",
+      "featureId": 44604869,
+      "slug": "ticket-assignment",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604874": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "End-to-End Ticket Lifecycle Continuity",
+      "featureId": 44604874,
+      "slug": "end-to-end-ticket-continuity",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604885": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Lifecycle Workflow",
+      "featureId": 44604885,
+      "slug": "ticket-lifecycle-workflow",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604871": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Status Tracking",
+      "featureId": 44604871,
+      "slug": "ticket-status-tracking",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604861": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Lifecycle Workflow Validation",
+      "featureId": 44604861,
+      "slug": "ticket-lifecycle-validation",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604876": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Work Management",
+      "featureId": 44604876,
+      "slug": "it-support-ticket-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604851": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Information Update During Processing",
+      "featureId": 44604851,
+      "slug": "update-ticket-info-processing",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604865": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Lifecycle Management",
+      "featureId": 44604865,
+      "slug": "ticket-lifecycle-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604877": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Assignment And Updates",
+      "featureId": 44604877,
+      "slug": "it-agent-ticket-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604875": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Detail Capture",
+      "featureId": 44604875,
+      "slug": "ticket-detail-capture",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604879": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Management And Collaboration",
+      "featureId": 44604879,
+      "slug": "support-ticket-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-1518428762": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "As an Employee, I want to receive notifications when my support ticket changes so that I stay informed about progress and required actions; As an IT Support Agent, I want to receive notifications when a support ticket is assigned or reassigned so that I can act on owned work without delay; As an IT Support Agent, I want ticket lifecycle events to trigger notifications so that stakeholders are informed of ticket activity (+83 more)",
+      "featureId": 1518428762,
+      "slug": "support-ticket-governance-suite",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604856": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Ownership Assignment",
+      "featureId": 44604856,
+      "slug": "ticket-ownership-assignment",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604881": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Role-Based Access And Administration",
+      "featureId": 44604881,
+      "slug": "role-based-access-admin",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604852": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Viewing",
+      "featureId": 44604852,
+      "slug": "ticket-viewing",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604873": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Lifecycle State Visibility",
+      "featureId": 44604873,
+      "slug": "ticket-lifecycle-state-visibility",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604866": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Categorization",
+      "featureId": 44604866,
+      "slug": "ticket-categorization",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604884": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Operational Dashboards And Reports",
+      "featureId": 44604884,
+      "slug": "operational-dashboards-reports",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604883": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Audit History",
+      "featureId": 44604883,
+      "slug": "audit-history",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604863": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Administration Management",
+      "featureId": 44604863,
+      "slug": "administration-management",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604872": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Agent Ticket Viewing",
+      "featureId": 44604872,
+      "slug": "agent-ticket-viewing",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604862": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Verifiable Critical Workflow Outcomes",
+      "featureId": 44604862,
+      "slug": "verifiable-workflow-outcomes",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604857": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Role-Based Access Control",
+      "featureId": 44604857,
+      "slug": "role-based-access-control",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604855": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Agent Ticket Operations",
+      "featureId": 44604855,
+      "slug": "agent-ticket-operations",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604870": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Information Updates",
+      "featureId": 44604870,
+      "slug": "ticket-information-updates",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604853": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Support Ticket Creation",
+      "featureId": 44604853,
+      "slug": "support-ticket-creation",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604878": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Centralized IT Help Desk Platform",
+      "featureId": 44604878,
+      "slug": "it-help-desk-tickets",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604864": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "Ticket Audit History",
+      "featureId": 44604864,
+      "slug": "ticket-audit-history",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604860": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "End-to-End Workflow Testability",
+      "featureId": 44604860,
+      "slug": "end-to-end-workflow-testability",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    },
+    "FEATURE-44604882": {
+      "status": "NEEDS_CLARIFICATION",
+      "title": "SLA Monitoring And Notifications",
+      "featureId": 44604882,
+      "slug": "sla-monitoring-notifications",
+      "updatedAt": "2026-09-25T08:47:42.676Z"
+    }
+  }
+}

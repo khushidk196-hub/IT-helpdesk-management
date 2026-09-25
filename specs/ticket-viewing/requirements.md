@@ -5,60 +5,59 @@
 
 ## Functional Acceptance Criteria
 
-- [ ] IT Support Agents can access a ticket viewing capability in the application
-- [ ] An IT Support Agent can open and view ticket information for an existing ticket
-- [ ] The implemented behavior satisfies REQ-001 for allowing IT Support Agents to view tickets
-- [ ] Primary path for viewing an existing ticket is implemented and verifiable in the application
-- [ ] Failure behavior for non-existent, unavailable, or inaccessible tickets is handled with observable user feedback where applicable
-- [ ] Access to ticket viewing is limited to IT Support Agents or equivalent authorized roles supported by the codebase
+- [ ] Ticket viewing capability is implemented for the monolith application where users can access and read ticket details
+- [ ] The application provides observable behavior for viewing an individual ticket’s available information from existing ticket records
+- [ ] Primary paths for successfully opening and reading a ticket are implemented and verified in application behavior
+- [ ] Alternate paths for viewing tickets from applicable entry points in the application are implemented where supported by existing project context
+- [ ] Failure paths for missing, inaccessible, or invalid ticket view requests are implemented with observable user or API outcomes
+- [ ] No ticket-viewing behavior is implemented based on undocumented assumptions where source details are absent
 
 ## UI Acceptance Criteria
 
-- [ ] A ticket view screen, page, panel, or equivalent UI surface is implemented if the feature includes a user interface
-- [ ] Ticket details presented in the UI are readable, clearly labeled, and follow existing local UI conventions
-- [ ] Loading, empty, error, and unauthorized states for ticket viewing are implemented where applicable
-- [ ] Responsive behavior and accessibility expectations already established in the project are followed for the ticket viewing experience
-- [ ] No unsupported UI patterns, styles, or workflows are introduced beyond existing design-system or project conventions
-- [ ] If application type or UI interaction model is not defined in source or project context, it is not assumed silently and must be resolved before implementing unsupported UI behavior
+- [ ] Ticket viewing screens or components required by the existing application context are implemented to display ticket details clearly
+- [ ] Loading, empty, error, and unavailable states for ticket viewing are implemented where applicable
+- [ ] Any source-supported validation or user feedback related to ticket retrieval or access failure is displayed in the UI
+- [ ] Accessibility expectations already established in the project are followed for ticket viewing content, navigation, and status messaging
+- [ ] Responsive behavior for ticket viewing follows existing local UI conventions where the feature is exposed in the frontend
+- [ ] Existing design-system and local UI patterns are used for layout, typography, status display, and interaction behavior
 
 ## API and Integration Acceptance Criteria
 
-- [ ] Required server-side or service-layer read operation(s) for retrieving ticket details are implemented where needed by the application architecture
-- [ ] Ticket retrieval accepts the identifier or lookup input required by the existing application flow
-- [ ] Returned ticket data is mapped correctly into the viewing experience or consuming layer
-- [ ] Appropriate error handling is implemented for ticket-not-found, unauthorized access, and unexpected retrieval failures
-- [ ] Existing service, controller, repository, and persistence contracts remain backward-compatible unless a source-supported change is required
-- [ ] Monolith architecture conventions in the local project are followed for layering, integration boundaries, and dependency usage
+- [ ] Required monolith-side operations for retrieving ticket data for viewing are implemented where source-supported
+- [ ] Inputs, outputs, error responses, and permission behavior for ticket retrieval follow existing application contracts and project conventions
+- [ ] Data access and repository behavior used to load ticket details are implemented consistently with current monolith architecture
+- [ ] Existing contracts for ticket-related APIs or internal service interfaces remain backward-compatible unless an explicit source requirement requires change
+- [ ] Any integration points needed to populate ticket details in the view are implemented using existing local project patterns
+- [ ] Unsupported integrations or inferred service behavior are not added as assumptions
 
 ## Business Logic and Data Acceptance Criteria
 
-- [ ] Ticket viewing enforces the business rule that IT Support Agents are allowed to view tickets
-- [ ] Ticket data required for viewing is retrieved from the existing source of truth without introducing unsupported duplicate persistence
-- [ ] Authorization checks are applied before exposing ticket details to the viewer
-- [ ] Sensitive or restricted ticket data is only shown if permitted by existing system rules and project policies
-- [ ] Null, missing, malformed, or partial ticket data is handled safely without application failure
-- [ ] Any required ticket entity fields, relationships, or projections used by the view are implemented consistently with existing domain and data models
-- [ ] No unsupported assumptions are made about additional ticket fields, statuses, or display rules not present in the source context
+- [ ] Ticket viewing loads the correct persisted ticket entity and displays its available fields according to existing domain behavior
+- [ ] Business rules governing whether a ticket can be viewed are implemented where supported by existing source and project context
+- [ ] Field mapping, formatting, and state display for ticket details follow existing data and domain conventions
+- [ ] Not-found, unauthorized, invalid identifier, and other applicable edge-case behaviors for ticket viewing are implemented
+- [ ] Persistence is treated as read-focused for this feature unless source-supported requirements explicitly include update side effects
+- [ ] Any unresolved data or field-level requirements are treated as Open Questions and must not be implemented as assumptions
 
 ## Non-Functional Acceptance Criteria
 
-- [ ] Ticket viewing satisfies existing project security and permission controls for authenticated and authorized access
-- [ ] Retrieval and rendering of ticket details perform acceptably for normal usage within existing project expectations
-- [ ] Failures in ticket retrieval are logged, surfaced, or monitored according to local observability conventions where applicable
-- [ ] Implementation aligns with existing coding standards, architecture guidance, and monolith conventions used by the repository
-- [ ] Automated tests or verification steps cover the highest-risk behaviors: authorized viewing, unauthorized access, and ticket-not-found handling
-- [ ] Changes are minimal and scoped to the feature without introducing unrelated architectural divergence
+- [ ] Ticket viewing implementation aligns with the selected monolith architecture
+- [ ] Security and permission enforcement for ticket visibility follow existing project rules and constraints
+- [ ] Reliability expectations are met so ticket view requests fail predictably and return consistent UI or API error behavior
+- [ ] Observability follows existing local conventions for logging, monitoring, or diagnostics around ticket retrieval failures where applicable
+- [ ] Performance is acceptable for loading ticket details using existing project patterns and without unnecessary additional queries or processing
+- [ ] No TDD-specific artifacts or implementation work are introduced for this feature
+- [ ] Tests or verification steps cover the highest-risk ticket-viewing behaviors, especially successful retrieval, not found, and access-restricted cases
 
 ## Traceability
 
-- [ ] Every implemented change maps back to REQ-001 and the user story requiring that IT Support Agents can view tickets
-- [ ] Acceptance coverage includes the core behavior: an IT Support Agent can successfully view an existing ticket
-- [ ] Any implemented handling for alternate or failure paths is traceable to source-supported access and retrieval behavior
+- [ ] Every implemented ticket-viewing change maps back to source-supported feature details for Ticket Viewing
+- [ ] Implemented behavior is limited to what is supported by the provided source context and existing project conventions
 - [ ] Every non-blocking Open Question that was implemented has a recorded decision + one-line rationale in specs/<slug>/assumptions.md (no Open Question is silently assumed)
 - [ ] No BLOCKING Open Question was implemented as an assumption (a feature with an unresolved blocking question is held at needs-clarification, not completed)
-- [ ] Unresolved source gaps, including unspecified application type or unspecified ticket detail fields, must not be implemented as silent assumptions if they affect behavior or scope
 
 ## Notes
 
-- Never resolve an Open Question silently. In an unattended run, record the chosen assumption + rationale in specs/<slug>/assumptions.md; blocking questions must instead hold the feature at needs-clarification.
+- No user stories were provided for this feature; implementation must be constrained to source-supported ticket-viewing behavior and existing project context.
+- If ticket fields, access rules, entry points, or UI states are not defined in source or existing code conventions, treat them as Open Questions and do not implement them as assumptions.
 - Mark an item complete only after verifying actual implementation code and behavior.
