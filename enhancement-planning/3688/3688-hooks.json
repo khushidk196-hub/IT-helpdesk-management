@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Enhancement Planning: edit only files cited in Impact Analysis unless the user expands scope.'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Enhancement Planning: confirm Testing & Regression items before finishing.'"
+          }
+        ]
+      }
+    ]
+  }
+}
