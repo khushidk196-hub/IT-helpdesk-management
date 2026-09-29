@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "workspaceRoot": "C:/Users/khushidk/IT-helpdesk-management",
+  "generatedAt": "2026-09-29T07:25:46Z",
+  "repos": [
+    {
+      "id": "repo-",
+      "name": "IT-helpdesk-management",
+      "path": ".",
+      "git": {
+        "root": ".",
+        "branch": null,
+        "remote": null
+      },
+      "status": "discovered",
+      "repoType": "unknown",
+      "lifecycle": "active",
+      "boundedContexts": [workspace-root],
+      "ownership": {
+        "team": null,
+        "primary": true,
+        "confidence": 0.45,
+        "source": "workspace-discovery"
+      },
+      "tech": {
+        "languages": [TypeScript, JavaScript],
+        "frameworks": [React],
+        "packageManagers": [],
+        "testTools": []
+      },
+      "capabilities": {
+        "apiRoutes": [],
+        "uiScreens": [],
+        "eventsProduced": [],
+        "eventsConsumed": [],
+        "datastores": []
+      },
+      "existingCode": {
+        "summary": "Repository discovered in the workspace for workspace-root.",
+        "keyFiles": [client/package.json, specs/.devx/mcp/package.json],
+        "knownConstraints": []
+      },
+      "dependencies": {
+        "internalRepos": [],
+        "externalServices": []
+      },
+      "tags": ["unknown"]
+    }
+,
+    {
+      "id": "repo-c-users-khushidk-it-helpdesk-management-client",
+      "name": "client",
+      "path": "C:/Users/khushidk/IT-helpdesk-management/client",
+      "git": {
+        "root": "C:/Users/khushidk/IT-helpdesk-management/client",
+        "branch": null,
+        "remote": null
+      },
+      "status": "discovered",
+      "repoType": "unknown",
+      "lifecycle": "active",
+      "boundedContexts": [it-helpdesk-management, client],
+      "ownership": {
+        "team": null,
+        "primary": true,
+        "confidence": 0.45,
+        "source": "workspace-discovery"
+      },
+      "tech": {
+        "languages": [TypeScript],
+        "frameworks": [React],
+        "packageManagers": [npm],
+        "testTools": []
+      },
+      "capabilities": {
+        "apiRoutes": [],
+        "uiScreens": [],
+        "eventsProduced": [],
+        "eventsConsumed": [],
+        "datastores": []
+      },
+      "existingCode": {
+        "summary": "Repository discovered in the workspace for it-helpdesk-management /client.",
+        "keyFiles": [package.json],
+        "knownConstraints": []
+      },
+      "dependencies": {
+        "internalRepos": [],
+        "externalServices": []
+      },
+      "tags": ["unknown"]
+    }
+  ],
+  "sharedLibraries": [
+
+  ],
+  "discovery": {
+    "toolVersion": "1.0",
+    "unvalidatedRepos": [],
+    "missingRepos": [],
+    "warnings": []
+  }
+}

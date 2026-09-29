@@ -1,25 +1,36 @@
 # Current State
 
-> Placeholder until workspace discovery runs in the target IDE workspace.
+> Auto-generated from the current IDE workspace.
+> Workspace root: `/c/Users/khushidk/IT-helpdesk-management`
+> Generated: 2026-09-29T07:25:46Z
 
-## Discovery Status
+## Repositories And Modules (2)
 
-- Status: not-run
-- Architecture mode: monolith
-- Refresh command: `bash specs/.devx/discover-workspace.sh`
+## IT-helpdesk-management
 
-## Repositories And Modules
+- Path: `.`
+- Type: `unknown`
+- Bounded contexts: workspace-root
+- Frameworks: React
+- Package managers: unknown
+- Test tools: unknown
+- Key files: `client/package.json`, `specs/.devx/mcp/package.json`
+- Summary: Repository discovered in the workspace for workspace-root.
 
-| Repository / Module | Type | Stack | Key Files | Notes |
-| --- | --- | --- | --- | --- |
-| _Pending discovery_ | _TBD_ | _TBD_ | _TBD_ | _Run discovery before implementation_ |
+## client
 
-## Existing Routes, Screens, APIs, And Shared Modules
+- Path: `/c/Users/khushidk/IT-helpdesk-management/client`
+- Type: `unknown`
+- Bounded contexts: it-helpdesk-management , client
+- Frameworks: React
+- Package managers: npm
+- Test tools: unknown
+- Key files: `package.json`
+- Summary: Repository discovered in the workspace for it-helpdesk-management /client.
 
-- Pending discovery.
 
-## Implementation Constraints
+## Existing Code Guidance
 
-- Verify owner and impacted code areas before editing.
-- Prefer existing patterns over generic guidance.
-- Treat generated change maps as advisory until verified in code.
+- Use `specs/.devx/workspace-repos.json` for machine-readable repo inventory.
+- Use `specs/.devx/change-maps/<feature-slug>.md` for feature-specific candidate areas.
+- Use `specs/.devx/guidance/golden-repo-guidelines.md` when present, but prefer verified local code patterns on conflict.

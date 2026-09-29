@@ -1,0 +1,29 @@
+
+--- attempt 1: npx -y express-generator@latest server --no-view --git ---
+npm warn deprecated mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+
+   [36mcreate[0m : server\
+   [36mcreate[0m : server\public\
+   [36mcreate[0m : server\public\javascripts\
+   [36mcreate[0m : server\public\images\
+   [36mcreate[0m : server\public\stylesheets\
+   [36mcreate[0m : server\public\stylesheets\style.css
+   [36mcreate[0m : server\routes\
+   [36mcreate[0m : server\routes\index.js
+   [36mcreate[0m : server\routes\users.js
+   [36mcreate[0m : server\public\index.html
+   [36mcreate[0m : server\.gitignore
+   [36mcreate[0m : server\app.js
+   [36mcreate[0m : server\package.json
+   [36mcreate[0m : server\bin\
+   [36mcreate[0m : server\bin\www
+
+   change directory:
+     $ cd server
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=server:* npm start
+

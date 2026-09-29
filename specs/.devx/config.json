@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260929T073903Z",
+  "status": "completed",
+  "lastRunAt": "2026-09-29T07:39:41Z",
+  "workspaceMode": "single",
+  "packageManager": "npm",
+  "selectedAiTool": "claude",
+  "only": "backend",
+  "dryRun": 0,
+  "force": 0,
+  "skipValidation": 0,
+  "detected": {
+    "ui": { "stack": "react", "score": 80, "status": "detected" },
+    "backend": { "stack": "node", "score": 20, "status": "missing" },
+    "database": { "stack": "none", "score": 0, "status": "missing" }
+  },
+  "selected": {
+    "ui": "none",
+    "backend": "node",
+    "database": "none",
+    "reactPostCreate": "ask"
+  },
+  "targets": {
+    "ui": "client",
+    "backend": "server"
+  },
+  "toolVersions": {
+    "node": "v24.18.1",
+    "npm": "11.16.0",
+    "pnpm": "missing",
+    "yarn": "missing",
+    "python3": "",
+    "go": "missing",
+    "dotnet": "10.0.112",
+    "php": "missing",
+    "composer": "missing",
+    "ruby": "missing",
+    "rails": "missing"
+  },
+  "markers": {
+    "nestedRepos": "",
+    "ci": "",
+    "environment": ".env.example"
+  },
+  "stepResults": " scaffold-backend:node=started scaffold-backend:node=succeeded",
+  "needsUserDecision": "",
+  "logFile": "/c/Users/khushidk/IT-helpdesk-management/specs/.devx/logs/init-20260929T073903Z.log"
+}

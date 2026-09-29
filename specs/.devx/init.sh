@@ -2,7 +2,7 @@
 # Astra DevX Init Orchestrator
 #
 # Usage:
-#   bash specs/.devx/init.sh [tool]
+#   bash specs/.devx/init.sh --only backend claude[tool]
 #   bash specs/.devx/init.sh --dry-run
 #   bash specs/.devx/init.sh --yes codex
 #   bash specs/.devx/init.sh --only ai --list-tools

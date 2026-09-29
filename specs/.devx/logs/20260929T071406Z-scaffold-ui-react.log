@@ -1,0 +1,29 @@
+      0 [main] bash (22120) child_copy: cygheap read copy failed, 0x0..0x8000119D0, done 0, windows pid 22120, Win32 error 299
+      0 [main] bash 1478 dofork: child -1 - forked process 22120 died unexpectedly, retry 0, exit code 0xC0000142, errno 11
+C:/Users/khushidk/AppData/Local/Programs/Git/mingw64/share/git/completion/git-prompt.sh: fork: retry: Resource temporarily unavailable
+npm warn exec The following package was not found and will be installed: create-vite@9.2.1
+
+> npx
+> create-vite client --template react-ts
+
+│
+◇  Scaffolding project in C:\Users\khushidk\IT-helpdesk-management\specs\.devx\tmp\scaffold-20260929T071406Z-scaffold-ui-react\client...
+│
+└  Done. Now run:
+
+  cd client
+  npm install
+  npm run dev
+
+npm notice
+npm notice New major version of npm available! 11.16.0 -> 12.1.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.1.0
+npm notice To update run: npm install -g npm@12.1.0
+npm notice
+
+added 27 packages, and audited 28 packages in 56s
+
+9 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities

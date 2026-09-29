@@ -1,0 +1,6 @@
+
+--- attempt 1: mkdir -p server/app && cd server && python3 -m venv .venv && . .venv/bin/activate && python -m pip install fastapi uvicorn && printf "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get('/health')\ndef health():\n    return {'status': 'ok'}\n" > app/main.py ---
+Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+
+--- attempt 2: mkdir -p server/app && cd server && python3 -m venv .venv && . .venv/bin/activate && python -m pip install fastapi uvicorn && printf "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get('/health')\ndef health():\n    return {'status': 'ok'}\n" > app/main.py ---
+Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
