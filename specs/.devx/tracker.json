@@ -17,7 +17,7 @@
       "updatedAt": "2026-09-25T08:47:42.676Z"
     },
     "FEATURE-44604867": {
-      "status": "NEEDS_CLARIFICATION",
+      "status": "IN_PROGRESS",
       "title": "Ticket Commenting",
       "featureId": 44604867,
       "slug": "ticket-commenting",
@@ -45,7 +45,7 @@
       "updatedAt": "2026-09-25T08:47:42.676Z"
     },
     "FEATURE-44604869": {
-      "status": "NEEDS_CLARIFICATION",
+      "status": "IN_PROGRESS",
       "title": "Ticket Assignment",
       "featureId": 44604869,
       "slug": "ticket-assignment",
@@ -164,21 +164,21 @@
       "updatedAt": "2026-09-25T08:47:42.676Z"
     },
     "FEATURE-44604884": {
-      "status": "NEEDS_CLARIFICATION",
+      "status": "IN_PROGRESS",
       "title": "Operational Dashboards And Reports",
       "featureId": 44604884,
       "slug": "operational-dashboards-reports",
       "updatedAt": "2026-09-25T08:47:42.676Z"
     },
     "FEATURE-44604883": {
-      "status": "NEEDS_CLARIFICATION",
+      "status": "IN_PROGRESS",
       "title": "Audit History",
       "featureId": 44604883,
       "slug": "audit-history",
       "updatedAt": "2026-09-25T08:47:42.676Z"
     },
     "FEATURE-44604863": {
-      "status": "NEEDS_CLARIFICATION",
+      "status": "IN_PROGRESS",
       "title": "Administration Management",
       "featureId": 44604863,
       "slug": "administration-management",
@@ -199,7 +199,7 @@
       "updatedAt": "2026-09-25T08:47:42.676Z"
     },
     "FEATURE-44604857": {
-      "status": "NEEDS_CLARIFICATION",
+      "status": "IN_PROGRESS",
       "title": "Role-Based Access Control",
       "featureId": 44604857,
       "slug": "role-based-access-control",
@@ -248,7 +248,7 @@
       "updatedAt": "2026-09-25T08:47:42.676Z"
     },
     "FEATURE-44604882": {
-      "status": "NEEDS_CLARIFICATION",
+      "status": "IN_PROGRESS",
       "title": "SLA Monitoring And Notifications",
       "featureId": 44604882,
       "slug": "sla-monitoring-notifications",

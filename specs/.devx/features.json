@@ -150,8 +150,8 @@
       "taskId": "FEATURE-44604867",
       "title": "Ticket Commenting",
       "slug": "ticket-commenting",
-      "state": "planned",
-      "status": "needs-clarification",
+      "state": "in-progress",
+      "status": "in-progress",
       "openQuestions": [
         {
           "id": "oq-1",
@@ -377,8 +377,8 @@
       "taskId": "FEATURE-44604869",
       "title": "Ticket Assignment",
       "slug": "ticket-assignment",
-      "state": "planned",
-      "status": "needs-clarification",
+      "state": "in-progress",
+      "status": "in-progress",
       "openQuestions": [
         {
           "id": "oq-1",
@@ -2085,8 +2085,8 @@
       "taskId": "FEATURE-44604884",
       "title": "Operational Dashboards And Reports",
       "slug": "operational-dashboards-reports",
-      "state": "planned",
-      "status": "needs-clarification",
+      "state": "in-progress",
+      "status": "in-progress",
       "openQuestions": [
         {
           "id": "oq-1",
@@ -2123,8 +2123,8 @@
       "taskId": "FEATURE-44604883",
       "title": "Audit History",
       "slug": "audit-history",
-      "state": "planned",
-      "status": "needs-clarification",
+      "state": "in-progress",
+      "status": "in-progress",
       "openQuestions": [
         {
           "id": "oq-1",
@@ -2231,8 +2231,8 @@
       "taskId": "FEATURE-44604863",
       "title": "Administration Management",
       "slug": "administration-management",
-      "state": "planned",
-      "status": "needs-clarification",
+      "state": "in-progress",
+      "status": "in-progress",
       "openQuestions": [
         {
           "id": "oq-1",
@@ -2340,8 +2340,8 @@
       "taskId": "FEATURE-44604857",
       "title": "Role-Based Access Control",
       "slug": "role-based-access-control",
-      "state": "planned",
-      "status": "needs-clarification",
+      "state": "in-progress",
+      "status": "in-progress",
       "openQuestions": [
         {
           "id": "oq-1",
@@ -2791,8 +2791,8 @@
       "taskId": "FEATURE-44604882",
       "title": "SLA Monitoring And Notifications",
       "slug": "sla-monitoring-notifications",
-      "state": "planned",
-      "status": "needs-clarification",
+      "state": "in-progress",
+      "status": "in-progress",
       "openQuestions": [
         {
           "id": "oq-1",
