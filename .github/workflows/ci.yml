@@ -30,7 +30,7 @@ jobs:
 
       - name: Run client tests
         working-directory: ./client
-        run: npm test -- --runInBand
+        run: npm test 
 
   deploy_3:
     runs-on: ubuntu-latest
