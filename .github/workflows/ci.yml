@@ -10,17 +10,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci
-      - run: npm run build --if-present
+
+      - name: Install client dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Build client
+        working-directory: ./client
+        run: npm run build --if-present
 
   test_2:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm test
+
+      - name: Install client dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Run client tests
+        working-directory: ./client
+        run: npm test -- --runInBand
 
   deploy_3:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Run Deploy App"
+
+      - name: Deploy
+        run: echo "Run Deploy App"
